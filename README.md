@@ -1,2 +1,0 @@
-# ReastaurantApp
- Android App Project
