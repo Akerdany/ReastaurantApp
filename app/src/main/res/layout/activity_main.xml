@@ -17,8 +17,6 @@
 <!--    TODO:   1. Put the icons on the left-->
 <!--            2. make the styles-->
 <!--            3. background-->
-<!--            4. put the scroll view if needed-->
-<!--            5. Sign up hyper text to another activity-->
 <!--            6. Different logo sizes-->
 
     <ImageView

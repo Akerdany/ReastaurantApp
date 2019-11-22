@@ -5,5 +5,20 @@
     <string name="email_hint_signIn">البريد الأكتروني</string>
     <string name="password_hint_signIn">Password</string>
     <string name="signInBtn_text_signIn">Sign In</string>
-    <string name="signUpMsg_text_signIn">Don\'t have an account yet? Sign Up</string>
+    <string name="signUpMsg_text_signIn">Don\'t have an account yet? <u><font color='blue'>Sign Up</font></u></string>
+
+    <string name="signUpBtn_text_signUp">Sign Up</string>
+    <string name="signInMsg_text_signUp">Already have an account? <u><font color='blue'>Sign In</font></u></string>
+    <string name="firstName_hint_signUp">First Name</string>
+    <string name="lastName_hint_signUp">Last Name</string>
+    <string name="confirmPassword_hint_signUp">Confirm Password</string>
+    <string name="phoneNumber_hint_signUp">Phone Number</string>
+    <string name="gender_signUp">Gender:</string>
+    <string name="maleGender_signUp">Male</string>
+    <string name="femaleGender_signUp">Female</string>
+    <string name="dateOfBirth_signUp">Date of Birth:</string>
+
+    <string name="emailError_main">Please fill the email</string>
+    <string name="passwordError_main">Please fill the password</string>
+
 </resources>

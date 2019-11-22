@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up Page"/>
+    <!--    TODO:   1. Put the icons on the left-->
+    <!--            2. make the styles-->
+    <!--            3. background-->
+    <!--            6. Different logo sizes-->
+<!--                4. Date of Birth !!!-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/firstName_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstName_hint_signUp"/>
+
+        <EditText
+            android:id="@+id/lastName_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastName_hint_signUp"/>
+
+        <TextView
+            android:id="@+id/genderTitle_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gender_signUp"/>
+
+        <RadioGroup
+            android:id="@+id/gender_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maleGender_signUp"/>
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/femaleGender_signUp"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/dateOfBirthTitle_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dateOfBirth_signUp"/>
+
+        <EditText
+            android:id="@+id/dateOfBirth_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"/>
+
+        <EditText
+            android:id="@+id/phoneNumber_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phoneNumber_hint_signUp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/email_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_hint_signIn"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/password_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint_signIn"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/confirmPassword_signUp"
+            style="@style/signIn_layout_kerdany_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirmPassword_hint_signUp"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/btn_signUp"
+            style="@style/signIn_layout_kerdany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signUpBtn_text_signUp"
+            android:padding="12dp"
+            android:onClick="signUp"/>
+
+        <TextView
+            android:id="@+id/signInLink_signUp"
+            style="@style/signIn_layout_kerdany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signInMsg_text_signUp"
+            android:gravity="center"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
