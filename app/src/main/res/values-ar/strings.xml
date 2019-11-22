@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ReastaurantApp</string>
+    <string name="app_name">المطعم</string>
 
-    <!--    Id name_Attribute_Layout name-->
-    <string name="email_hint_signIn">Email</string>
+    <!--    TODO: Make the translations-->
+    <string name="email_hint_signIn">البريد الأكتروني</string>
     <string name="password_hint_signIn">Password</string>
     <string name="signInBtn_text_signIn">Sign In</string>
     <string name="signUpMsg_text_signIn">Don\'t have an account yet? Sign Up</string>
