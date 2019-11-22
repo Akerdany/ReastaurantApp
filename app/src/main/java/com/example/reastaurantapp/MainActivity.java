@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText email_editText;
@@ -45,13 +48,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), signUp_form.class);
+                Intent intent = new Intent(getApplicationContext(), SignUp_form.class);
                 startActivity(intent);
             }
         });
     }
 
     public void signIn(View view) {
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
+
         if(email_editText.getText().toString().equals("")){
 
             errorMessage.makeText(this, emailErrorMessage, Toast.LENGTH_LONG).show();
