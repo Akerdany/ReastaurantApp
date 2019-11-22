@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.reastaurantapp.Adapters.MenuRecyclerAdapter;
+import com.example.reastaurantapp.Classes.Food;
+
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {

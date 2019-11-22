@@ -1,4 +1,4 @@
-package com.example.reastaurantapp;
+package com.example.reastaurantapp.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,20 +8,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.reastaurantapp.Classes.Food;
+import com.example.reastaurantapp.Classes.Order;
+import com.example.reastaurantapp.R;
+
 import java.util.ArrayList;
 
-public class ChiefReyclerAdapter extends RecyclerView.Adapter<ChiefReyclerAdapter.ChiefViewHolder> {
+public class ChefReyclerAdapter extends RecyclerView.Adapter<ChefReyclerAdapter.ChiefViewHolder> {
 
     ArrayList<Order> Orders;
 
-    public ChiefReyclerAdapter(ArrayList<Order> orders) {
+    public ChefReyclerAdapter(ArrayList<Order> orders) {
         Orders = orders;
     }
 
     @NonNull
     @Override
     public ChiefViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chief_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chef_item, parent, false);
         return new ChiefViewHolder(view);
     }
 

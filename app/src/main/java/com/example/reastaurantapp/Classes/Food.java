@@ -1,4 +1,4 @@
-package com.example.reastaurantapp;
+package com.example.reastaurantapp.Classes;
 
 public class Food {
     private String ItemName;
