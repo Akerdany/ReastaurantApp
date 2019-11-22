@@ -1,13 +1,13 @@
 package com.example.reastaurantapp;
 
-public class MenuItem {
-    String ItemName;
-    String ItemDesc;
+public class Food {
+    private String ItemName;
+    private String ItemDesc;
 
-    int ItemPrice;
-    int ItemPhoto;
+    private int ItemPrice;
+    private int ItemPhoto;
 
-    public MenuItem(String itemName, String itemDesc, int itemPrice, int itemPhoto) {
+    public Food(String itemName, String itemDesc, int itemPrice, int itemPhoto) {
         ItemName = itemName;
         ItemDesc = itemDesc;
         ItemPrice = itemPrice;
