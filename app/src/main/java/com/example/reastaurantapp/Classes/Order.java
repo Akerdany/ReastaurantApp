@@ -1,4 +1,6 @@
-package com.example.reastaurantapp;
+package com.example.reastaurantapp.Classes;
+
+import com.example.reastaurantapp.Classes.Food;
 
 import java.util.ArrayList;
 
