@@ -15,13 +15,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     // Write a message to the database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
+    // FirebaseDatabase database = FirebaseDatabase.getInstance();
+    // DatabaseReference myRef = database.getReference("message");
 
     private EditText email_editText;
     private EditText password_editText;
-    private Button signIn_btn;
     private TextView signUp_link;
+    private Button signIn_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

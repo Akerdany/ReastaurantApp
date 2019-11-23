@@ -18,6 +18,7 @@
 <!--            2. make the styles-->
 <!--            3. background-->
 <!--            6. Different logo sizes-->
+<!--            4. Keep me signed in-->
 
     <ImageView
         android:id="@+id/logo_signIn"

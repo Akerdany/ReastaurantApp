@@ -21,4 +21,20 @@
     <string name="emailError_main">Please fill the email</string>
     <string name="passwordError_main">Please fill the password</string>
 
+    <string name="firstName_errorEmpty_signUp">Please fill your first name</string>
+    <string name="firstName_error_signUp">at least 3 characters</string>
+    <string name="lastName_errorEmpty_signUp">Please fill your last name</string>
+    <string name="lastName_error_signUp">at least 3 characters</string>
+    <string name="gender_errorEmpty_signUp">Please provide your gender</string>
+    <string name="dateOfBirth_errorEmpty_signUp">Please provide your date of birth</string>
+    <string name="dateOfBirth_error_signUp">you must be al least 18 years old</string>
+    <string name="phoneNumber_errorEmpty_signUp">Please fill your phone number</string>
+    <string name="phoneNumber_error_signUp">Please enter a valid phone number</string>
+    <string name="email_errorEmpty_signUp">Please fill your email</string>
+    <string name="email_error_signUp">Please enter a valid email</string>
+    <string name="password_errorEmpty_signUp">Please fill your password</string>
+    <string name="password_error_signUp">at least 8 characters</string>
+    <string name="confirmPassword_errorEmpty_signUp">Please fill your first name</string>
+    <string name="confirmPassword_error_signUp">Password Confirmation does not match</string>
+
 </resources>

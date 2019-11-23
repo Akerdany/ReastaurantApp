@@ -12,7 +12,8 @@
     <!--            2. make the styles-->
     <!--            3. background-->
     <!--            6. Different logo sizes-->
-<!--                4. Date of Birth !!!-->
+    <!--            4. Date of Birth !!!-->
+    <!--            5. Terms and conditions-->
 
     <LinearLayout
         android:layout_width="match_parent"
