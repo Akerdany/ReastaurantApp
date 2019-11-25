@@ -1,32 +1,34 @@
 package com.example.reastaurantapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GraphicalRestaurant extends AppCompatActivity
-{
+public class GR extends Fragment {
     Dialog myDialog;
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graphical_restaurant);
-        myDialog = new Dialog(this);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_gr, container, false);
     }
 
     public void ShowPopup(View view)
     {
         TextView txtclose;
         Button btnFollow;
-        myDialog.setContentView(R.layout.activity_popupmenu);
+        myDialog.setContentView(R.layout.fragment_popupmenufrag);
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
         txtclose.setText("X");
         btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
@@ -40,4 +42,5 @@ public class GraphicalRestaurant extends AppCompatActivity
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
+
 }
