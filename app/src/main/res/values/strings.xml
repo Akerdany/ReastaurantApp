@@ -37,4 +37,8 @@
     <string name="confirmPassword_errorEmpty_signUp">Please fill your first name</string>
     <string name="confirmPassword_error_signUp">Password Confirmation does not match</string>
 
+    <string name="home_navigation_icon">Home</string>
+    <string name="food_navigation_icon">Food</string>
+    <string name="navigation_navigation_icon">Navigation</string>
+
 </resources>
