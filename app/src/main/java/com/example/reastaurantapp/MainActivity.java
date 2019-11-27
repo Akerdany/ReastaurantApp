@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //TODO: Database read to logIn()
+        Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+        startActivity(intent);
+
     }
 
     public boolean validate() {
