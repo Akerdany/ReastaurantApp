@@ -30,7 +30,7 @@ public class MenuRecyclerAdapter extends RecyclerView.Adapter<MenuRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MenuViewHolder holder, final int position) {
         holder.ItemName.setText(Items.get(position).getItemName());
         holder.ItemPrice.setText(Items.get(position).getItemPrice());
         holder.ItemDesc.setText(Items.get(position).getItemDesc());
@@ -60,6 +60,15 @@ public class MenuRecyclerAdapter extends RecyclerView.Adapter<MenuRecyclerAdapte
             ItemDesc = itemView.findViewById(R.id.ItemDesc);
 
             ItemImage = itemView.findViewById(R.id.ItemImage);
+        }
+
+
+        public void ToggleDesc(View view) {
+            if (ItemDesc.getVisibility() == View.GONE){
+                ItemDesc.setVisibility(View.VISIBLE);
+            }else {
+                ItemDesc.setVisibility(View.GONE);
+            }
         }
     }
 

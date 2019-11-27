@@ -9,6 +9,7 @@
         android:id="@+id/ItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="ToggleDesc"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -18,6 +19,7 @@
         android:id="@+id/ItemImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="ToggleDesc"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -28,7 +30,8 @@
         android:layout_marginTop="10dp"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ItemName" />
+        app:layout_constraintTop_toBottomOf="@id/ItemName"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/ItemPrice"
@@ -39,7 +42,7 @@
         android:textSize="18sp"
         android:textStyle="bold|italic"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
