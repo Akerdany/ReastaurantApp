@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".popupmenu"/>
         <activity android:name=".ChefActivity"/>
-        <activity android:name=".ClientActivity"/>
         <activity android:name=".MenuActivity"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".MainActivity">
