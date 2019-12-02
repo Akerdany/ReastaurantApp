@@ -2,15 +2,25 @@ package com.example.reastaurantapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText password_editText;
     private TextView signUp_link;
     private Button signIn_btn;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
         if (!validate()) {
             return;
         }
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("email", email_editText.getText().toString());
+        user.put("password", password_editText.getText().toString());
+
+        // Add a new document with a generated ID
+        db.collection("users")
+                .add(user);
 
         //TODO: Database read to logIn()
         Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
