@@ -16,8 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GR extends Fragment
-{
+public class GR extends Fragment {
     Dialog myDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,5 +26,23 @@ public class GR extends Fragment
 
     }
 
+    public void ShowPopup(View view)
+    {
+        TextView txtclose;
+        Button btnFollow;
+        myDialog.setContentView(R.layout.fragment_popupmenufrag);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
+        txtclose.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
 
 }
