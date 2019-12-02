@@ -1,5 +1,6 @@
 package com.example.reastaurantapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText firstName_editText;
@@ -26,6 +35,9 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText confirmPassword_editText;
     private TextView signIn_link;
     private Button signUp_btn;
+
+    private boolean flag = false;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +79,31 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-    //TODO: Save data in database
+        Map<String, Object> user = new HashMap<>();
+
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        flag = true;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        flag = false;
+                    }
+                });
+
+        if(flag){
+            Toast.makeText(this, "Success",Toast.LENGTH_LONG);
+        }else{
+            Toast.makeText(this, "Fail",Toast.LENGTH_LONG);
+        }
+
+
+        //TODO: Save data in database
 
     }
 

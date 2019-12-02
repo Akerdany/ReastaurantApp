@@ -2,9 +2,7 @@ package com.example.reastaurantapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,45 +10,63 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText email_editText;
     private EditText password_editText;
     private TextView signUp_link;
-    private Button signIn_btn;
 
-    private boolean flag = false;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+            startActivity(intent);
+        }
+
         initializeComponents();
-        initializeListeners();
+    }
+
+
+    public void signIn(View view) {
+
+        if (!validate()) {
+            return;
+        }
+
+        final String email = email_editText.getText().toString().trim();
+        final String password = password_editText.getText().toString().trim();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Email or Password is wrong", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
     }
 
     private void initializeComponents() {
         email_editText = findViewById(R.id.email_signIn);
         password_editText = findViewById(R.id.password_signIn);
-        signIn_btn = findViewById(R.id.btn_signIn);
         signUp_link = findViewById(R.id.signUpLink_signIn);
-    }
-
-    private void initializeListeners() {
 
         signUp_link.setOnClickListener(new View.OnClickListener() {
 
@@ -61,43 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    public void signIn(View view) {
-
-        if (!validate()) {
-            return;
-        }
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", email_editText.getText().toString());
-        user.put("password", password_editText.getText().toString());
-
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        flag = true;
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        flag = false;
-                    }
-                });
-
-        if(flag){
-            Toast.makeText(this, "Success",Toast.LENGTH_LONG);
-        }else{
-            Toast.makeText(this, "Fail",Toast.LENGTH_LONG);
-        }
-
-//        //TODO: Database read to logIn()
-//        Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
-//        startActivity(intent);
+        //        signIn_btn = findViewById(R.id.btn_signIn);
 
     }
 
