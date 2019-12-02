@@ -1,7 +1,5 @@
 package com.example.reastaurantapp.Classes;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 public class User {
 
     private String firstName;
@@ -11,7 +9,6 @@ public class User {
     private int userType;
     private String phoneNumber;
 
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
     public User() {
     }
 
