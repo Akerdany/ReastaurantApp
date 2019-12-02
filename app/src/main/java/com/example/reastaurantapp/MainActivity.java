@@ -2,26 +2,37 @@ package com.example.reastaurantapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Write a message to the database
-    // FirebaseDatabase database = FirebaseDatabase.getInstance();
-    // DatabaseReference myRef = database.getReference("message");
 
     private EditText email_editText;
     private EditText password_editText;
     private TextView signUp_link;
     private Button signIn_btn;
+
+    private boolean flag = false;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +69,36 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //TODO: Database read to logIn()
-        Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
-        startActivity(intent);
+        Map<String, Object> user = new HashMap<>();
+        user.put("first", "Omar");
+        user.put("last", "Met3asab");
+        user.put("after last", "gidaaaaaaaaaaaaaaan");
+
+// Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        flag = true;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        flag = false;
+                    }
+                });
+
+        if(flag){
+            Toast.makeText(this, "Success",Toast.LENGTH_LONG);
+        }else{
+            Toast.makeText(this, "Fail",Toast.LENGTH_LONG);
+        }
+
+//        //TODO: Database read to logIn()
+//        Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+//        startActivity(intent);
 
     }
 
