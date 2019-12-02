@@ -70,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Map<String, Object> user = new HashMap<>();
-        user.put("first", "Omar");
-        user.put("last", "Met3asab");
-        user.put("after last", "gidaaaaaaaaaaaaaaan");
+        user.put("email", email_editText.getText().toString());
+        user.put("password", password_editText.getText().toString());
 
 // Add a new document with a generated ID
         db.collection("users")

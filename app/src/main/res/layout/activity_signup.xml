@@ -59,12 +59,12 @@
                     android:text="@string/femaleGender_signUp"/>
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/dateOfBirthTitle_signUp"
-            style="@style/signIn_layout_kerdany_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dateOfBirth_signUp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/dateOfBirthTitle_signUp"-->
+<!--            style="@style/signIn_layout_kerdany_2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/dateOfBirth_signUp"/>-->
 
         <EditText
             android:id="@+id/dateOfBirth_signUp"
