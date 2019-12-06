@@ -30,9 +30,10 @@
         android:layout_marginTop="50dp">
 
         <ImageView
+            android:id="@+id/viewImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/table4"
+
             android:layout_gravity="center"
             android:layout_marginTop="15dp"/>
 
@@ -54,6 +55,7 @@
         android:layout_marginTop="100dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/buttonstyle"
-        android:textColor="@color/blueLight"/>
+        android:textColor="@color/blueLight"
+        android:onClick="chooseDate"/>
 
 </LinearLayout>
