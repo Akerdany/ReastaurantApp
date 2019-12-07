@@ -32,8 +32,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
-{
+public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     String tablename;
     int Day, Month, Year, Hour, Minute;
@@ -48,34 +47,30 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
-    new BottomNavigationView.OnNavigationItemSelectedListener()
-    {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item)
-        {
-            Fragment selectedFragment = null;
-            //TODO: Add the other menu cases buttons
-            switch (item.getItemId())
-            {
-                case R.id.nav_home_icon:
-                    selectedFragment = new GR();
-                    break;
-                case R.id.nav_more_icon:
-                    selectedFragment = new MorePage();
-                    break;
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    //TODO: Add the other menu cases buttons
+                    switch (item.getItemId()) {
+                        case R.id.nav_home_icon:
+                            selectedFragment = new GR();
+                            break;
+                        case R.id.nav_more_icon:
+                            selectedFragment = new MorePage();
+                            break;
 
-                 default:
-                     selectedFragment = new GR();
-                     break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement, selectedFragment).commit();
-            return true;
-        }
-    };
+                        default:
+                            selectedFragment = new GR();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement, selectedFragment).commit();
+                    return true;
+                }
+            };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_client);
 
@@ -90,33 +85,38 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         databaseConnection = FirebaseFirestore.getInstance();
     }
 
-    public void ShowPopup(View view)
-    {
+    public void ShowPopup(View view) {
         tablename = view.getTag().toString();
         myDialog.setContentView(R.layout.activity_popupmenu);
         image = myDialog.findViewById(R.id.viewImage);
         selectedTable = myDialog.findViewById(R.id.hh);
-        switch (view.getId())
-        {
-            case R.id.tablefour1: case R.id.tablefour2: case R.id.tablefour3: case R.id.tablefour4: case R.id.tablefour5: case R.id.tablefour6:
-            image.setImageResource(R.drawable.table4);
-            selectedTable.setText("You Selected a 4 Person Table.");
-            break;
-            case R.id.tabletwo1: case R.id.tabletwo2: case R.id.tabletwo3: case R.id.tabletwo4:
-            image.setImageResource(R.drawable.table2);
-            selectedTable.setText("You Selected a 2 Person Table.");
-            break;
-            case R.id.tablefive1: case R.id.tablefive2:
-            image.setImageResource(R.drawable.table5);
-            selectedTable.setText("You Selected a 5 Person Table.");
-            break;
+        switch (view.getId()) {
+            case R.id.tablefour1:
+            case R.id.tablefour2:
+            case R.id.tablefour3:
+            case R.id.tablefour4:
+            case R.id.tablefour5:
+            case R.id.tablefour6:
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+            case R.id.tabletwo1:
+            case R.id.tabletwo2:
+            case R.id.tabletwo3:
+            case R.id.tabletwo4:
+                image.setImageResource(R.drawable.table2);
+                selectedTable.setText("You Selected a 2 Person Table.");
+                break;
+            case R.id.tablefive1:
+            case R.id.tablefive2:
+                image.setImageResource(R.drawable.table5);
+                selectedTable.setText("You Selected a 5 Person Table.");
+                break;
         }
         close = myDialog.findViewById(R.id.txtclose);
-        close.setOnClickListener(new View.OnClickListener()
-        {
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 myDialog.dismiss();
             }
         });
@@ -124,8 +124,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.show();
     }
 
-    public void chooseDate(View view)
-    {
+    public void chooseDate(View view) {
         Calendar c = Calendar.getInstance();
         Year = c.get(Calendar.YEAR);
         Month = c.get(Calendar.MONTH);
@@ -136,8 +135,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-    {
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         yearFinal = year;
         monthFinal = month + 1;
         dayFinal = dayOfMonth;
@@ -149,8 +147,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
-    {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         hourFinal = hourOfDay;
         minuteFinal = minute;
 
@@ -161,19 +158,14 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Reservation.put("Year", yearFinal);
         Reservation.put("tableName", tablename);
 
-        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
-        {
+        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                if (task.isSuccessful())
-                {
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
                     finish();
                     Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
                     startActivity(intent);
-                }
-                else
-                {
+                } else {
                     Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
                 }
             }
@@ -181,8 +173,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture)
-    {
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
