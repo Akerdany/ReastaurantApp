@@ -36,18 +36,21 @@ import java.util.Map;
 public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     public static final String TAG = "TAG";
+
     String tablename;
     int Day, Month, Year, Hour, Minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+
     Dialog myDialog;
     TextView close;
     TextView selectedTable;
     ImageView image;
     Map<String, Object> Reservation;
+
     FirebaseAuth firebaseAuth;
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
-    private int userType = 2;
+
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -63,16 +66,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                             break;
                         case R.id.nav_menu_icon:
                             selectedFragment = new MenuFragment();
-                            break;
-
-                        case R.id.nav_home_icon_chef:
-                            selectedFragment = new GR();
-                            break;
-                        case R.id.nav_menu_icon_chef:
-                            selectedFragment = new MenuFragment();
-                            break;
-                        case R.id.nav_more_icon_chef:
-                            selectedFragment = new MorePage();
                             break;
 
                         default:
@@ -97,29 +90,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
-        switch (userType) {
-            case 1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new MorePage()).commit();
-                bottomNav.inflateMenu(R.menu.client_bottom_navigation);
-                break;
-            case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new GR()).commit();
-                bottomNav.inflateMenu(R.menu.client_bottom_navigation);
-                break;
-            case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new MenuFragment()).commit();
-                bottomNav.inflateMenu(R.menu.chef_bottom_navigation);
-                break;
-
-            default:
-                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new GR()).commit();
-                bottomNav.inflateMenu(R.menu.client_bottom_navigation);
-                break;
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                new GR()).commit();
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
@@ -217,11 +189,11 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
     }
 
-    public void getUserType() {
-        String userID = "";
-        if (firebaseAuth.getCurrentUser() == null) {
-            userID = firebaseAuth.getCurrentUser().getUid();
-        }
+    public void getUserType(){
+//        if (firebaseAuth.getCurrentUser() == null) {
+//
+//        }
+        String userID = firebaseAuth.getCurrentUser().getUid();
         DocumentReference docRef = databaseConnection.collection("users").document(userID);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -230,7 +202,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        userType = Integer.parseInt(document.getString("userType"));
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         Log.d(TAG, "No such document");
