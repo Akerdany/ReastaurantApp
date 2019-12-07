@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="450dp"
-    tools:context=".popupmenu"
     android:background="#fff"
     android:padding="5dp"
     android:layout_gravity="center"
@@ -23,29 +22,24 @@
         android:gravity="center"
         android:background="@drawable/oval"></TextView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/viewImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:src="@drawable/table4"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"/>
 
-        <ImageView
-            android:id="@+id/viewImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="You Selected Table 4"
-            android:textColor="@color/blueLight"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"></TextView>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/hh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="You Selected Table 4"
+        android:textColor="@color/blueLight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
 
     <Button
         android:id="@+id/btnfollow"
