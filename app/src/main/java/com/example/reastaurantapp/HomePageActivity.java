@@ -1,33 +1,32 @@
 package com.example.reastaurantapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -35,6 +34,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+    public static final String TAG = "TAG";
 
     String tablename;
     int Day, Month, Year, Hour, Minute;
@@ -46,8 +47,10 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     ImageView image;
     Map<String, Object> Reservation;
 
+    FirebaseAuth firebaseAuth;
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
+
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -56,10 +59,13 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                     //TODO: Add the other menu cases buttons
                     switch (item.getItemId()) {
                         case R.id.nav_home_icon:
-                            selectedFragment = new branches();
+                            selectedFragment = new GR();
                             break;
                         case R.id.nav_more_icon:
                             selectedFragment = new MorePage();
+                            break;
+                        case R.id.nav_menu_icon:
+                            selectedFragment = new MenuFragment();
                             break;
 
                         default:
@@ -72,21 +78,23 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_homepage_client);
+        databaseConnection = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        getUserType();
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                new branches()).commit();
+                new GR()).commit();
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
-        databaseConnection = FirebaseFirestore.getInstance();
-
     }
 
     public void ShowPopup(View view) {
@@ -94,8 +102,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.setContentView(R.layout.activity_popupmenu);
         image = myDialog.findViewById(R.id.viewImage);
         selectedTable = myDialog.findViewById(R.id.hh);
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.tablefour1:
             case R.id.tablefour2:
             case R.id.tablefour3:
@@ -167,6 +174,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    finish();
+                    Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
                 }
@@ -177,6 +187,30 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    public void getUserType(){
+//        if (firebaseAuth.getCurrentUser() == null) {
+//
+//        }
+        String userID = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference docRef = databaseConnection.collection("users").document(userID);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
 }
