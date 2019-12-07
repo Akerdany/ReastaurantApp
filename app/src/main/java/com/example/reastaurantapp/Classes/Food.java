@@ -7,6 +7,10 @@ public class Food {
     private int ItemPrice;
     private int ItemPhoto;
 
+    public Food(){
+
+    }
+
     public Food(String itemName, String itemDesc, int itemPrice, int itemPhoto) {
         ItemName = itemName;
         ItemDesc = itemDesc;
