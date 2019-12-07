@@ -3,5 +3,5 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    TODO: display the client reservation and menu ordered and at the end a button to confirm-->
+<!--    TODO: display the client resrvation and menu ordered and at the end a button to confirm-->
 </LinearLayout>

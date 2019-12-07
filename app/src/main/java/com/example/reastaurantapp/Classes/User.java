@@ -2,14 +2,38 @@ package com.example.reastaurantapp.Classes;
 
 public class User {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private int userType;
     private String phoneNumber;
+    private int gender;
 
-    public User() {
+    public User(String id, String firstName, String lastName, String email, int userType, String phoneNumber, int gender) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.userType = userType;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -34,14 +58,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getUserType() {

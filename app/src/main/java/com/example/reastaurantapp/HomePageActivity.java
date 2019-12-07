@@ -1,8 +1,9 @@
 package com.example.reastaurantapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,47 +13,74 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
-public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
-{
+public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
-    int Day, Month, Year, Hour, Miniute;
-    int dayFinal, monthFinal, yearFinal, hourFinal, miniuteFinal;
+    int Day, Month, Year, Hour, Minute;
+    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
     Dialog myDialog;
 
+    BottomNavigationView bottomNav;
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+
+                    //TODO: Add the other menu cases buttons
+                    switch (item.getItemId()) {
+                        case R.id.nav_home_icon:
+                            selectedFragment = new GR();
+                            break;
+                        case R.id.nav_more_icon:
+                            selectedFragment = new MorePage();
+                            break;
+
+                         default:
+                             selectedFragment = new GR();
+                             break;
+                    }
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                            selectedFragment).commit();
+
+                    return true;
+                }
+            };
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_client);
 
-        GR gr = new GR();
-    //        FrameLayout fragment = findViewById(R.id.homepage_fragement);
-        getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement, gr).commit();
+        bottomNav = findViewById(R.id.homepage_bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navigationListener);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                new GR()).commit();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void ShowPopup(View v)
-    {
+    public void ShowPopup(View v) {
         myDialog = new Dialog(this);
         myDialog.create();
         TextView txtclose;
-        ImageView image = findViewById(R.id.viewImage) ;
+        ImageView image = findViewById(R.id.viewImage);
         Button btnFollow;
         myDialog.setContentView(R.layout.activity_popupmenu);
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.tablefour1:
                 image.setImageResource(R.drawable.table4);
                 break;
@@ -71,8 +99,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.show();
     }
 
-    public void chooseDate(View view)
-    {
+    public void chooseDate(View view) {
         Calendar c = Calendar.getInstance();
         Year = c.get(Calendar.YEAR);
         Month = c.get(Calendar.MONTH);
@@ -83,28 +110,25 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-    {
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         yearFinal = year;
         monthFinal = month + 1;
         dayFinal = dayOfMonth;
         Calendar c = Calendar.getInstance();
         Hour = c.get(Calendar.HOUR_OF_DAY);
-        Miniute = c.get(Calendar.MINUTE);
-        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, HomePageActivity.this, Hour, Miniute, DateFormat.is24HourFormat(this));
+        Minute = c.get(Calendar.MINUTE);
+        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
         timediag.show();
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
-    {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         hourFinal = hourOfDay;
-        miniuteFinal = minute;
+        minuteFinal = minute;
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture)
-    {
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

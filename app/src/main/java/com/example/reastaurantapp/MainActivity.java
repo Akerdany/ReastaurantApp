@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText email_editText;
     private EditText password_editText;
     private TextView signUp_link;
+    private ProgressBar progressbar;
+    private ScrollView main_layout;
 
     private FirebaseAuth firebaseAuth;
 
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() != null) {
+            finish();
+
             Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
             startActivity(intent);
         }
@@ -48,17 +54,21 @@ public class MainActivity extends AppCompatActivity {
         final String email = email_editText.getText().toString().trim();
         final String password = password_editText.getText().toString().trim();
 
+        showProgressBar();
+
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            finish();
+
                             Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(MainActivity.this, "Email or Password is wrong", Toast.LENGTH_LONG).show();
+                            disappearProgressBar();
+                            Toast.makeText(MainActivity.this, getText(R.string.signInError_main), Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
     }
@@ -68,18 +78,17 @@ public class MainActivity extends AppCompatActivity {
         password_editText = findViewById(R.id.password_signIn);
         signUp_link = findViewById(R.id.signUpLink_signIn);
 
+        main_layout = findViewById(R.id.main_layout);
+        progressbar = findViewById(R.id.progressbar);
+
         signUp_link.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(intent);
             }
         });
-
-        //        signIn_btn = findViewById(R.id.btn_signIn);
-
     }
 
     public boolean validate() {
@@ -107,4 +116,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void showProgressBar() {
+        main_layout.setAlpha((float) 0.2);
+        progressbar.setVisibility(View.VISIBLE);
+    }
+
+    public void disappearProgressBar() {
+        main_layout.setAlpha((float) 1.0);
+        progressbar.setVisibility(View.INVISIBLE);
+    }
 }

@@ -8,11 +8,10 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
-    <!--    TODO:   1. Put the icons on the left-->
+    <!--    TODO:   -->
     <!--            2. make the styles-->
     <!--            3. background-->
     <!--            6. Different logo sizes-->
-    <!--            4. Date of Birth !!!-->
     <!--            5. Terms and conditions-->
 
     <LinearLayout
@@ -26,6 +25,7 @@
             style="@style/signIn_layout_kerdany_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPersonName"
             android:hint="@string/firstName_hint_signUp"/>
 
         <EditText
@@ -33,6 +33,7 @@
             style="@style/signIn_layout_kerdany_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPersonName"
             android:hint="@string/lastName_hint_signUp"/>
 
         <TextView
@@ -58,19 +59,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/femaleGender_signUp"/>
         </RadioGroup>
-
-<!--        <TextView-->
-<!--            android:id="@+id/dateOfBirthTitle_signUp"-->
-<!--            style="@style/signIn_layout_kerdany_2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/dateOfBirth_signUp"/>-->
-
-        <EditText
-            android:id="@+id/dateOfBirth_signUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"/>
 
         <EditText
             android:id="@+id/phoneNumber_signUp"
