@@ -59,7 +59,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                     //TODO: Add the other menu cases buttons
                     switch (item.getItemId()) {
                         case R.id.nav_home_icon:
-                            selectedFragment = new GR();
+                            selectedFragment = new branches();
                             break;
                         case R.id.nav_more_icon:
                             selectedFragment = new MorePage();
