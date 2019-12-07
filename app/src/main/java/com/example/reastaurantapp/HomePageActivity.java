@@ -21,13 +21,31 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
-public class HomePageActivity extends AppCompatActivity
+public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
 {
+
+    String tablename;
+    int Day, Month, Year, Hour, Minute;
+    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+
+    Dialog myDialog;
+    TextView close;
+    TextView selectedTable;
+    ImageView image;
+    Map<String, Object> Reservation;
+
+    FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
     new BottomNavigationView.OnNavigationItemSelectedListener()
@@ -66,11 +84,106 @@ public class HomePageActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
                 new GR()).commit();
+
+        myDialog = new Dialog(this);
+        Reservation = new HashMap<>();
+        databaseConnection = FirebaseFirestore.getInstance();
     }
 
-    public void SwitchToGR(View view)
+    public void ShowPopup(View view)
     {
-        Intent intent = new Intent(this, GraphicalRestaurant.class);
-        startActivity(intent);
+        tablename = view.getTag().toString();
+        myDialog.setContentView(R.layout.activity_popupmenu);
+        image = myDialog.findViewById(R.id.viewImage);
+        selectedTable = myDialog.findViewById(R.id.hh);
+        switch (view.getId())
+        {
+            case R.id.tablefour1: case R.id.tablefour2: case R.id.tablefour3: case R.id.tablefour4: case R.id.tablefour5: case R.id.tablefour6:
+            image.setImageResource(R.drawable.table4);
+            selectedTable.setText("You Selected a 4 Person Table.");
+            break;
+            case R.id.tabletwo1: case R.id.tabletwo2: case R.id.tabletwo3: case R.id.tabletwo4:
+            image.setImageResource(R.drawable.table2);
+            selectedTable.setText("You Selected a 2 Person Table.");
+            break;
+            case R.id.tablefive1: case R.id.tablefive2:
+            image.setImageResource(R.drawable.table5);
+            selectedTable.setText("You Selected a 5 Person Table.");
+            break;
+        }
+        close = myDialog.findViewById(R.id.txtclose);
+        close.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
+
+    public void chooseDate(View view)
+    {
+        Calendar c = Calendar.getInstance();
+        Year = c.get(Calendar.YEAR);
+        Month = c.get(Calendar.MONTH);
+        Day = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datediag = new DatePickerDialog(HomePageActivity.this, HomePageActivity.this, Year, Month, Day);
+        datediag.show();
+        myDialog.dismiss();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+    {
+        yearFinal = year;
+        monthFinal = month + 1;
+        dayFinal = dayOfMonth;
+        Calendar c = Calendar.getInstance();
+        Hour = c.get(Calendar.HOUR_OF_DAY);
+        Minute = c.get(Calendar.MINUTE);
+        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
+        timediag.show();
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+    {
+        hourFinal = hourOfDay;
+        minuteFinal = minute;
+
+        Reservation.put("Minute", minuteFinal);
+        Reservation.put("Hour", hourFinal);
+        Reservation.put("Day", dayFinal);
+        Reservation.put("Month", monthFinal);
+        Reservation.put("Year", yearFinal);
+        Reservation.put("tableName", tablename);
+
+        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                if (task.isSuccessful())
+                {
+                    finish();
+                    Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture)
+    {
+
+    }
+
 }

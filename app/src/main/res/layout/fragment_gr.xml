@@ -1,20 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".GR"
+    android:background="#fff">
 
-
-    <Button
-        android:id="@+id/gotogr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:onClick="SwitchToGR"
-        android:text="Show Graphical Restaurant"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/tabletwo1"
+        android:layout_width="68dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="20dp"
+        android:onClick="ShowPopup"
+        android:tag="tabletwo1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table2" />
+
+    <ImageView
+        android:id="@+id/tabletwo2"
+        android:layout_width="68dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:onClick="ShowPopup"
+        android:tag="tabletwo2"
+        app:layout_constraintStart_toEndOf="@+id/tabletwo1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table2" />
+
+    <ImageView
+        android:id="@+id/tabletwo3"
+        android:layout_width="68dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:onClick="ShowPopup"
+        android:tag="tabletwo3"
+        app:layout_constraintStart_toEndOf="@+id/tabletwo2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table2" />
+
+    <ImageView
+        android:id="@+id/tabletwo4"
+        android:layout_width="68dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:onClick="ShowPopup"
+        android:tag="tabletwo4"
+        app:layout_constraintStart_toEndOf="@+id/tabletwo3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table2" />
+
+    <ImageView
+        android:id="@+id/tablefour1"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="164dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefour2"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="164dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour2"
+        app:layout_constraintStart_toEndOf="@+id/tablefour1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefour3"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="164dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour3"
+        app:layout_constraintStart_toEndOf="@+id/tablefour2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefour4"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="550dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefour5"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="550dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour5"
+        app:layout_constraintStart_toEndOf="@+id/tablefour4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefour6"
+        android:layout_width="98dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="550dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefour6"
+        app:layout_constraintStart_toEndOf="@+id/tablefour5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table4" />
+
+    <ImageView
+        android:id="@+id/tablefive1"
+        android:layout_width="117dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="350dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefive1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table5" />
+
+    <ImageView
+        android:id="@+id/tablefive2"
+        android:layout_width="117dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="350dp"
+        android:onClick="ShowPopup"
+        android:tag="tablefive2"
+        app:layout_constraintStart_toEndOf="@+id/tablefive1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/table5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
