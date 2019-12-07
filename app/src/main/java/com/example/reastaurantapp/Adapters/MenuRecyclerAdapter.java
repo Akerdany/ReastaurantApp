@@ -7,45 +7,48 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reastaurantapp.Classes.Food;
 import com.example.reastaurantapp.R;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.ArrayList;
+public class MenuRecyclerAdapter extends FirestoreRecyclerAdapter<Food, MenuRecyclerAdapter.MenuHolder> {
 
-public class MenuRecyclerAdapter extends RecyclerView.Adapter<MenuRecyclerAdapter.MenuViewHolder> {
+    public MenuRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Food> options) {
+        super(options);
+    }
 
-    ArrayList<Food> Items;
-
-    public MenuRecyclerAdapter(ArrayList<Food> items) {
-        Items = items;
+    @Override
+    protected void onBindViewHolder(@NonNull MenuHolder holder, int position, @NonNull Food model) {
+        holder.ItemName.setText(model.getItemName());
+        holder.ItemDesc.setText(model.getItemDesc());
+        holder.ItemPrice.setText(String.valueOf(model.getItemPrice()));
     }
 
     @NonNull
     @Override
-    public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MenuHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item, parent, false);
-        return new MenuViewHolder(view);
+        final MenuHolder mHolder = new MenuHolder(view);
+        mHolder.food_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mHolder.ItemDesc.getVisibility() == View.GONE){
+                    mHolder.ItemDesc.setVisibility(View.VISIBLE);
+                }else {
+                    mHolder.ItemDesc.setVisibility(View.GONE);
+                }
+            }
+        });
+        return mHolder;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MenuViewHolder holder, final int position) {
-        holder.ItemName.setText(Items.get(position).getItemName());
-        holder.ItemPrice.setText(Items.get(position).getItemPrice());
-        holder.ItemDesc.setText(Items.get(position).getItemDesc());
-    }
+    class MenuHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public int getItemCount() {
-        if (Items == null){
-            return 0;
-        }else {
-            return Items.size();
-        }
-    }
-
-    public class MenuViewHolder extends RecyclerView.ViewHolder{
+        ConstraintLayout food_item;
 
         TextView ItemName;
         TextView ItemPrice;
@@ -53,24 +56,16 @@ public class MenuRecyclerAdapter extends RecyclerView.Adapter<MenuRecyclerAdapte
 
         ImageView ItemImage;
 
-        public MenuViewHolder(@NonNull View itemView) {
+        public MenuHolder(@NonNull View itemView) {
             super(itemView);
+
+            food_item = itemView.findViewById(R.id.item_layout);
+
             ItemName = itemView.findViewById(R.id.ItemName);
             ItemPrice = itemView.findViewById(R.id.ItemPrice);
             ItemDesc = itemView.findViewById(R.id.ItemDesc);
 
             ItemImage = itemView.findViewById(R.id.ItemImage);
         }
-
-
-        public void ToggleDesc(View view) {
-            if (ItemDesc.getVisibility() == View.GONE){
-                ItemDesc.setVisibility(View.VISIBLE);
-            }else {
-                ItemDesc.setVisibility(View.GONE);
-            }
-        }
     }
-
-
 }
