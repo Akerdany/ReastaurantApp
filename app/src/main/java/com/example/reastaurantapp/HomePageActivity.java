@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -33,6 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+    public static final String TAG = "TAG";
 
     String tablename;
     int Day, Month, Year, Hour, Minute;
@@ -44,8 +50,10 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     ImageView image;
     Map<String, Object> Reservation;
 
+    FirebaseAuth firebaseAuth;
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
+
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -72,7 +80,12 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_homepage_client);
+        databaseConnection = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        getUserType();
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
@@ -82,7 +95,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
-        databaseConnection = FirebaseFirestore.getInstance();
     }
 
     public void ShowPopup(View view) {
@@ -175,6 +187,30 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    public void getUserType(){
+//        if (firebaseAuth.getCurrentUser() == null) {
+//
+//        }
+        String userID = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference docRef = databaseConnection.collection("users").document(userID);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
 }

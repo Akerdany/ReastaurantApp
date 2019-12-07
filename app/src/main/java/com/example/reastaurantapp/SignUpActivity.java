@@ -44,8 +44,8 @@ public class SignUpActivity extends AppCompatActivity {
     private ScrollView main_layout;
     private ProgressBar progressbar;
 
-    private boolean userStoreDataFlag = true;
-    private boolean userAuthFlag = true;
+    private boolean userStoreDataFlag = false;
+    private boolean userAuthFlag = false;
     private String userID = "";
 
     @Override
@@ -101,13 +101,13 @@ public class SignUpActivity extends AppCompatActivity {
 
             Intent intent = new Intent(SignUpActivity.this, HomePageActivity.class);
             startActivity(intent);
-        }else{
+        } else {
             disappearProgressBar();
             Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
         }
     }
 
-    public boolean userStoreData(String user_email){
+    public boolean userStoreData(String user_email) {
 
         String fName = firstName_editText.getText().toString();
         String lName = lastName_editText.getText().toString();
@@ -120,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
             gender = 2;
         }
 
-        User user = new User(userID, fName, lName, user_email,  2,
+        User user = new User(userID, fName, lName, user_email, 2,
                 phone, gender);
         Log.d(TAG, "User data should be: " + user);
 
@@ -146,7 +146,7 @@ public class SignUpActivity extends AppCompatActivity {
         return userStoreDataFlag;
     }
 
-    public String getUserID(String user_email, String user_password){
+    public String getUserID(String user_email, String user_password) {
         if (firebaseAuth.getCurrentUser() == null) {
             Log.d(TAG, "Get current user is null");
             firebaseAuth.signInWithEmailAndPassword(user_email, user_password)
@@ -167,23 +167,23 @@ public class SignUpActivity extends AppCompatActivity {
         return userID;
     }
 
-    public boolean userAuth(final String user_email, final String user_password){
+    public boolean userAuth(final String user_email, final String user_password) {
         firebaseAuth.createUserWithEmailAndPassword(user_email, user_password)
-                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "User authentication is done");
                             if (!getUserID(user_email, user_password).isEmpty()) {
                                 Log.d(TAG, "User ID is retrieved");
-                                if(userStoreData(user_email)){
+                                if (userStoreData(user_email)) {
                                     Log.d(TAG, "User Data is stored");
                                     userAuthFlag = true;
-                                }else{
+                                } else {
                                     Log.d(TAG, "User Data storing failed");
                                     userAuthFlag = false;
                                 }
-                            }else{
+                            } else {
                                 Log.d(TAG, "User ID is EMPTY");
                                 userAuthFlag = false;
                             }
