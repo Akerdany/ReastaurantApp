@@ -16,9 +16,11 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -54,7 +56,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                     //TODO: Add the other menu cases buttons
                     switch (item.getItemId()) {
                         case R.id.nav_home_icon:
-                            selectedFragment = new GR();
+                            selectedFragment = new branches();
                             break;
                         case R.id.nav_more_icon:
                             selectedFragment = new MorePage();
@@ -70,7 +72,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_client);
 
@@ -78,11 +81,12 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                new GR()).commit();
+                new branches()).commit();
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
         databaseConnection = FirebaseFirestore.getInstance();
+
     }
 
     public void ShowPopup(View view) {
@@ -90,7 +94,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.setContentView(R.layout.activity_popupmenu);
         image = myDialog.findViewById(R.id.viewImage);
         selectedTable = myDialog.findViewById(R.id.hh);
-        switch (view.getId()) {
+        switch (view.getId())
+        {
             case R.id.tablefour1:
             case R.id.tablefour2:
             case R.id.tablefour3:
@@ -162,9 +167,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    finish();
-                    Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
                 }
