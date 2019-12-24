@@ -6,11 +6,11 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private int userType;
+    private String userType;
     private String phoneNumber;
-    private int gender;
+    private String gender;
 
-    public User(String id, String firstName, String lastName, String email, int userType, String phoneNumber, int gender) {
+    public User(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,11 +20,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -60,11 +60,11 @@ public class User {
         this.email = email;
     }
 
-    public int getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(int userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
