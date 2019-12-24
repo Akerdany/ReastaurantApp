@@ -91,7 +91,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                new GR()).commit();
+                new branches()).commit();
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
