@@ -2,7 +2,7 @@ package com.example.reastaurantapp.Classes;
 
 public class Waiter extends User  {
 
-    public Waiter(String id, String firstName, String lastName, String email, int userType, String phoneNumber, int gender) {
+    public Waiter(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender) {
         super(id, firstName, lastName, email, userType, phoneNumber, gender);
     }
 }
