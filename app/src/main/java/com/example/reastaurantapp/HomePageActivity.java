@@ -37,6 +37,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
     public static final String TAG = "TAG";
 
+    private int userType = 2;
     String tablename;
     int Day, Month, Year, Hour, Minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
@@ -85,13 +86,37 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         databaseConnection = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
-        getUserType();
+        Intent previous_intent = getIntent();
+        if(previous_intent.getStringExtra("userType") != null){
+            userType = Integer.parseInt(previous_intent.getStringExtra("userType"));
+        }
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                new branches()).commit();
+        switch(userType){
+            case 1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                        new GR()).commit();
+                bottomNav.getMenu().clear();
+                bottomNav.inflateMenu(R.menu.admin_bottom_navigation);
+                break;
+                
+            case 3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                        new MorePage()).commit();
+                bottomNav.getMenu().clear();
+                bottomNav.inflateMenu(R.menu.chef_bottom_navigation);
+                break;
+
+            case 2:
+            default:
+                getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
+                        new branches()).commit();
+                bottomNav.getMenu().clear();
+                bottomNav.inflateMenu(R.menu.client_bottom_navigation);
+                break;
+        }
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
@@ -187,30 +212,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
-
-    public void getUserType(){
-//        if (firebaseAuth.getCurrentUser() == null) {
-//
-//        }
-        String userID = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference docRef = databaseConnection.collection("users").document(userID);
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
 }

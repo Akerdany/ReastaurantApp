@@ -75,22 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.w(TAG, "task " + task.getResult().toString());
                         if (task.isSuccessful()) {
-
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            getUserType(user.getUid());
+                            getUserType(firebaseAuth.getCurrentUser().getUid());
                         } else {
-
+                            hideProgressBar();
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Email or Password may be wrong.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
                         if (!task.isSuccessful()) {
+                            hideProgressBar();
                             Log.w(TAG, task.getException());
                             Toast.makeText(MainActivity.this, "Email or Password may be wrong.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        hideProgressBar();
                     }
                 });
     }
@@ -160,10 +158,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
                     tempUserType = Integer.parseInt(documentSnapshot.getString("userType"));
 
-                    Toast.makeText(MainActivity.this, "Your userType is: ." + tempUserType,
-                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+                    intent.putExtra("userType", tempUserType);
+
+                    finish();
+                    startActivity(intent);
 
                 } else {
+                    hideProgressBar();
                     Log.d(TAG, "No such document");
                 }
             }
@@ -171,9 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        hideProgressBar();
                         Log.d(TAG, "get failed with ", e);
                     }
                 });
-        hideProgressBar();
     }
 }

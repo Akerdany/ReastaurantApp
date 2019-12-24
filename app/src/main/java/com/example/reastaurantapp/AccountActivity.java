@@ -26,6 +26,7 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
         firebaseAuth = FirebaseAuth.getInstance();
+//        Intent intent = getIntent();
 
         initialize();
     }
@@ -34,8 +35,9 @@ public class AccountActivity extends AppCompatActivity {
 
         //TODO:Temporary account data
         accountData = findViewById(R.id.AccountData_Temp);
-        accountData.setText("Id: " + firebaseAuth.getCurrentUser().getUid() + "\n" +
-                                "Email: " + firebaseAuth.getCurrentUser().getEmail() + "\n");
+        String allAccountData = "Id: " + firebaseAuth.getCurrentUser().getUid() + "\n" +
+                "Email: " + firebaseAuth.getCurrentUser().getEmail() + "\n";
+        accountData.setText(allAccountData);
 
 
         signOut_btn = findViewById(R.id.signOut_account);
