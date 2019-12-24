@@ -47,6 +47,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     FirebaseAuth firebaseAuth;
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
+
     private int userType = 2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =

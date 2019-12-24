@@ -44,13 +44,16 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        if (firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             getUserType(firebaseAuth.getCurrentUser().getUid());
             Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
             intent.putExtra("userType", tempUserType);
 
             finish();
             startActivity(intent);
+        }else if(!firebaseAuth.getCurrentUser().isEmailVerified()){
+            Toast.makeText(MainActivity.this, "Verify your email first",
+                    Toast.LENGTH_SHORT).show();
         }
 
         initializeComponents();
@@ -75,7 +78,15 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.w(TAG, "task " + task.getResult().toString());
                         if (task.isSuccessful()) {
-                            getUserType(firebaseAuth.getCurrentUser().getUid());
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                Log.w(TAG, "User verified his email");
+                                getUserType(firebaseAuth.getCurrentUser().getUid());
+                            }else{
+                                hideProgressBar();
+                                Log.w(TAG, "User did not verify his email code: " + firebaseAuth.getCurrentUser().isEmailVerified());
+                                Toast.makeText(MainActivity.this, "You should verify your email first",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             hideProgressBar();
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

@@ -45,6 +45,8 @@
     <string name="signOut_myAccount">Sign Out</string>
 
     <string name="singUp_fail">Failed to Sign Up \n Please try again later.</string>
+    <string name="signUp_done">Your Registration has been completed.\nJust one last step, to verify your email.</string>
+    <string name="registration_done_btn">Done</string>
 
     <string name="myAccount_moreFragment">My Account</string>
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +23,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -43,9 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ScrollView main_layout;
     private ProgressBar progressbar;
+    private FrameLayout lastMessageCompletation;
 
-    private boolean userStoreDataFlag = false;
-    private boolean userAuthFlag = false;
     private String userID = "";
 
     @Override
@@ -71,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         main_layout = findViewById(R.id.mainLayout_signUp);
         progressbar = findViewById(R.id.progressbar_signUp);
+        lastMessageCompletation = findViewById(R.id.registrationDone);
 
         signIn_link.setOnClickListener(new View.OnClickListener() {
 
@@ -94,23 +97,33 @@ public class SignUpActivity extends AppCompatActivity {
         final String email_U = email_editText.getText().toString().trim();
         final String password_U = password_editText.getText().toString().trim();
 
-
-        if (userAuth(email_U, password_U)) {
-            disappearProgressBar();
-            finish();
-
-            Intent intent = new Intent(SignUpActivity.this, HomePageActivity.class);
-            startActivity(intent);
-        } else {
-            disappearProgressBar();
-            Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
-        }
+        firebaseAuth.createUserWithEmailAndPassword(email_U, password_U)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            if(firebaseAuth.getCurrentUser() != null){
+                                userID = firebaseAuth.getCurrentUser().getUid();
+                                userStoreData(email_U);
+                            }else{
+                                Log.d(TAG, "User Id is NULL");
+                                disappearProgressBar();
+                                Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Log.d(TAG, "User authentication failed");
+                            disappearProgressBar();
+                            Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
-    public boolean userStoreData(String user_email) {
+    public void userStoreData(String user_email) {
 
-        String fName = firstName_editText.getText().toString();
-        String lName = lastName_editText.getText().toString();
+        final String fName = firstName_editText.getText().toString();
+        final String lName = lastName_editText.getText().toString();
+        final String displayName = fName + " " + lName;
         String phone = phoneNumber_editText.getText().toString();
         String gender;
         int checkedRadioButtonId = gender_radioGroup.getCheckedRadioButtonId();
@@ -120,81 +133,62 @@ public class SignUpActivity extends AppCompatActivity {
             gender = "2";
         }
 
-        User user = new User(userID, fName, lName, user_email, "2",
+        User userData = new User(userID, fName, lName, user_email, "2",
                 phone, gender);
-        Log.d(TAG, "User data should be: " + user);
+        Log.d(TAG, "User data should be: " + userData);
 
         DocumentReference docReference = databaseConnection.collection("users")
                 .document(userID);
         Log.d(TAG, "Document reference: " + docReference);
 
-        docReference.set(user)
+        docReference.set(userData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        userStoreDataFlag = true;
+                        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(displayName).build();
+
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "User profile updated.");
+
+                                            user.sendEmailVerification()
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Log.d(TAG, "Verification Email sent.");
+                                                                disappearProgressBar();
+                                                                showVerificationMessage();
+                                                            }else{
+                                                                Log.d(TAG, "Fail to send verification email, with exception: " + task.getException());
+                                                                disappearProgressBar();
+                                                                Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                                                            }
+                                                        }
+                                                    });
+                                        }else{
+                                            Log.d(TAG, "Fail to send verification email, with exception: " + task.getException());
+                                            disappearProgressBar();
+                                            Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.d(TAG, "Fail to add user data: " + e.getMessage());
-                        userStoreDataFlag = false;
+                        disappearProgressBar();
+                        Toast.makeText(SignUpActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
                     }
                 });
-
-        return userStoreDataFlag;
-    }
-
-    public String getUserID(String user_email, String user_password) {
-        if (firebaseAuth.getCurrentUser() == null) {
-            Log.d(TAG, "Get current user is null");
-            firebaseAuth.signInWithEmailAndPassword(user_email, user_password)
-                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                userID = firebaseAuth.getCurrentUser().getUid();
-                                Log.d(TAG, "User ID retrieved: " + userID);
-                            }
-                        }
-                    });
-        } else {
-            userID = firebaseAuth.getCurrentUser().getUid();
-            Log.d(TAG, "Get current user is not null !  =>  " + userID);
-        }
-
-        return userID;
-    }
-
-    public boolean userAuth(final String user_email, final String user_password) {
-        firebaseAuth.createUserWithEmailAndPassword(user_email, user_password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User authentication is done");
-                            if (!getUserID(user_email, user_password).isEmpty()) {
-                                Log.d(TAG, "User ID is retrieved");
-                                if (userStoreData(user_email)) {
-                                    Log.d(TAG, "User Data is stored");
-                                    userAuthFlag = true;
-                                } else {
-                                    Log.d(TAG, "User Data storing failed");
-                                    userAuthFlag = false;
-                                }
-                            } else {
-                                Log.d(TAG, "User ID is EMPTY");
-                                userAuthFlag = false;
-                            }
-                        } else {
-                            Log.d(TAG, "User authentication failed");
-                            userAuthFlag = false;
-                        }
-                    }
-                });
-
-        return userAuthFlag;
     }
 
     public void showProgressBar() {
@@ -312,4 +306,15 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+    public void showVerificationMessage(){
+        main_layout.setAlpha((float) 0.2);
+        lastMessageCompletation.setVisibility(View.VISIBLE);
+    }
+
+    public void DoneRegistration(View view) {
+        finish();
+
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
