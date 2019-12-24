@@ -116,14 +116,15 @@
     </LinearLayout>
     </ScrollView>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/registrationDone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:background="@color/colorAccent"
         android:layout_centerInParent="true"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -136,7 +137,7 @@
             android:layout_height="wrap_content"
             android:onClick="DoneRegistration"
             android:text="@string/registration_done_btn"/>
-    </FrameLayout>
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressbar_signUp"
