@@ -35,7 +35,6 @@ public class branches extends Fragment implements AdapterView.OnItemSelectedList
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
     {
-        String test = parent.getItemAtPosition(pos).toString();
         switch(pos)
         {
             case 1:

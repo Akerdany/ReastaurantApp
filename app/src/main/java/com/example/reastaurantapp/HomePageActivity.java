@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -51,9 +52,11 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     private int userType = 2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
+            new BottomNavigationView.OnNavigationItemSelectedListener()
+            {
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                public boolean onNavigationItemSelected(@NonNull MenuItem item)
+                {
                     Fragment selectedFragment = null;
                     //TODO: Add the other menu cases buttons
                     switch (item.getItemId()) {
@@ -66,6 +69,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                         case R.id.nav_menu_icon:
                             selectedFragment = new MenuFragment();
                             break;
+                        case R.id.nav_navigation_icon:
+                            selectedFragment = new GoogleMapsDirections();
+                            break;
 
                         default:
                             selectedFragment = new GR();
@@ -77,7 +83,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_homepage_client);
@@ -85,7 +92,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         firebaseAuth = FirebaseAuth.getInstance();
 
         Intent previous_intent = getIntent();
-        if (previous_intent.getStringExtra("userType") != null) {
+        if (previous_intent.getStringExtra("userType") != null)
+        {
             userType = Integer.parseInt(previous_intent.getStringExtra("userType"));
 
             Log.w(TAG, "The userType: " + userType);
@@ -96,7 +104,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
 
-        switch (userType) {
+        switch (userType)
+        {
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
                         new GR()).commit();
@@ -126,12 +135,14 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Reservation = new HashMap<>();
     }
 
-    public void ShowPopup(View view) {
+    public void ShowPopup(View view)
+    {
         tablename = view.getTag().toString();
         myDialog.setContentView(R.layout.activity_popupmenu);
         image = myDialog.findViewById(R.id.viewImage);
         selectedTable = myDialog.findViewById(R.id.hh);
-        switch (view.getId()) {
+        switch (view.getId())
+        {
             case R.id.tablefour1:
             case R.id.tablefour2:
             case R.id.tablefour3:
@@ -155,7 +166,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 break;
         }
         close = myDialog.findViewById(R.id.txtclose);
-        close.setOnClickListener(new View.OnClickListener() {
+        close.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
@@ -165,7 +177,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.show();
     }
 
-    public void chooseDate(View view) {
+    public void chooseDate(View view)
+    {
         Calendar c = Calendar.getInstance();
         Year = c.get(Calendar.YEAR);
         Month = c.get(Calendar.MONTH);
@@ -176,7 +189,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+    {
         yearFinal = year;
         monthFinal = month + 1;
         dayFinal = dayOfMonth;
@@ -188,7 +202,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+    {
         hourFinal = hourOfDay;
         minuteFinal = minute;
 
@@ -199,23 +214,30 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Reservation.put("Year", yearFinal);
         Reservation.put("tableName", tablename);
 
-        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
+        {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                if (task.isSuccessful())
+                {
                     finish();
                     Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
                     startActivity(intent);
-                } else {
+                }
+                else
+                {
                     Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+    public void getdir(View view)
+    {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=30.087352, 31.334681"));
+        startActivity(intent);
     }
 
 }
