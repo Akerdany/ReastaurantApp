@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ScrollView main_layout;
     private ProgressBar progressbar;
-    private FrameLayout lastMessageCompletation;
+    private LinearLayout lastMessageCompletation;
 
     private String userID = "";
 
