@@ -51,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
             finish();
             startActivity(intent);
-        }else if(!firebaseAuth.getCurrentUser().isEmailVerified()){
-            Toast.makeText(MainActivity.this, "Verify your email first",
-                    Toast.LENGTH_SHORT).show();
         }
+//        else if(!firebaseAuth.getCurrentUser().isEmailVerified()){
+//            Toast.makeText(MainActivity.this, "Verify your email first",
+//                    Toast.LENGTH_SHORT).show();
+//        }
 
         initializeComponents();
     }
