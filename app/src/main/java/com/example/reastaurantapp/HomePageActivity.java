@@ -25,8 +25,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -36,9 +34,8 @@ import java.util.Map;
 public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     public static final String TAG = "TAG";
-
-    private int userType = 2;
     String tablename;
+
     int Day, Month, Year, Hour, Minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
@@ -47,10 +44,10 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     TextView selectedTable;
     ImageView image;
     Map<String, Object> Reservation;
-
     FirebaseAuth firebaseAuth;
     FirebaseFirestore databaseConnection;
     BottomNavigationView bottomNav;
+    private int userType = 2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,14 +84,18 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         firebaseAuth = FirebaseAuth.getInstance();
 
         Intent previous_intent = getIntent();
-        if(previous_intent.getStringExtra("userType") != null){
+        if (previous_intent.getStringExtra("userType") != null) {
             userType = Integer.parseInt(previous_intent.getStringExtra("userType"));
+
+            Log.w(TAG, "The userType: " + userType);
+            Toast.makeText(HomePageActivity.this, "UserType: " + userType,
+                    Toast.LENGTH_SHORT).show();
+
         }
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
-        switch(userType){
+        switch (userType) {
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
                         new GR()).commit();
@@ -117,6 +118,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 bottomNav.inflateMenu(R.menu.client_bottom_navigation);
                 break;
         }
+
+        bottomNav.setOnNavigationItemSelectedListener(navigationListener);
 
         myDialog = new Dialog(this);
         Reservation = new HashMap<>();
