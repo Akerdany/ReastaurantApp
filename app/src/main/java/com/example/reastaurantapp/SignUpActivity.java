@@ -112,15 +112,15 @@ public class SignUpActivity extends AppCompatActivity {
         String fName = firstName_editText.getText().toString();
         String lName = lastName_editText.getText().toString();
         String phone = phoneNumber_editText.getText().toString();
-        int gender;
+        String gender;
         int checkedRadioButtonId = gender_radioGroup.getCheckedRadioButtonId();
         if (checkedRadioButtonId == R.id.male) {
-            gender = 1;
+            gender = "1";
         } else {
-            gender = 2;
+            gender = "2";
         }
 
-        User user = new User(userID, fName, lName, user_email, 2,
+        User user = new User(userID, fName, lName, user_email, "2",
                 phone, gender);
         Log.d(TAG, "User data should be: " + user);
 
