@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = null;
-    public int tempUserType = 0;
+    public String tempUserType;
     private EditText email_editText;
     private EditText password_editText;
     private TextView signUp_link;
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             getUserType(firebaseAuth.getCurrentUser().getUid());
-            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
-            intent.putExtra("userType", tempUserType);
-
-            finish();
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+//            intent.putExtra("userType", tempUserType);
+//
+//            finish();
+//            startActivity(intent);
         }
 
         initializeComponents();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     hideProgressBar();
                     Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
                     Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
-                    tempUserType = Integer.parseInt(documentSnapshot.getString("userType"));
+                    tempUserType = documentSnapshot.getString("userType");
 
                     Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                     intent.putExtra("userType", tempUserType);

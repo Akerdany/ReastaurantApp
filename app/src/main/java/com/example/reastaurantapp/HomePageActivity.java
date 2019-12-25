@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -63,6 +64,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                         case R.id.nav_home_icon:
                             selectedFragment = new branches();
                             break;
+                        case R.id.nav_chef_home_icon:
+                            selectedFragment = new MorePage();
                         case R.id.nav_more_icon:
                             selectedFragment = new MorePage();
                             break;
@@ -214,7 +217,11 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Reservation.put("Year", yearFinal);
         Reservation.put("tableName", tablename);
 
-        databaseConnection.collection("reservation").document().set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
+        DocumentReference documentReference = databaseConnection.collection("reservation").document();
+
+        final String documentID = documentReference.getId();
+
+        documentReference.set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
         {
             @Override
             public void onComplete(@NonNull Task<Void> task)
@@ -222,7 +229,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 if (task.isSuccessful())
                 {
                     finish();
-                    Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                    Intent intent = new Intent(HomePageActivity.this, ReservationMenu.class);
+                    intent.putExtra("ReservationID", documentID);
                     startActivity(intent);
                 }
                 else

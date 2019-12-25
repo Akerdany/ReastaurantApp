@@ -5,20 +5,20 @@ import com.example.reastaurantapp.Classes.Food;
 import java.util.ArrayList;
 
 public class Order {
-    private int OrderNumber;
+    private String OrderNumber;
 
     private ArrayList<Food> Items;
 
-    public Order(int orderNumber, ArrayList<Food> items) {
+    public Order(String orderNumber, ArrayList<Food> items) {
         OrderNumber = orderNumber;
         Items = items;
     }
 
-    public int getOrderNumber() {
+    public String getOrderNumber() {
         return OrderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         OrderNumber = orderNumber;
     }
 
