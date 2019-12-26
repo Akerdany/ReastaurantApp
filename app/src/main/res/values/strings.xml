@@ -42,6 +42,7 @@
     <string name="reservation_navigation_icon">Reservations</string>
     <string name="users_navigation_icon">Users and Accounts</string>
     <string name="more_navigation_icon">More</string>
+    <string name="admin_navigation_icon">Admin Panel</string>
 
     <string name="myAccount_moreFragment">My Account</string>
     <string name="signOut_myAccount">Sign Out</string>

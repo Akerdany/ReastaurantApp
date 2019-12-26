@@ -76,6 +76,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                         case R.id.nav_navigation_icon:
                             selectedFragment = new GoogleMapsDirections();
                             break;
+                        case R.id.nav_admin_icon:
+                            selectedFragment = new AdminPanel();
+                            break;
 
                         default:
                             selectedFragment = new GR();
@@ -112,7 +115,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         {
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new GR()).commit();
+                        new AdminPanel()).commit();
                 bottomNav.getMenu().clear();
                 bottomNav.inflateMenu(R.menu.admin_bottom_navigation);
                 break;
@@ -187,7 +190,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Year = c.get(Calendar.YEAR);
         Month = c.get(Calendar.MONTH);
         Day = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datediag = new DatePickerDialog(HomePageActivity.this, HomePageActivity.this, Year, Month, Day);
+        DatePickerDialog datediag = new DatePickerDialog(HomePageActivity.this, R.style.popuptheme, HomePageActivity.this, Year, Month, Day);
         datediag.show();
         myDialog.dismiss();
     }
@@ -201,7 +204,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Calendar c = Calendar.getInstance();
         Hour = c.get(Calendar.HOUR_OF_DAY);
         Minute = c.get(Calendar.MINUTE);
-        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
+        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, R.style.popuptheme, HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
         timediag.show();
     }
 
@@ -249,4 +252,20 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         startActivity(intent);
     }
 
+    public void panels(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.userspanel:
+                Intent myIntent = new Intent(HomePageActivity.this, UsersPanel.class);
+//                myIntent.putExtra("key", value); //Optional parameters
+                HomePageActivity.this.startActivity(myIntent);
+                break;
+
+            case R.id.foodpanel:
+
+            case R.id.tablespanel:
+
+        }
+    }
 }
