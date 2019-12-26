@@ -9,6 +9,9 @@ public class Order {
 
     private ArrayList<Food> Items;
 
+    public Order(){
+    }
+
     public Order(String orderNumber, ArrayList<Food> items) {
         OrderNumber = orderNumber;
         Items = items;
