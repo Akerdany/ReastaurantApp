@@ -122,7 +122,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
             case 3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.homepage_fragement,
-                        new MorePage()).commit();
+                        new ChefFragment()).commit();
                 bottomNav.getMenu().clear();
                 bottomNav.inflateMenu(R.menu.chef_bottom_navigation);
                 break;

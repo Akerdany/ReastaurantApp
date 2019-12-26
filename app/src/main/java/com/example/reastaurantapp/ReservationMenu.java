@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +19,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ReservationMenu extends AppCompatActivity {
 
@@ -35,8 +32,6 @@ public class ReservationMenu extends AppCompatActivity {
     private ReservationMenuRecyclerAdapter reservationMenuRecyclerAdapter;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference ref;
-    private DocumentReference dref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class ReservationMenu extends AppCompatActivity {
         ReservationMenuRecyclerView = findViewById(R.id.ReservationMenuRecyclerView);
         ReservationMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ref = db.collection("food");
+        CollectionReference ref = db.collection("food");
 
         FirestoreRecyclerOptions<Food> options = new FirestoreRecyclerOptions.Builder<Food>()
                 .setQuery(ref, Food.class)
