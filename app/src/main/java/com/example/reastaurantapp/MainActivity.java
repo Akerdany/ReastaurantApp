@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
 
                     finish();
                     startActivity(intent);
-
                 } else {
                     hideProgressBar();
                     Log.d(TAG, "No such document");

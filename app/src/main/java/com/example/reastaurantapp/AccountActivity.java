@@ -41,7 +41,6 @@ public class AccountActivity extends AppCompatActivity {
 
         accountData.setText(allAccountData);
 
-
         signOut_btn = findViewById(R.id.signOut_account);
         signOut_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -55,6 +54,5 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

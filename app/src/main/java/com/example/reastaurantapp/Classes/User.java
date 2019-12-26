@@ -9,8 +9,9 @@ public class User {
     private String userType;
     private String phoneNumber;
     private String gender;
+    private String isDeleted;
 
-    public User(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender) {
+    public User(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender, String isDeleted) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,6 +19,7 @@ public class User {
         this.userType = userType;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.isDeleted = isDeleted;
     }
 
     public String getGender() {
@@ -76,4 +78,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }

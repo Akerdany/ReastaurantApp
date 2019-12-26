@@ -40,17 +40,22 @@
     <string name="food_navigation_icon">Food Menu</string>
     <string name="navigation_navigation_icon">Navigation</string>
     <string name="reservation_navigation_icon">Reservations</string>
+    <string name="users_navigation_icon">Users and Accounts</string>
     <string name="more_navigation_icon">More</string>
 
+    <string name="myAccount_moreFragment">My Account</string>
     <string name="signOut_myAccount">Sign Out</string>
 
     <string name="singUp_fail">Failed to Sign Up \n Please try again later.</string>
     <string name="signUp_done">Your Registration has been completed.\nJust one last step, to verify your email.</string>
     <string name="registration_done_btn">Done</string>
 
-    <string name="myAccount_moreFragment">My Account</string>
-
     <string name="Cart">Cart</string>
+
+    <string name="addUserBtn_users_crud">Add User</string>
+    <string name="viewAllBtn_users_crud">View All Users</string>
+    <string name="editUserBtn_users_crud">Edit User</string>
+    <string name="deleteUserBtn_users_crud">Delete User</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
