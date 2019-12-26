@@ -135,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         User userData = new User(userID, fName, lName, user_email, "2",
-                phone, gender);
+                phone, gender, false);
         Log.d(TAG, "User data should be: " + userData);
 
         DocumentReference docReference = databaseConnection.collection("users")

@@ -1,7 +1,20 @@
 package com.example.reastaurantapp.Classes;
 
+import android.content.Intent;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.example.reastaurantapp.HomePageActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class User {
 
+    public static final String TAG = "TAG";
     private String id;
     private String firstName;
     private String lastName;
@@ -9,9 +22,13 @@ public class User {
     private String userType;
     private String phoneNumber;
     private String gender;
-    private String isDeleted;
+    private boolean isDeleted;
 
-    public User(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender, String isDeleted) {
+    public User(){
+
+    }
+
+    public User(String id, String firstName, String lastName, String email, String userType, String phoneNumber, String gender, boolean isDeleted) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,6 +37,32 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.isDeleted = isDeleted;
+    }
+
+    public void getUser_Firestore(String id){
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = firebaseFirestore.collection("users").document(id);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
+                    Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
+                    documentSnapshot.getString("userType");
+
+                } else {
+                    Log.d(TAG, "In user class => No such document");
+                }
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "In user class => Get failed with ", e);
+                    }
+                });
     }
 
     public String getGender() {
@@ -78,11 +121,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getIsDeleted() {
+    public boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(String isDeleted) {
+    public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 }
