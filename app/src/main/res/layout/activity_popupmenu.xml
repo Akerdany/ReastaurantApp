@@ -40,12 +40,31 @@
         android:textColor="@color/blueLight"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/smoking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="- Smoking"
+        android:textColor="@color/blueLight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="- Near Window"
+        android:textColor="@color/blueLight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
     <TextView
         android:id="@+id/hhh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Press Continue To Make A Reservation"
+        android:text="Press Continue To Make A Reservation."
         android:textColor="@color/blueLight"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"/>
@@ -55,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continue"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/buttonstyle"
         android:textColor="@color/blueLight"
