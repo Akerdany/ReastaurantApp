@@ -1,6 +1,8 @@
 package com.example.reastaurantapp.Classes;
 
 public class Food {
+
+    private String ItemID;
     private String ItemName;
     private String ItemDesc;
 
@@ -11,11 +13,20 @@ public class Food {
 
     }
 
-    public Food(String itemName, String itemDesc, int itemPrice, int itemPhoto) {
+    public Food(String itemID, String itemName, String itemDesc, int itemPrice, int itemPhoto) {
+        ItemID = itemID;
         ItemName = itemName;
         ItemDesc = itemDesc;
         ItemPrice = itemPrice;
         ItemPhoto = itemPhoto;
+    }
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
     }
 
     public String getItemName() {

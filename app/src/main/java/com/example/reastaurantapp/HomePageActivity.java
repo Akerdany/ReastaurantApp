@@ -262,6 +262,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 break;
 
             case R.id.foodpanel:
+                Intent intent = new Intent(this, FoodPanel.class);
+                startActivity(intent);
+                break;
 
             case R.id.tablespanel:
 

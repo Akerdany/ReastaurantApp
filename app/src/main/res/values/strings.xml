@@ -65,6 +65,11 @@
     <string name="editUserBtn_users_crud">Edit User</string>
     <string name="deleteUserBtn_users_crud">Delete User</string>
 
+    <string name="AddFoodBtn_food_crud">Add Food</string>
+    <string name="EditFoodBtn_food_crud">Edit Food</string>
+    <string name="DeleteFoodBtn_food_crud">Delete Food</string>
+    <string name="ViewAllBtn_food_crud">View All Food</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

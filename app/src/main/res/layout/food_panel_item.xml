@@ -5,7 +5,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/item_layout">
+    android:id="@+id/main_layout">
+
+    <TextView
+        android:id="@+id/FoodID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/ItemName"
@@ -29,17 +37,17 @@
         android:id="@+id/ItemDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="14sp"
-        tools:text="This is a Burger"
+        tools:text="This is a beef Burger"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ItemImage"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/ItemImage" />
 
     <TextView
         android:id="@+id/ItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
@@ -47,6 +55,5 @@
         tools:text="150"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
         app:layout_constraintTop_toTopOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

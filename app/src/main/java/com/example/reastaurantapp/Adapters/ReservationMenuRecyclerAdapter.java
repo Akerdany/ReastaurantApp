@@ -27,6 +27,7 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
 
     @Override
     protected void onBindViewHolder(@NonNull ReservationMenuHolder holder, int position, @NonNull Food model) {
+        holder.FoodID.setText(model.getItemID());
         holder.ItemName.setText(model.getItemName());
         holder.ItemDesc.setText(model.getItemDesc());
         holder.ItemPrice.setText(String.valueOf(model.getItemPrice()));
@@ -75,7 +76,8 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
                 mHolder.ItemCountTxt.setText(String.valueOf(count));
                 ReservationMenu.CartNoTxt.setText(String.valueOf(ReservationMenu.itemsCount));
 
-                Food Fooditem = new Food(mHolder.ItemName.getText().toString(),
+                Food Fooditem = new Food(mHolder.FoodID.getText().toString(),
+                        mHolder.ItemName.getText().toString(),
                         mHolder.ItemDesc.getText().toString(),
                         Integer.parseInt(mHolder.ItemPrice.getText().toString()),
                         0);
@@ -90,6 +92,7 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
 
         ConstraintLayout food_item;
 
+        TextView FoodID;
         TextView ItemName;
         TextView ItemPrice;
         TextView ItemDesc;
@@ -105,6 +108,7 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
 
             food_item = itemView.findViewById(R.id.item_layout);
 
+            FoodID = itemView.findViewById(R.id.FoodID);
             ItemName = itemView.findViewById(R.id.ItemName);
             ItemPrice = itemView.findViewById(R.id.ItemPrice);
             ItemDesc = itemView.findViewById(R.id.ItemDesc);

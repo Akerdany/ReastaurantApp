@@ -8,11 +8,19 @@
     android:id="@+id/item_layout">
 
     <TextView
+        android:id="@+id/FoodID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
         android:id="@+id/ItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textStyle="bold"
+        tools:text="Burger"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +28,7 @@
         android:id="@+id/ItemImage"
         android:layout_width="70dp"
         android:layout_height="50dp"
+        tools:src="@drawable/restaurantmenu_icon"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +41,7 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textStyle="bold|italic"
+        tools:text="150"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -39,8 +49,9 @@
         android:id="@+id/ItemDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="14sp"
+        tools:text="This is a beef Burger"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ItemImage"
         android:visibility="gone"/>
