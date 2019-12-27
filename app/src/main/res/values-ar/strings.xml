@@ -17,6 +17,8 @@
     <string name="maleGender_signUp">Male</string>
     <string name="femaleGender_signUp">Female</string>
     <string name="dateOfBirth_signUp">Date of Birth:</string>
+    <string name="status_account_active"><font color='green'>• Active</font></string>
+    <string name="status_account_deleted"><font color='red'>• Deleted</font></string>
 
     <string name="signInError_main">Email or Password is wrong</string>
     <string name="emailError_main">Please fill the email</string>
@@ -35,6 +37,11 @@
     <string name="password_error_signUp">at least 8 characters</string>
     <string name="confirmPassword_errorEmpty_signUp">Please fill your first name</string>
     <string name="confirmPassword_error_signUp">Password Confirmation does not match</string>
+    <string name="errorMessage_user_edit_delete">An error has occurred.\nPlease try again later,\nand if it happens again. Report \nto the IT team. Thank You!</string>
+    <string name="getBack_btn">Get Back</string>
+    <string name="updateAccount_btn">Update</string>
+    <string name="deleteAccount_btn">Delete</string>
+    <string name="reActivateAccount_btn">Re_Activate</string>
 
     <string name="home_navigation_icon">Home</string>
     <string name="food_navigation_icon">Food Menu</string>

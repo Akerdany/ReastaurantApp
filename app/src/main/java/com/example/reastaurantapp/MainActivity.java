@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        //TODO: Must check if the account is not deleted !!!
+
         if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             getUserType(firebaseAuth.getCurrentUser().getUid());
 //            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);

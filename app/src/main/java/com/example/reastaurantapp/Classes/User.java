@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class User {
 
-    public static final String TAG = "TAG";
+    private static final String TAG = "TAG";
     private String id;
     private String firstName;
     private String lastName;
@@ -39,7 +39,7 @@ public class User {
         this.isDeleted = isDeleted;
     }
 
-    public void getUser_Firestore(String id){
+    public void getUser_Firestore(final String id){
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = firebaseFirestore.collection("users").document(id);
@@ -48,9 +48,16 @@ public class User {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
-                    Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
-                    documentSnapshot.getString("userType");
+                    Log.d(TAG, "In user class => DocumentSnapshot data: " + documentSnapshot.getData());
+
+                    setId(documentSnapshot.getString("id"));
+                    setFirstName(documentSnapshot.getString("firstName"));
+                    setLastName(documentSnapshot.getString("lastName"));
+                    setEmail(documentSnapshot.getString("email"));
+                    setUserType(documentSnapshot.getString("userType"));
+                    setPhoneNumber(documentSnapshot.getString("phoneNumber"));
+                    setGender(documentSnapshot.getString("gender"));
+                    setIsDeleted(documentSnapshot.getBoolean("isDeleted"));
 
                 } else {
                     Log.d(TAG, "In user class => No such document");
@@ -63,6 +70,10 @@ public class User {
                         Log.d(TAG, "In user class => Get failed with ", e);
                     }
                 });
+    }
+
+    public void changeUserType(String userId, String newValue){
+
     }
 
     public String getGender() {
@@ -127,5 +138,11 @@ public class User {
 
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public boolean isNotEmpty(){
+        return this.id != null && this.firstName != null && this.lastName != null &&
+                this.email != null && this.gender != null && this.userType != null &&
+                this.phoneNumber != null;
     }
 }

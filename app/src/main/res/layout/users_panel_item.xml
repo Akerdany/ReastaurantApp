@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/main_layout">
+    android:id="@+id/main_layout"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <TextView
         android:id="@+id/UserID"
@@ -14,5 +17,54 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:visibility="invisible" />
 
+    <ImageView
+        android:id="@+id/picture_usersPanel"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@drawable/account_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fullname_usersPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/picture_usersPanel"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingLeft="10dp"
+        tools:text="User Name Full Name"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/userType_usersPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/picture_usersPanel"
+        app:layout_constraintTop_toBottomOf="@id/fullname_usersPanel"
+        android:paddingLeft="10dp"
+        android:paddingTop="7dp"
+        tools:text="Admin or Client or Chef"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/userType_usersPanel"
+        app:layout_constraintTop_toBottomOf="@id/fullname_usersPanel"
+        tools:text="Active or Deleted"
+        android:paddingTop="8dp"
+        android:paddingLeft="20dp"
+        android:textSize="14dp"
+        />
+
+    <View
+        android:id="@+id/breakLine_usersPanel"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_usersPanel"
+        android:paddingTop="10dp"
+        android:background="@color/blueLight" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
