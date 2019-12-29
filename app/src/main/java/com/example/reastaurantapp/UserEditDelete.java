@@ -74,6 +74,14 @@ public class UserEditDelete extends AppCompatActivity {
             }
         } else {
             Log.w(TAG, "The userType: " + previous_intent.getStringExtra("UserID"));
+            mainLayout.setVisibility(View.INVISIBLE);
+            errorMessageLayout.setVisibility(View.VISIBLE);
+            getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
     }
 

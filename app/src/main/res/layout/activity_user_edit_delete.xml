@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserEditDelete"
-    android:id="@+id/mainLayout_user_edit_delete">
+    tools:context=".UserEditDelete">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".UserEditDelete"
+        android:id="@+id/mainLayout_user_edit_delete">
 
     <TextView
         android:id="@+id/nameretrieved"
@@ -122,6 +127,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statusretrieved"
         android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/errorMessage_user_edit_delete_frame_layout"
@@ -153,70 +159,5 @@
             />
 
     </LinearLayout>
-
-    <!--    <TextView-->
-<!--        android:id="@+id/usertype"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="50dp"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:text="User Type:"-->
-<!--        android:textColor="@color/blueLight"-->
-<!--        android:textSize="15dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/gender" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="50dp"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="150dp"-->
-<!--        android:text="Full Name:"-->
-<!--        android:textColor="@color/blueLight"-->
-<!--        android:textSize="15dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/email"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="50dp"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:text="E-mail:"-->
-<!--        android:textColor="@color/blueLight"-->
-<!--        android:textSize="15dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/name" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/phone"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="50dp"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:text="Phone Number:"-->
-<!--        android:textColor="@color/blueLight"-->
-<!--        android:textSize="15dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/email" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/gender"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="50dp"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:text="Gender"-->
-<!--        android:textColor="@color/blueLight"-->
-<!--        android:textSize="15dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/phone" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
