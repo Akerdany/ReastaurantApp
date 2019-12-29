@@ -66,7 +66,7 @@ public class UserEditDelete extends AppCompatActivity {
             userID = previous_intent.getStringExtra("UserID");
 
             Log.w(TAG, "The userType: " + userID);
-            
+
             DocumentReference docRef = firebaseFirestore.collection("users").document(userID);
 
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -143,7 +143,7 @@ public class UserEditDelete extends AppCompatActivity {
             gender_edit_delete.setText(getText(R.string.femaleGender_signUp));
         }
 
-        if (tempUserEdit_Delete.getIsDeleted()) {
+        if (!tempUserEdit_Delete.getIsDeleted()) {
             status_edit_delete.setText(getText(R.string.status_account_active));
             delete_btn_edit_delete.setVisibility(View.VISIBLE);
             reactivate_btn_edit_delete.setVisibility(View.INVISIBLE);
