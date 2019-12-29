@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserEditDelete">
+
+
+    <Button
+        android:id="@+id/edittable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/buttonstyle"
+        android:text="Edit"
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/windowtyperetrieved" />
+
+    <EditText
+        android:id="@+id/searchtables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="Table ID"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/blueLight"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchtablesbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/blueLight"
+        android:text="SEARCH"
+        app:layout_constraintStart_toEndOf="@+id/searchtables"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tableid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:text="Table ID:"
+        android:textColor="@color/blueLight"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchtables" />
+
+    <TextView
+        android:id="@+id/tablename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Table Name: "
+        android:textColor="@color/blueLight"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableid" />
+
+    <TextView
+        android:id="@+id/smokingtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Smoking Type:"
+        android:textColor="@color/blueLight"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tablename" />
+
+    <TextView
+        android:id="@+id/windowtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Window Type:"
+        android:textColor="@color/blueLight"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smokingtype" />
+
+    <EditText
+        android:id="@+id/smokingtyperetrieved"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="205dp"
+        android:hint="Smoking Type"
+        android:textSize="15dp"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toEndOf="@+id/smokingtype"
+        app:layout_constraintTop_toBottomOf="@+id/searchtables" />
+
+    <EditText
+        android:id="@+id/windowtyperetrieved"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonstyle"
+        android:hint="Window Type"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/blueLight"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/windowtype"
+        app:layout_constraintTop_toBottomOf="@+id/smokingtyperetrieved" />
+
+    <TextView
+        android:id="@+id/tableidretrieved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Retrieved Table ID"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/tableid"
+        app:layout_constraintTop_toBottomOf="@+id/searchtables" />
+
+    <TextView
+        android:id="@+id/tablenameretrieved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="41dp"
+        android:text="Retrieved Tabel Name"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/tablename"
+        app:layout_constraintTop_toBottomOf="@+id/tableidretrieved" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

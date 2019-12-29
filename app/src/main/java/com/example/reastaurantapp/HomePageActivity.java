@@ -73,9 +73,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                         case R.id.nav_menu_icon_client:
                             selectedFragment = new MenuFragment();
                             break;
-                        case R.id.nav_navigation_icon_client:
-                            selectedFragment = new GoogleMapsDirections();
-                            break;
                         case R.id.nav_admin_icon:
                             selectedFragment = new AdminPanel();
                             break;
@@ -267,6 +264,10 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 break;
 
             case R.id.tablespanel:
+                Intent intent1 = new Intent(this, EditTables.class);
+                startActivity(intent1);
+                break;
+
 
         }
     }
