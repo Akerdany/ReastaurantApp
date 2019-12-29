@@ -38,13 +38,23 @@ public class UserEditDelete extends AppCompatActivity {
     private TextView gender_edit_delete;
     private Spinner userType_edit_delete_spinner;
     private TextView status_edit_delete;
+
     private LinearLayout errorMessageLayout;
+    private LinearLayout deleteConfirmationMessage;
+    private LinearLayout confirmReActivate_user_edit_delete_frame_layout;
+    private LinearLayout confirmUpdate_user_edit_delete_frame_layout;
     private ConstraintLayout mainLayout;
 
     private Button update_btn_edit_delete;
     private Button getBack_btn_user_edit_delete;
     private Button delete_btn_edit_delete;
     private Button reactivate_btn_edit_delete;
+    private Button confirmDeleteBtn_user_edit_delete;
+    private Button getBackConfirmDeleteBtn_user_edit_delete;
+    private Button getBackReActivateBtn_user_edit_delete;
+    private Button confirmReActivateBtn_user_edit_delete;
+    private Button getBackUpdateBtn_user_edit_delete;
+    private Button confirmUpdateBtn_user_edit_delete;
 
     FirebaseFirestore firebaseFirestore;
     User tempUserEdit_Delete = new User();
@@ -87,6 +97,8 @@ public class UserEditDelete extends AppCompatActivity {
                         if (tempUserEdit_Delete.isNotEmpty()) {
                             initialize(tempUserEdit_Delete);
                         } else {
+                            Log.d(TAG, "In UserEditDelete Class => No such document");
+
                             mainLayout.setVisibility(View.INVISIBLE);
                             errorMessageLayout.setVisibility(View.VISIBLE);
                             getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
@@ -98,18 +110,37 @@ public class UserEditDelete extends AppCompatActivity {
                         }
 
                     } else {
-                        Log.d(TAG, "In user class => No such document");
+                        Log.d(TAG, "In UserEditDelete Class => No such document");
+
+                        mainLayout.setVisibility(View.INVISIBLE);
+                        errorMessageLayout.setVisibility(View.VISIBLE);
+                        getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
                     }
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "In user class => Get failed with ", e);
+                            Log.d(TAG, "In UserEditDelete Class => Get failed with ", e);
+
+                            mainLayout.setVisibility(View.INVISIBLE);
+                            errorMessageLayout.setVisibility(View.VISIBLE);
+                            getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                }
+                            });
                         }
                     });
         } else {
             Log.w(TAG, "The userType: " + previous_intent.getStringExtra("UserID"));
+
             mainLayout.setVisibility(View.INVISIBLE);
             errorMessageLayout.setVisibility(View.VISIBLE);
             getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +153,7 @@ public class UserEditDelete extends AppCompatActivity {
     }
 
     private void initialize(final User tempUserEdit_Delete) {
+
         fullName_edit_delete = findViewById(R.id.nameretrieved);
         email_edit_delete = findViewById(R.id.emailretrieved);
         phoneNumber_edit_delete = findViewById(R.id.phoneretrieved);
@@ -131,6 +163,18 @@ public class UserEditDelete extends AppCompatActivity {
         update_btn_edit_delete = findViewById(R.id.update_user_edit_delete);
         delete_btn_edit_delete = findViewById(R.id.delete_user_edit_delete);
         reactivate_btn_edit_delete = findViewById(R.id.reactivate_user_edit_delete);
+
+        deleteConfirmationMessage = findViewById(R.id.confirmDelete_user_edit_delete_frame_layout);
+        confirmDeleteBtn_user_edit_delete = findViewById(R.id.confirmDeleteBtn_user_edit_delete);
+        getBackConfirmDeleteBtn_user_edit_delete = findViewById(R.id.getBackConfirmDeleteBtn_user_edit_delete);
+
+        confirmReActivate_user_edit_delete_frame_layout = findViewById(R.id.confirmReActivate_user_edit_delete_frame_layout);
+        getBackReActivateBtn_user_edit_delete = findViewById(R.id.getBackReActivateBtn_user_edit_delete);
+        confirmReActivateBtn_user_edit_delete = findViewById(R.id.confirmReActivateBtn_user_edit_delete);
+
+        confirmUpdate_user_edit_delete_frame_layout = findViewById(R.id.confirmUpdate_user_edit_delete_frame_layout);
+        getBackUpdateBtn_user_edit_delete = findViewById(R.id.getBackUpdateBtn_user_edit_delete);
+        confirmUpdateBtn_user_edit_delete = findViewById(R.id.confirmUpdateBtn_user_edit_delete);
 
         String fullName = tempUserEdit_Delete.getFirstName() + " " + tempUserEdit_Delete.getLastName();
         fullName_edit_delete.setText(fullName);
@@ -151,8 +195,23 @@ public class UserEditDelete extends AppCompatActivity {
             delete_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: Show a confirmation message first
-                    //TODO: Function in User class to set isDeleted to 1
+                    deleteConfirmationMessage.setVisibility(View.VISIBLE);
+
+                    getBackConfirmDeleteBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            deleteConfirmationMessage.setVisibility(View.INVISIBLE);
+                        }
+                    });
+
+                    confirmDeleteBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            tempUserEdit_Delete.deleteUser(tempUserEdit_Delete.getId());
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    });
                 }
             });
         } else {
@@ -163,8 +222,24 @@ public class UserEditDelete extends AppCompatActivity {
             reactivate_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: Show a confirmation message first
-                    //TODO: Function in User class to set isDeleted to 0
+                    confirmReActivate_user_edit_delete_frame_layout.setVisibility(View.VISIBLE);
+
+                    getBackReActivateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            confirmReActivate_user_edit_delete_frame_layout.setVisibility(View.INVISIBLE);
+                        }
+                    });
+
+                    confirmReActivateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            tempUserEdit_Delete.reactivateUser(tempUserEdit_Delete.getId());
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    });
+
                 }
             });
         }
@@ -195,10 +270,39 @@ public class UserEditDelete extends AppCompatActivity {
                 update_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO: Show a confirmation message first
-                        //TODO: Implement the funstiion in the user class first
+                        confirmUpdate_user_edit_delete_frame_layout.setVisibility(View.VISIBLE);
 
-                        tempUserEdit_Delete.changeUserType(tempUserEdit_Delete.getId(), newUserType_selected);
+                        getBackUpdateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                confirmUpdate_user_edit_delete_frame_layout.setVisibility(View.INVISIBLE);
+                            }
+                        });
+
+                        confirmUpdateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                switch (newUserType_selected){
+                                    case "Admin":
+                                        tempUserEdit_Delete.changeUserType(tempUserEdit_Delete.getId(), "1");
+                                        finish();
+                                        startActivity(getIntent());
+                                        break;
+
+                                    case "Client":
+                                        tempUserEdit_Delete.changeUserType(tempUserEdit_Delete.getId(), "2");
+                                        finish();
+                                        startActivity(getIntent());
+                                        break;
+                                        
+                                    case "Chef":
+                                        tempUserEdit_Delete.changeUserType(tempUserEdit_Delete.getId(), "3");
+                                        finish();
+                                        startActivity(getIntent());
+                                        break;
+                                }
+                            }
+                        });
                     }
                 });
             }

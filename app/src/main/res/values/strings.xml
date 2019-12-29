@@ -38,6 +38,9 @@
     <string name="confirmPassword_errorEmpty_signUp">Please fill your first name</string>
     <string name="confirmPassword_error_signUp">Password Confirmation does not match</string>
     <string name="errorMessage_user_edit_delete">An error has occurred.\nPlease try again later,\nand if it happens again. Report \nto the IT team. Thank You!</string>
+    <string name="confirmDeleteMessage_user_edit_delete">Are you sure you want to delete\nthis account ?</string>
+    <string name="confirmReActivateMessage_user_edit_delete">Are you sure you want to Re-Activate\nthis account ?</string>
+    <string name="confirmUpdateMessage_user_edit_delete">Are you sure you want to update\nthis account ?</string>
     <string name="getBack_btn">Get Back</string>
     <string name="updateAccount_btn">Update</string>
     <string name="deleteAccount_btn">Delete</string>

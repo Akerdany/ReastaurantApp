@@ -42,8 +42,24 @@ public class User {
     public void getUser_Firestore(final String id){
     }
 
-    public void changeUserType(String userId, String newValue){
+    public void changeUserType(String id, String newValue){
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
+        DocumentReference docRef = firebaseFirestore.collection("users").document(id);
+
+        docRef.update("userType", newValue)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "In User Class => DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "In User Class => Error updating document", e);
+                    }
+                });
     }
 
     public String getGender() {
@@ -114,5 +130,45 @@ public class User {
         return this.id != null && this.firstName != null && this.lastName != null &&
                 this.email != null && this.gender != null && this.userType != null &&
                 this.phoneNumber != null;
+    }
+
+    public void deleteUser(String id){
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = firebaseFirestore.collection("users").document(id);
+
+        docRef.update("isDeleted", true)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "In User Class => DocumentSnapshot successfully updated!");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "In User Class => Error updating document", e);
+                    }
+                });
+    }
+
+    public void reactivateUser(String id){
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = firebaseFirestore.collection("users").document(id);
+
+        docRef.update("isDeleted", false)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "In User Class => DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "In User Class => Error updating document", e);
+                    }
+                });
     }
 }
