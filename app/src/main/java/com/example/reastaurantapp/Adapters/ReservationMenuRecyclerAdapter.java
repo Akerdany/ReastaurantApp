@@ -79,8 +79,7 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
                 Food Fooditem = new Food(mHolder.FoodID.getText().toString(),
                         mHolder.ItemName.getText().toString(),
                         mHolder.ItemDesc.getText().toString(),
-                        Integer.parseInt(mHolder.ItemPrice.getText().toString()),
-                        0);
+                        Integer.parseInt(mHolder.ItemPrice.getText().toString()));
 
                 ReservationMenu.mFood.add(Fooditem);
             }
