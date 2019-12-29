@@ -5,20 +5,27 @@ public class Food {
     private String ItemID;
     private String ItemName;
     private String ItemDesc;
+    private String ItemPhoto;
 
     private int ItemPrice;
-    private int ItemPhoto;
 
     public Food(){
 
     }
 
-    public Food(String itemID, String itemName, String itemDesc, int itemPrice, int itemPhoto) {
+    public Food(String itemID, String itemName, String itemDesc, int itemPrice, String itemPhoto) {
         ItemID = itemID;
         ItemName = itemName;
         ItemDesc = itemDesc;
         ItemPrice = itemPrice;
         ItemPhoto = itemPhoto;
+    }
+
+    public Food(String itemID, String itemName, String itemDesc, int itemPrice) {
+        ItemID = itemID;
+        ItemName = itemName;
+        ItemDesc = itemDesc;
+        ItemPrice = itemPrice;
     }
 
     public String getItemID() {
@@ -53,11 +60,11 @@ public class Food {
         ItemPrice = itemPrice;
     }
 
-    public int getItemPhoto() {
+    public String getItemPhoto() {
         return ItemPhoto;
     }
 
-    public void setItemPhoto(int itemPhoto) {
+    public void setItemPhoto(String itemPhoto) {
         ItemPhoto = itemPhoto;
     }
 }
