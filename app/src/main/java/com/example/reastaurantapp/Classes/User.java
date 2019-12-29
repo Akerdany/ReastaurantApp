@@ -40,36 +40,6 @@ public class User {
     }
 
     public void getUser_Firestore(final String id){
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = firebaseFirestore.collection("users").document(id);
-
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    Log.d(TAG, "In user class => DocumentSnapshot data: " + documentSnapshot.getData());
-
-                    setId(documentSnapshot.getString("id"));
-                    setFirstName(documentSnapshot.getString("firstName"));
-                    setLastName(documentSnapshot.getString("lastName"));
-                    setEmail(documentSnapshot.getString("email"));
-                    setUserType(documentSnapshot.getString("userType"));
-                    setPhoneNumber(documentSnapshot.getString("phoneNumber"));
-                    setGender(documentSnapshot.getString("gender"));
-                    setIsDeleted(documentSnapshot.getBoolean("isDeleted"));
-
-                } else {
-                    Log.d(TAG, "In user class => No such document");
-                }
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "In user class => Get failed with ", e);
-                    }
-                });
     }
 
     public void changeUserType(String userId, String newValue){

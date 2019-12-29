@@ -1,5 +1,6 @@
 package com.example.reastaurantapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -17,6 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.reastaurantapp.Classes.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserEditDelete extends AppCompatActivity {
 
@@ -40,6 +46,7 @@ public class UserEditDelete extends AppCompatActivity {
     private Button delete_btn_edit_delete;
     private Button reactivate_btn_edit_delete;
 
+    FirebaseFirestore firebaseFirestore;
     User tempUserEdit_Delete = new User();
 
     @Override
@@ -51,27 +58,56 @@ public class UserEditDelete extends AppCompatActivity {
         mainLayout = findViewById(R.id.mainLayout_user_edit_delete);
         getBack_btn_user_edit_delete = findViewById(R.id.getBackBtn_user_edit_delete);
 
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
         Intent previous_intent = getIntent();
         if (previous_intent.getStringExtra("UserID") != null) {
 
             userID = previous_intent.getStringExtra("UserID");
 
             Log.w(TAG, "The userType: " + userID);
+            
+            DocumentReference docRef = firebaseFirestore.collection("users").document(userID);
 
-            tempUserEdit_Delete.getUser_Firestore(userID);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        Log.d(TAG, "In user class => DocumentSnapshot data: " + documentSnapshot.getData());
 
-            if (tempUserEdit_Delete.isNotEmpty()) {
-                initialize(tempUserEdit_Delete);
-            } else {
-                mainLayout.setVisibility(View.INVISIBLE);
-                errorMessageLayout.setVisibility(View.VISIBLE);
-                getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
+                        tempUserEdit_Delete.setId(documentSnapshot.getString("id"));
+                        tempUserEdit_Delete.setFirstName(documentSnapshot.getString("firstName"));
+                        tempUserEdit_Delete.setLastName(documentSnapshot.getString("lastName"));
+                        tempUserEdit_Delete.setEmail(documentSnapshot.getString("email"));
+                        tempUserEdit_Delete.setUserType(documentSnapshot.getString("userType"));
+                        tempUserEdit_Delete.setPhoneNumber(documentSnapshot.getString("phoneNumber"));
+                        tempUserEdit_Delete.setGender(documentSnapshot.getString("gender"));
+                        tempUserEdit_Delete.setIsDeleted(documentSnapshot.getBoolean("isDeleted"));
+
+                        if (tempUserEdit_Delete.isNotEmpty()) {
+                            initialize(tempUserEdit_Delete);
+                        } else {
+                            mainLayout.setVisibility(View.INVISIBLE);
+                            errorMessageLayout.setVisibility(View.VISIBLE);
+                            getBack_btn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                }
+                            });
+                        }
+
+                    } else {
+                        Log.d(TAG, "In user class => No such document");
                     }
-                });
-            }
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "In user class => Get failed with ", e);
+                        }
+                    });
         } else {
             Log.w(TAG, "The userType: " + previous_intent.getStringExtra("UserID"));
             mainLayout.setVisibility(View.INVISIBLE);
