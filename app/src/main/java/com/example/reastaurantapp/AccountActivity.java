@@ -90,6 +90,7 @@ public class AccountActivity extends AppCompatActivity {
 
         main_layout = findViewById(R.id.main_layout_myAccount);
         error_layout = findViewById(R.id.error_layout_myAccount);
+        delete_layout = findViewById(R.id.delete_layout_myAccount);
 
         progressbar = findViewById(R.id.progressbar_myAccount);
     }
