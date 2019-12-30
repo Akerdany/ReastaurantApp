@@ -22,13 +22,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.reastaurantapp.Classes.Tables;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +47,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
     Dialog myDialog;
     TextView close;
-    TextView selectedTable;
+    TextView selectedTable, smoking, window;
+    ArrayList <Tables> ar;
+    Tables table;
     ImageView image;
     Map<String, Object> Reservation;
     FirebaseAuth firebaseAuth;
@@ -95,6 +101,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         databaseConnection = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         Intent previous_intent = getIntent();
         if (previous_intent.getStringExtra("userType") != null) {
 
@@ -144,26 +151,80 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         myDialog.setContentView(R.layout.activity_popupmenu);
         image = myDialog.findViewById(R.id.viewImage);
         selectedTable = myDialog.findViewById(R.id.hh);
+
+        ar = new ArrayList<>();
+        table = new Tables();
+
         switch (view.getId())
         {
             case R.id.tablefour1:
-            case R.id.tablefour2:
-            case R.id.tablefour3:
-            case R.id.tablefour4:
-            case R.id.tablefour5:
-            case R.id.tablefour6:
+                getDetails("tablefour1");
                 image.setImageResource(R.drawable.table4);
                 selectedTable.setText("You Selected a 4 Person Table.");
                 break;
+
+            case R.id.tablefour2:
+                getDetails("tablefour2");
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+
+            case R.id.tablefour3:
+                getDetails("tablefour3");
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+
+            case R.id.tablefour4:
+                getDetails("tablefour4");
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+
+            case R.id.tablefour5:
+                getDetails("tablefour5");
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+
+            case R.id.tablefour6:
+                getDetails("tablefour6");
+                image.setImageResource(R.drawable.table4);
+                selectedTable.setText("You Selected a 4 Person Table.");
+                break;
+
             case R.id.tabletwo1:
-            case R.id.tabletwo2:
-            case R.id.tabletwo3:
-            case R.id.tabletwo4:
+                getDetails("tabletwo1");
                 image.setImageResource(R.drawable.table2);
                 selectedTable.setText("You Selected a 2 Person Table.");
                 break;
+
+            case R.id.tabletwo2:
+                getDetails("tabletwo2");
+                image.setImageResource(R.drawable.table2);
+                selectedTable.setText("You Selected a 2 Person Table.");
+                break;
+
+            case R.id.tabletwo3:
+                getDetails("tabletwo3");
+                image.setImageResource(R.drawable.table2);
+                selectedTable.setText("You Selected a 2 Person Table.");
+                break;
+
+            case R.id.tabletwo4:
+                getDetails("tabletwo4");
+                image.setImageResource(R.drawable.table2);
+                selectedTable.setText("You Selected a 2 Person Table.");
+                break;
+
             case R.id.tablefive1:
+                getDetails("tablefive1");
+                image.setImageResource(R.drawable.table5);
+                selectedTable.setText("You Selected a 5 Person Table.");
+                break;
+
             case R.id.tablefive2:
+                getDetails("tablefive2");
                 image.setImageResource(R.drawable.table5);
                 selectedTable.setText("You Selected a 5 Person Table.");
                 break;
@@ -270,5 +331,31 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
 
         }
+    }
+
+    public void getDetails(String ID)
+    {
+        FirebaseFirestore firebaseFirestore;
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        DocumentReference docRef = firebaseFirestore.collection("tables").document(ID);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+        {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot)
+            {
+                if (documentSnapshot.exists())
+                {
+                    smoking = myDialog.findViewById(R.id.smoking);
+                    window = myDialog.findViewById(R.id.window);
+                    smoking.setText(documentSnapshot.getString("smokingtype"));
+                    window.setText(documentSnapshot.getString("windowtype"));
+                    if(documentSnapshot.getString("smokingtype") == "Smoking")
+                    {
+                        smoking.setTextColor(Color.RED);
+                    }
+                }
+            }
+        });
     }
 }
