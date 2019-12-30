@@ -15,15 +15,36 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <!--        TODO: Change the width-->
-
-    <style name="signIn_layout_kerdany">
-        <item name="android:layout_marginTop">24dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
+    <style name="mainLayout_style">
+        <item name="android:paddingTop">56dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
     </style>
 
-    <style name="signIn_layout_kerdany_2">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
+    <style name="messageLayout_style">
+        <item name="android:paddingTop">28dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+    </style>
+
+    <style name="editText_style">
+        <item name="android:background">@drawable/buttonstyle</item>
+        <item name="android:textColor">@color/blueLight</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="button_style">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:background">@drawable/buttonshape</item>
+        <item name="android:shadowColor">@color/colorGrey</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+
+    <style name="textView_style">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorGrey</item>
     </style>
 </resources>
