@@ -28,57 +28,62 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="300dp"
         android:text="Food Name"
+        style="@style/textView_style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ItemNameEdt"
+        style="@style/editText_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="284dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ItemNameTxt"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="burger" />
 
     <TextView
         android:id="@+id/ItemPriceTxt"
+        style="@style/textView_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="41dp"
         android:text="Price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ItemNameTxt" />
 
     <EditText
         android:id="@+id/ItemPriceEdt"
+        style="@style/editText_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ItemPriceTxt"
         app:layout_constraintTop_toBottomOf="@+id/ItemNameEdt"
         tools:text="150" />
 
     <EditText
         android:id="@+id/ItemDescEdt"
+        style="@style/editText_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ItemDescTxt"
         app:layout_constraintTop_toBottomOf="@+id/ItemPriceEdt"
         tools:text="this is a beef burger" />
 
@@ -90,6 +95,7 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="40dp"
         android:text="Description"
+        style="@style/textView_style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ItemPriceTxt" />
 
@@ -102,6 +108,7 @@
         android:layout_marginRight="32dp"
         android:onClick="PickImage"
         android:text="Pick Image"
+        style="@style/button_style_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toEndOf="@+id/FoodImage"
@@ -135,10 +142,11 @@
 
     <Button
         android:id="@+id/AddFoodBtn"
+        style="@style/button_style"
         android:layout_width="216dp"
         android:layout_height="71dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginBottom="28dp"
         android:onClick="UploadFoodData"
         android:text="@string/AddFoodBtn_food_crud"
