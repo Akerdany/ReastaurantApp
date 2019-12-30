@@ -10,7 +10,7 @@
         android:id="@+id/mainLayout_signUp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,6 +83,7 @@
 
         <EditText
             android:id="@+id/confirmPassword_signUp"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirmPassword_hint_signUp"
@@ -103,7 +104,8 @@
             android:layout_height="wrap_content"
             android:text="@string/signInMsg_text_signUp"
             android:gravity="center"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:layout_marginBottom="15dp"/>
 
     </LinearLayout>
     </ScrollView>
@@ -115,9 +117,8 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:layout_centerInParent="true"
-        android:visibility="visible"
-        android:orientation="vertical"
-        >
+        android:visibility="invisible"
+        android:orientation="vertical">
 
         <TextView
             style="@style/textView_style"
@@ -132,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="DoneRegistration"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:text="@string/registration_done_btn"/>
     </LinearLayout>
 
