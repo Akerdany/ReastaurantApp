@@ -199,7 +199,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
+        style="@style/messageLayout_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -213,7 +213,7 @@
             android:text="@string/delete_myAccount"
             style="@style/textView_style"
             android:gravity="center"
-            android:textSize="18sp"/>
+            android:textSize="17sp"/>
 
         <Button
             android:id="@+id/confirmDeleteBtn_myAccount"
