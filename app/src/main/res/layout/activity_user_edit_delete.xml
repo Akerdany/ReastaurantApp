@@ -2,272 +2,277 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/mainLayout_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserEditDelete">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout_user_edit_delete"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         tools:context=".UserEditDelete"
-        android:id="@+id/mainLayout_user_edit_delete">
+        android:visibility="visible">
 
-    <TextView
-        android:id="@+id/nameretrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="135dp"
-        android:hint="Full Name"
-        android:textColor="#000"
-        android:textSize="15dp"
+        <TextView
+            android:id="@+id/nameretrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:hint="Full Name"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/emailretrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="E-Mail"
-        android:textColor="#000"
-        android:textSize="15dp"
+        <TextView
+            android:id="@+id/emailretrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="E-Mail"
 
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameretrieved"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameretrieved" />
 
-    <TextView
-        android:id="@+id/phoneretrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:textColor="#000"
-        android:textSize="15dp"
+        <TextView
+            android:id="@+id/phoneretrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Phone Number"
 
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailretrieved" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailretrieved" />
 
-    <TextView
-        android:id="@+id/genderretrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Gender"
-        android:textColor="#000"
-        android:textSize="15dp"
+        <TextView
+            android:id="@+id/genderretrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Gender"
 
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phoneretrieved" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phoneretrieved" />
 
-    <Spinner
-        android:id="@+id/usertyperetrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttonstyle"
-        android:spinnerMode="dropdown"
+        <Spinner
+            android:id="@+id/usertyperetrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
 
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/genderretrieved"/>
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genderretrieved" />
 
-    <TextView
-        android:id="@+id/statusretrieved"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Status"
+        <TextView
+            android:id="@+id/statusretrieved"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
 
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usertyperetrieved"/>
+            android:hint="Status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usertyperetrieved" />
 
-    <Button
-        android:id="@+id/delete_user_edit_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/buttonstyle"
-        android:text="@string/deleteAccount_btn"
-        android:textColor="@color/blueLight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusretrieved"
-        android:visibility="invisible"/>
+        <Button
+            android:id="@+id/update_user_edit_delete"
+            style="@style/button_style_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/updateAccount_btn"
 
-    <Button
-        android:id="@+id/reactivate_user_edit_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/buttonstyle"
-        android:text="@string/reActivateAccount_btn"
-        android:textColor="@color/blueLight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusretrieved"
-        android:visibility="invisible"/>
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statusretrieved" />
 
-    <Button
-        android:id="@+id/update_user_edit_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/buttonstyle"
-        android:text="@string/updateAccount_btn"
-        android:textColor="@color/blueLight"
+        <Button
+            android:id="@+id/delete_user_edit_delete"
+            style="@style/buttonDelete_style_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/deleteAccount_btn"
 
-        app:layout_constraintEnd_toStartOf="@+id/delete_user_edit_delete"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusretrieved"
-        android:visibility="invisible"/>
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_user_edit_delete" />
+
+        <Button
+            android:id="@+id/reactivate_user_edit_delete"
+            style="@style/buttonGreen_style_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/reActivateAccount_btn"
+
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_user_edit_delete" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/errorMessage_user_edit_delete_frame_layout"
+        style="@style/messageLayout_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonstyle"
         android:orientation="vertical"
 
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/errorMessage_user_edit_delete"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/errorMessage_user_edit_delete"
+            android:gravity="center"
             android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:text="@string/errorMessage_user_edit_delete" />
 
         <Button
             android:id="@+id/getBackBtn_user_edit_delete"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/getBack_btn"
-            android:background="@drawable/buttonstyle" />
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/confirmDelete_user_edit_delete_frame_layout"
+        style="@style/messageLayout_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonstyle"
         android:orientation="vertical"
 
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/confirmDeleteMessage_user_edit_delete"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirmDeleteMessage_user_edit_delete"
+            android:gravity="center"
             android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:text="@string/confirmDeleteMessage_user_edit_delete" />
 
         <Button
             android:id="@+id/confirmDeleteBtn_user_edit_delete"
+            style="@style/buttonDelete_style_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/deleteAccount_btn"
-            android:background="@drawable/buttonstyle" />
+            android:text="@string/deleteAccount_btn" />
 
         <Button
             android:id="@+id/getBackConfirmDeleteBtn_user_edit_delete"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/getBack_btn"
-            android:background="@drawable/buttonstyle" />
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/confirmReActivate_user_edit_delete_frame_layout"
+        style="@style/messageLayout_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonstyle"
         android:orientation="vertical"
 
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/confirmReActivateMessage_user_edit_delete"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirmReActivateMessage_user_edit_delete"
+            android:gravity="center"
             android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:text="@string/confirmReActivateMessage_user_edit_delete" />
 
         <Button
             android:id="@+id/confirmReActivateBtn_user_edit_delete"
+            style="@style/buttonGreen_style_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reActivateAccount_btn"
-            android:background="@drawable/buttonstyle" />
+            android:text="@string/reActivateAccount_btn" />
 
         <Button
             android:id="@+id/getBackReActivateBtn_user_edit_delete"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/getBack_btn"
-            android:background="@drawable/buttonstyle" />
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/confirmUpdate_user_edit_delete_frame_layout"
+        style="@style/messageLayout_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonstyle"
         android:orientation="vertical"
 
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/confirmUpdateMessage_user_edit_delete"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirmUpdateMessage_user_edit_delete"
+            android:gravity="center"
             android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:text="@string/confirmUpdateMessage_user_edit_delete" />
 
         <Button
             android:id="@+id/confirmUpdateBtn_user_edit_delete"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/updateAccount_btn"
-            android:background="@drawable/buttonstyle" />
+            android:text="@string/updateAccount_btn" />
 
         <Button
             android:id="@+id/getBackUpdateBtn_user_edit_delete"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/getBack_btn"
-            android:background="@drawable/buttonstyle" />
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

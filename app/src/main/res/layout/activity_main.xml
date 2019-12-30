@@ -110,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/send_btn"
-            style="@style/button_style" />
+            style="@style/button_style"
+            android:layout_marginBottom="15dp"/>
     </LinearLayout>
 
 </RelativeLayout>

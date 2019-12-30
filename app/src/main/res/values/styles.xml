@@ -22,6 +22,8 @@
     </style>
 
     <style name="messageLayout_style">
+        <item name="android:background">@drawable/messageshape</item>
+        <item name="android:radius">14dp</item>
         <item name="android:paddingTop">28dp</item>
         <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">12dp</item>
@@ -50,9 +52,27 @@
         <item name="android:shadowRadius">5</item>
     </style>
 
+    <style name="buttonDelete_style_small">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:background">@drawable/buttonshapedelete</item>
+        <item name="android:shadowColor">@color/colorGrey</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+
+    <style name="buttonGreen_style_small">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:background">@drawable/buttonshapegreen</item>
+        <item name="android:shadowColor">@color/colorGrey</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+
     <style name="textView_style">
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/colorGrey</item>
     </style>
 </resources>
