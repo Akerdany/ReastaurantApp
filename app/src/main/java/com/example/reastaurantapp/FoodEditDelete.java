@@ -103,6 +103,8 @@ public class FoodEditDelete extends AppCompatActivity {
                 FoodPrice.setError(getText(R.string.FoodPrice_Missing));
             }else if (FoodDesc.getText().toString().isEmpty()){
                 FoodDesc.setError(getText(R.string.FoodDesc_Missing));
+            }else if (ImageURI == null){
+                Toast.makeText(FoodEditDelete.this, "Please Pick New Image", Toast.LENGTH_SHORT).show();
             }else {
                 final DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(ID);
                 final StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(ID);
@@ -127,6 +129,7 @@ public class FoodEditDelete extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         hideProgressBar();
                                         Toast.makeText(FoodEditDelete.this, "Food Edited", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
