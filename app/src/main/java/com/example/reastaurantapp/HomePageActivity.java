@@ -1,8 +1,7 @@
 package com.example.reastaurantapp;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,29 +11,35 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.reastaurantapp.Classes.Reservation;
 import com.example.reastaurantapp.Classes.Tables;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HomePageActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -230,13 +235,7 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 break;
         }
         close = myDialog.findViewById(R.id.txtclose);
-        close.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
+        close.setOnClickListener(v -> myDialog.dismiss());
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
@@ -247,13 +246,13 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Year = c.get(Calendar.YEAR);
         Month = c.get(Calendar.MONTH);
         Day = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datediag = new DatePickerDialog(HomePageActivity.this, R.style.popuptheme, HomePageActivity.this, Year, Month, Day);
-        datediag.show();
+        DatePickerDialog datediag = DatePickerDialog.newInstance(HomePageActivity.this, Year, Month, Day);
+        datediag.show(getSupportFragmentManager(), "DatePicker");
         myDialog.dismiss();
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+    public void onDateSet(DatePickerDialog view, int year, int month, int dayOfMonth)
     {
         yearFinal = year;
         monthFinal = month + 1;
@@ -261,46 +260,94 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         Calendar c = Calendar.getInstance();
         Hour = c.get(Calendar.HOUR_OF_DAY);
         Minute = c.get(Calendar.MINUTE);
-        TimePickerDialog timediag = new TimePickerDialog(HomePageActivity.this, R.style.popuptheme, HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
-        timediag.show();
+        TimePickerDialog timediag = TimePickerDialog.newInstance(HomePageActivity.this, Hour, Minute, DateFormat.is24HourFormat(this));
+        timediag.show(getSupportFragmentManager(), "TimePicker");
+        timediag.enableMinutes(false);
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second)
     {
         hourFinal = hourOfDay;
-        minuteFinal = minute;
+        FirebaseFirestore firebaseFirestore;
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        CollectionReference docRef = firebaseFirestore.collection("reservation");
+        List<Reservation> r = new ArrayList<>();
 
-        Reservation.put("Minute", minuteFinal);
-        Reservation.put("Hour", hourFinal);
-        Reservation.put("Day", dayFinal);
-        Reservation.put("Month", monthFinal);
-        Reservation.put("Year", yearFinal);
-        Reservation.put("tableName", tablename);
-
-        DocumentReference documentReference = databaseConnection.collection("reservation").document();
-
-        final String documentID = documentReference.getId();
-
-        documentReference.set(Reservation).addOnCompleteListener(this, new OnCompleteListener<Void>()
+        docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>()
         {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots)
             {
-                if (task.isSuccessful())
+                for (DocumentSnapshot snapshot : queryDocumentSnapshots)
                 {
-                    finish();
-                    Intent intent = new Intent(HomePageActivity.this, ReservationMenu.class);
-                    intent.putExtra("ReservationID", documentID);
-                    startActivity(intent);
+                    r.add(snapshot.toObject(Reservation.class));
+
+                    for (int i = 0; i < r.size(); i++)
+                    {
+                        if (r.get(i).getDay().equals(String.valueOf(dayFinal)) &&
+                                r.get(i).getHour().equals(String.valueOf(hourFinal)) &&
+                                r.get(i).getMonth().equals(String.valueOf(monthFinal)) &&
+                                r.get(i).getYear().equals(String.valueOf(yearFinal)))
+                        {
+                            Toast.makeText(HomePageActivity.this, "Table is already reserved in this time, Please try another time.", Toast.LENGTH_LONG).show();
+
+                        }
+                        else
+                        {
+                            Reservation.put("Hour", String.valueOf(hourFinal));
+                            Reservation.put("Day", String.valueOf(dayFinal));
+                            Reservation.put("Month", String.valueOf(monthFinal));
+                            Reservation.put("Year", String.valueOf(yearFinal));
+                            Reservation.put("tableName", String.valueOf(tablename));
+
+                            DocumentReference documentReference = databaseConnection.collection("reservation").document();
+
+                            final String documentID = documentReference.getId();
+
+                            documentReference.set(Reservation).addOnCompleteListener(new OnCompleteListener<Void>()
+                            {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    if (task.isSuccessful())
+                                    {
+                                        finish();
+                                        Intent intent = new Intent(HomePageActivity.this, ReservationMenu.class);
+                                        intent.putExtra("ReservationID", documentID);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
                 }
-                else
-                {
-                    Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
-                }
+
             }
         });
     }
+//        docRef.get().addOnSuccessListener(documentSnapshot ->
+//        {
+//            if (documentSnapshot.exists())
+//            {
+//                com.example.reastaurantapp.Classes.Reservation r = documentSnapshot.toObject(Reservation.class);
+//                System.out.println(r.getDay());
+//                Toast.makeText(HomePageActivity.this, r.getDay(), Toast.LENGTH_LONG).show();
+//            }
+//            else
+//            {
+//                //Toast.makeText(HomePageActivity.this, "hh", Toast.LENGTH_LONG).show();
+//            }
+//        });
+
+
+
+
+
 
     public void getdir(View view)
     {
@@ -315,7 +362,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         {
             case R.id.userspanel:
                 Intent myIntent = new Intent(HomePageActivity.this, UsersPanel.class);
-//                myIntent.putExtra("key", value); //Optional parameters
                 HomePageActivity.this.startActivity(myIntent);
                 break;
 
@@ -328,8 +374,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                 Intent intent1 = new Intent(this, EditTables.class);
                 startActivity(intent1);
                 break;
-
-
         }
     }
 
@@ -339,21 +383,16 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         firebaseFirestore = FirebaseFirestore.getInstance();
         DocumentReference docRef = firebaseFirestore.collection("tables").document(ID);
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
-        {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot)
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
             {
-                if (documentSnapshot.exists())
+                smoking = myDialog.findViewById(R.id.smoking);
+                window = myDialog.findViewById(R.id.window);
+                smoking.setText(documentSnapshot.getString("smokingtype"));
+                window.setText(documentSnapshot.getString("windowtype"));
+                if(documentSnapshot.getString("smokingtype") == "Smoking")
                 {
-                    smoking = myDialog.findViewById(R.id.smoking);
-                    window = myDialog.findViewById(R.id.window);
-                    smoking.setText(documentSnapshot.getString("smokingtype"));
-                    window.setText(documentSnapshot.getString("windowtype"));
-                    if(documentSnapshot.getString("smokingtype") == "Smoking")
-                    {
-                        smoking.setTextColor(Color.RED);
-                    }
+                    smoking.setTextColor(Color.RED);
                 }
             }
         });

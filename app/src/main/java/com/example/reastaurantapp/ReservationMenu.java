@@ -80,6 +80,7 @@ public class ReservationMenu extends AppCompatActivity {
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        finish();
                         Toast.makeText(ReservationMenu.this, "order saved", Toast.LENGTH_SHORT).show();
                     }
                 });
