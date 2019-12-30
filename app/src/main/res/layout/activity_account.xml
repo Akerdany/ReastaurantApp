@@ -1,27 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AccountActivity"
 
-    <LinearLayout
+    android:paddingLeft="22dp"
+    android:paddingRight="22dp"
+    android:paddingTop="20dp">
+
+    <ScrollView
+        android:id="@+id/main_layout_myAccount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
-<!--        TODO: Temporary account data-->
-        <TextView
-            android:id="@+id/AccountData_Temp"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/signOut_account"
+            <TextView
+                android:id="@+id/fNameTxt_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fNameTxt_myAccount"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toStartOf="@id/fNameData_myAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/fNameData_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="textPersonName"
+                tools:text="Omar Atef"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fNameTxt_myAccount"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/lNameTxt_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lNameTxt_myAccount"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+
+                app:layout_constraintEnd_toStartOf="@id/lNameData_myAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fNameTxt_myAccount" />
+
+            <EditText
+                android:id="@+id/lNameData_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="textPersonName"
+                tools:text="Shehab ElDin"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lNameTxt_myAccount"
+                app:layout_constraintTop_toBottomOf="@id/fNameData_myAccount"/>
+
+            <TextView
+                android:id="@+id/phoneNumberTxt_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phoneNumberTxt_myAccount"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+
+                app:layout_constraintEnd_toStartOf="@id/phoneNumberData_myAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lNameTxt_myAccount" />
+
+            <EditText
+                android:id="@+id/phoneNumberData_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="phone"
+                tools:text="0112312311"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/phoneNumberTxt_myAccount"
+                app:layout_constraintTop_toBottomOf="@id/lNameData_myAccount"/>
+
+            <TextView
+                android:id="@+id/emailTxt_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/emailTxt_myAccount"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+
+                app:layout_constraintEnd_toStartOf="@id/emailData_myAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phoneNumberTxt_myAccount" />
+
+            <TextView
+                android:id="@+id/emailData_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                tools:text="Email will be here"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/emailTxt_myAccount"
+                app:layout_constraintTop_toBottomOf="@id/phoneNumberData_myAccount"/>
+
+            <TextView
+                android:id="@+id/genderTxt_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_signUp"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toStartOf="@id/genderData_myAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailTxt_myAccount" />
+
+            <TextView
+                android:id="@+id/genderData_myAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                tools:text="Gender will be here"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/genderTxt_myAccount"
+                app:layout_constraintTop_toBottomOf="@id/emailData_myAccount"/>
+
+            <Button
+                android:id="@+id/update_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/updateAccount_btn"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genderTxt_myAccount"/>
+
+            <Button
+                android:id="@+id/changePassword_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_myAccount"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_account"/>
+
+            <Button
+                android:id="@+id/delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/deleteAccount_btn"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/changePassword_account"/>
+
+            <Button
+                android:id="@+id/signOut_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/signOut_myAccount"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/delete_account"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/changePassword_layout_myAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonstyle"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/newPassword_myAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/signOut_myAccount"/>
+            android:hint="@string/newPassword_myAccount" />
 
+        <EditText
+            android:id="@+id/confirmNewPassword_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirmNewPassword_myAccount"/>
+
+        <Button
+            android:id="@+id/confirmNewPasswordBtn_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/password_myAccount"/>
+
+        <Button
+            android:id="@+id/cancelPasswordBtn_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/getBack_btn"/>
     </LinearLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/delete_layout_myAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/confirmationDeleteMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_myAccount"
+            android:gravity="center"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/confirmDeleteBtn_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:text="@string/deleteBtn_myAccount"/>
+
+        <Button
+            android:id="@+id/cancelDeleteBtn_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:text="@string/getBack_btn"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/error_layout_myAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/errorMessage_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/error_myAccount"
+            android:gravity="center"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/backBtn_myAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:text="@string/getBack_btn"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

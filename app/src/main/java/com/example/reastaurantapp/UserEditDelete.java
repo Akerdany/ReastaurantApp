@@ -26,9 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserEditDelete extends AppCompatActivity {
 
-    //            Toast.makeText(UserEditDelete.this, "UserType: " + userID,
-//                    Toast.LENGTH_SHORT).show();
-
     public static final String TAG = "TAG";
     private String userID = null;
 

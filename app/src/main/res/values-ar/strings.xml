@@ -54,9 +54,23 @@
     <string name="more_navigation_icon">More</string>
     <string name="admin_navigation_icon">Admin Panel</string>
 
+    <string name="error_myAccount">An Error Has Occured\nPlease Try Again Later</string>
+    <string name="fNameTxt_myAccount">First Name:</string>
+    <string name="lNameTxt_myAccount">Last Name:</string>
+    <string name="phoneNumberTxt_myAccount">Phone Number:</string>
+    <string name="emailTxt_myAccount">Email:</string>
+    <string name="delete_myAccount">Are you sure you want to delete your account ?\nThis action cannot be reverted!</string>
     <string name="myAccount_moreFragment">My Account</string>
     <string name="signOut_myAccount">Sign Out</string>
+    <string name="password_myAccount">Change Password</string>
+    <string name="newPassword_myAccount">New Password</string>
+    <string name="confirmNewPassword_myAccount">Confirm New Password</string>
+    <string name="deleteBtn_myAccount">Delete Account</string>
+    <string name="updateFail_myAccount">Update Failed\nPlease Try Again Later</string>
+    <string name="updateSuccess_myAccount">Update Successful!</string>
 
+    <string name="changePassword_success">Password Changed Successfully</string>
+    <string name="changePassword_fail">Password Did Not Change!</string>
     <string name="singUp_fail">Failed to Sign Up \n Please try again later.</string>
     <string name="signUp_done">Your Registration has been completed.\nJust one last step, to verify your email.</string>
     <string name="registration_done_btn">Done</string>

@@ -39,9 +39,6 @@ public class User {
         this.isDeleted = isDeleted;
     }
 
-    public void getUser_Firestore(final String id){
-    }
-
     public void changeUserType(String id, String newValue){
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 

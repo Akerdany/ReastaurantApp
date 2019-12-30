@@ -25,9 +25,9 @@
     <string name="passwordError_main">Please fill the password</string>
 
     <string name="firstName_errorEmpty_signUp">Please fill your first name</string>
-    <string name="firstName_error_signUp">at least 3 characters</string>
+    <string name="firstName_error_signUp">First Name at least 3 characters</string>
     <string name="lastName_errorEmpty_signUp">Please fill your last name</string>
-    <string name="lastName_error_signUp">at least 3 characters</string>
+    <string name="lastName_error_signUp">aLast Name t least 3 characters</string>
     <string name="gender_errorEmpty_signUp">Please provide your gender</string>
     <string name="phoneNumber_errorEmpty_signUp">Please fill your phone number</string>
     <string name="phoneNumber_error_signUp">Please enter a valid phone number</string>
@@ -41,7 +41,7 @@
     <string name="confirmDeleteMessage_user_edit_delete">Are you sure you want to delete\nthis account ?</string>
     <string name="confirmReActivateMessage_user_edit_delete">Are you sure you want to Re-Activate\nthis account ?</string>
     <string name="confirmUpdateMessage_user_edit_delete">Are you sure you want to update\nthis account ?</string>
-    <string name="getBack_btn">Get Back</string>
+    <string name="getBack_btn">Cancel</string>
     <string name="updateAccount_btn">Update</string>
     <string name="deleteAccount_btn">Delete</string>
     <string name="reActivateAccount_btn">Re-Activate</string>
@@ -54,9 +54,23 @@
     <string name="more_navigation_icon">More</string>
     <string name="admin_navigation_icon">Admin Panel</string>
 
+    <string name="error_myAccount">An Error Has Occured\nPlease Try Again Later</string>
+    <string name="fNameTxt_myAccount">First Name:</string>
+    <string name="lNameTxt_myAccount">Last Name:</string>
+    <string name="phoneNumberTxt_myAccount">Phone Number:</string>
+    <string name="emailTxt_myAccount">Email:</string>
+    <string name="delete_myAccount">Are you sure you want to delete your account ?\nThis action cannot be reverted!</string>
     <string name="myAccount_moreFragment">My Account</string>
     <string name="signOut_myAccount">Sign Out</string>
+    <string name="password_myAccount">Change Password</string>
+    <string name="newPassword_myAccount">New Password</string>
+    <string name="confirmNewPassword_myAccount">Confirm New Password</string>
+    <string name="deleteBtn_myAccount">Delete Account</string>
+    <string name="updateFail_myAccount">Update Failed\nPlease Try Again Later</string>
+    <string name="updateSuccess_myAccount">Update Successful!</string>
 
+    <string name="changePassword_success">Password Changed Successfully</string>
+    <string name="changePassword_fail">Password Did Not Change!</string>
     <string name="singUp_fail">Failed to Sign Up \nPlease try again later.</string>
     <string name="signUp_done">Your Registration has been completed.\nJust one last step, to verify your email.</string>
     <string name="registration_done_btn">Done</string>
