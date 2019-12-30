@@ -50,6 +50,10 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
     int Day, Month, Year, Hour, Minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
+    boolean reserved = false;
+
+    Reservation tempReservation = new Reservation();
+
     Dialog myDialog;
     TextView close;
     TextView selectedTable, smoking, window;
@@ -275,7 +279,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
         FirebaseFirestore firebaseFirestore;
         firebaseFirestore = FirebaseFirestore.getInstance();
         CollectionReference docRef = firebaseFirestore.collection("reservation");
-        List<Reservation> r = new ArrayList<>();
+
+        reserved = false;
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>()
         {
@@ -284,50 +289,51 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             {
                 for (DocumentSnapshot snapshot : queryDocumentSnapshots)
                 {
-                    r.add(snapshot.toObject(Reservation.class));
+                    tempReservation = snapshot.toObject(Reservation.class);
 
-                    for (int i = 0; i < r.size(); i++)
+                    if (tempReservation.getDay().equals(String.valueOf(dayFinal)) &&
+                            tempReservation.getHour().equals(String.valueOf(hourFinal)) &&
+                            tempReservation.getMonth().equals(String.valueOf(monthFinal)) &&
+                            tempReservation.getYear().equals(String.valueOf(yearFinal)) &&
+                            tempReservation.getTablename().equals(String.valueOf(tablename)))
                     {
-                        if (r.get(i).getDay().equals(String.valueOf(dayFinal)) &&
-                                r.get(i).getHour().equals(String.valueOf(hourFinal)) &&
-                                r.get(i).getMonth().equals(String.valueOf(monthFinal)) &&
-                                r.get(i).getYear().equals(String.valueOf(yearFinal)))
-                        {
-                            Toast.makeText(HomePageActivity.this, "Table is already reserved in this time, Please try another time.", Toast.LENGTH_LONG).show();
+                        reserved = true;
+                        Toast.makeText(HomePageActivity.this, "Table is already reserved in this time, Please try another time.", Toast.LENGTH_LONG).show();
+                        break;
 
-                        }
-                        else
-                        {
-                            Reservation.put("Hour", String.valueOf(hourFinal));
-                            Reservation.put("Day", String.valueOf(dayFinal));
-                            Reservation.put("Month", String.valueOf(monthFinal));
-                            Reservation.put("Year", String.valueOf(yearFinal));
-                            Reservation.put("tableName", String.valueOf(tablename));
-
-                            DocumentReference documentReference = databaseConnection.collection("reservation").document();
-
-                            final String documentID = documentReference.getId();
-
-                            documentReference.set(Reservation).addOnCompleteListener(new OnCompleteListener<Void>()
-                            {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        finish();
-                                        Intent intent = new Intent(HomePageActivity.this, ReservationMenu.class);
-                                        intent.putExtra("ReservationID", documentID);
-                                        startActivity(intent);
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
-                        }
                     }
+                }
+
+                if (!reserved){
+
+                    tempReservation.setYear(String.valueOf(yearFinal));
+                    tempReservation.setMonth(String.valueOf(monthFinal));
+                    tempReservation.setDay(String.valueOf(dayFinal));
+                    tempReservation.setHour(String.valueOf(hourFinal));
+                    tempReservation.setTablename(tablename);
+
+                    DocumentReference documentReference = databaseConnection.collection("reservation").document();
+
+                    final String documentID = documentReference.getId();
+
+                    documentReference.set(tempReservation).addOnCompleteListener(new OnCompleteListener<Void>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                finish();
+                                Intent intent = new Intent(HomePageActivity.this, ReservationMenu.class);
+                                intent.putExtra("ReservationID", documentID);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Toast.makeText(HomePageActivity.this, getText(R.string.singUp_fail), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
 
             }
