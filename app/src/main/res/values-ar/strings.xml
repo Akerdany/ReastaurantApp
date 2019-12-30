@@ -101,6 +101,10 @@
 
     <string name="User_Doesnt_Exist">لا يوجد حساب</string>
 
+    <string name="four_people_table">لقد اخترت مائدة لاربعة اشخاص.</string>
+    <string name="five_people_table">لقد اخترت مائدة لخمسة اشخاص.</string>
+    <string name="two_people_table">لقد اخترت مائدة لشخصين.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

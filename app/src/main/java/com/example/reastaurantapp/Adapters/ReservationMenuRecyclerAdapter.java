@@ -45,16 +45,6 @@ public class ReservationMenuRecyclerAdapter extends FirestoreRecyclerAdapter<Foo
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reservationmenu_item, parent, false);
         mParent = parent;
         final ReservationMenuRecyclerAdapter.ReservationMenuHolder mHolder = new ReservationMenuRecyclerAdapter.ReservationMenuHolder(view);
-        mHolder.food_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mHolder.ItemDesc.getVisibility() == View.GONE){
-                    mHolder.ItemDesc.setVisibility(View.VISIBLE);
-                }else {
-                    mHolder.ItemDesc.setVisibility(View.GONE);
-                }
-            }
-        });
 
         mHolder.MinusItemBtn.setOnClickListener(new View.OnClickListener() {
             @Override

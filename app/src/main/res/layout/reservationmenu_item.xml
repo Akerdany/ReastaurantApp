@@ -18,76 +18,78 @@
         android:id="@+id/ItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="Burger"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ItemImage"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        tools:src="@drawable/restaurantmenu_icon"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Burger" />
 
     <TextView
         android:id="@+id/ItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        tools:text="150"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/ItemDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="14sp"
-        tools:text="This is a beef Burger"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ItemImage"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="150" />
 
     <Button
-        android:id="@+id/MinusItemBtn"
+        android:id="@+id/AddItemBtn"
         android:layout_width="30dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="-"
-        app:layout_constraintRight_toLeftOf="@id/ItemCountTxt"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="69dp"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@+id/ItemCountTxt"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ItemCountTxt"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="80dp"
         android:text="0"
         android:textAlignment="center"
-        app:layout_constraintRight_toLeftOf="@id/AddItemBtn"
+        app:layout_constraintStart_toEndOf="@+id/MinusItemBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/AddItemBtn"
+        android:id="@+id/MinusItemBtn"
         android:layout_width="30dp"
         android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="+"
-        app:layout_constraintRight_toLeftOf="@id/ItemImage"
+        android:layout_marginStart="188dp"
+        android:layout_marginLeft="188dp"
+        android:layout_marginTop="69dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/ItemImage"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/restaurantmenu_icon" />
+
+    <TextView
+        android:id="@+id/ItemDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:maxEms="11"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ItemName"
+        tools:text="This is a beef Burgeraaaaaaaaaa" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

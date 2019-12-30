@@ -18,47 +18,52 @@
 
     <TextView
         android:id="@+id/ItemName"
+        style="@style/textView_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="32dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="Burger"
-        style="@style/textView_style"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ItemImage"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        tools:src="@drawable/restaurantmenu_icon"
-        style="@style/textView_style"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <TextView
-        android:id="@+id/ItemDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="14sp"
-        tools:text="This is a beef Burger"
-        style="@style/textView_style"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ItemImage" />
+        tools:text="Burger"
+        android:layout_marginStart="4dp" />
 
     <TextView
         android:id="@+id/ItemPrice"
+        style="@style/textView_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        tools:text="150"
-        style="@style/textView_style"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="150"
+        android:layout_marginStart="20dp" />
+
+    <ImageView
+        android:id="@+id/ItemImage"
+        style="@style/textView_style"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/restaurantmenu_icon" />
+
+    <TextView
+        android:id="@+id/ItemDesc"
+        style="@style/textView_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:maxEms="17"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ItemName"
+        tools:text="This is a beef Burgeraaaaaaaaaaaaaa"
+        android:layout_marginStart="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

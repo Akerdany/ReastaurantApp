@@ -179,73 +179,73 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             case R.id.tablefour1:
                 getDetails("tablefour1");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tablefour2:
                 getDetails("tablefour2");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tablefour3:
                 getDetails("tablefour3");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tablefour4:
                 getDetails("tablefour4");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tablefour5:
                 getDetails("tablefour5");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tablefour6:
                 getDetails("tablefour6");
                 image.setImageResource(R.drawable.table4);
-                selectedTable.setText("You Selected a 4 Person Table.");
+                selectedTable.setText(getText(R.string.four_people_table));
                 break;
 
             case R.id.tabletwo1:
                 getDetails("tabletwo1");
                 image.setImageResource(R.drawable.table2);
-                selectedTable.setText("You Selected a 2 Person Table.");
+                selectedTable.setText(getText(R.string.two_people_table));
                 break;
 
             case R.id.tabletwo2:
                 getDetails("tabletwo2");
                 image.setImageResource(R.drawable.table2);
-                selectedTable.setText("You Selected a 2 Person Table.");
+                selectedTable.setText(getText(R.string.two_people_table));
                 break;
 
             case R.id.tabletwo3:
                 getDetails("tabletwo3");
                 image.setImageResource(R.drawable.table2);
-                selectedTable.setText("You Selected a 2 Person Table.");
+                selectedTable.setText(getText(R.string.two_people_table));
                 break;
 
             case R.id.tabletwo4:
                 getDetails("tabletwo4");
                 image.setImageResource(R.drawable.table2);
-                selectedTable.setText("You Selected a 2 Person Table.");
+                selectedTable.setText(getText(R.string.two_people_table));
                 break;
 
             case R.id.tablefive1:
                 getDetails("tablefive1");
                 image.setImageResource(R.drawable.table5);
-                selectedTable.setText("You Selected a 5 Person Table.");
+                selectedTable.setText(getText(R.string.five_people_table));
                 break;
 
             case R.id.tablefive2:
                 getDetails("tablefive2");
                 image.setImageResource(R.drawable.table5);
-                selectedTable.setText("You Selected a 5 Person Table.");
+                selectedTable.setText(getText(R.string.five_people_table));
                 break;
         }
         close = myDialog.findViewById(R.id.txtclose);
