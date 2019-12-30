@@ -99,6 +99,8 @@
     <string name="FoodPrice_Missing">من فضلك ضع سعر الطعام</string>
     <string name="FoodDesc_Missing">من فضلك ضع وصف الطعام</string>
 
+    <string name="User_Doesnt_Exist">لا يوجد حساب</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

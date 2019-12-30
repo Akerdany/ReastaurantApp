@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void signIn(View view) {
 
-        if (!validate()) {
+        if (!validate() ) {
             return;
         }
 
@@ -70,37 +70,57 @@ public class MainActivity extends AppCompatActivity {
 
         showProgressBar();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                    Log.w(TAG, "User verified his email");
+                    getUserType(firebaseAuth.getCurrentUser().getUid());
+                }else{
+                    hideProgressBar();
+                    Log.w(TAG, "User did not verify his email code: " + firebaseAuth.getCurrentUser().isEmailVerified());
+                    Toast.makeText(MainActivity.this, getText(R.string.verifyEmail_main),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                hideProgressBar();
+                Log.w(TAG, "signInWithEmail:failure", e);
+                Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                        Log.w(TAG, "task " + task.getResult().toString());
-                        if (task.isSuccessful()) {
-                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                Log.w(TAG, "User verified his email");
-                                getUserType(firebaseAuth.getCurrentUser().getUid());
-                            }else{
-                                hideProgressBar();
-                                Log.w(TAG, "User did not verify his email code: " + firebaseAuth.getCurrentUser().isEmailVerified());
-                                Toast.makeText(MainActivity.this, getText(R.string.verifyEmail_main),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            hideProgressBar();
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        if (!task.isSuccessful()) {
-                            hideProgressBar();
-                            Log.w(TAG, task.getException());
-                            Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+//        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+////                Log.w(TAG, "task " + task.getResult().toString());
+//                if (task.isSuccessful()) {
+//                    if(firebaseAuth.getCurrentUser().isEmailVerified()){
+//                        Log.w(TAG, "User verified his email");
+//                        getUserType(firebaseAuth.getCurrentUser().getUid());
+//                    }else{
+//                        hideProgressBar();
+//                        Log.w(TAG, "User did not verify his email code: " + firebaseAuth.getCurrentUser().isEmailVerified());
+//                        Toast.makeText(MainActivity.this, getText(R.string.verifyEmail_main),
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    hideProgressBar();
+//                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+//                    Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//                if (!task.isSuccessful()) {
+//                    hideProgressBar();
+//                    Log.w(TAG, task.getException());
+//                    Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
     private void initializeComponents() {

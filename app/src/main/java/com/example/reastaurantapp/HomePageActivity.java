@@ -129,8 +129,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
             userType = Integer.parseInt(previous_intent.getStringExtra("userType"));
 
             Log.w(TAG, "The userType: " + userType);
-            Toast.makeText(HomePageActivity.this, "UserType: " + userType,
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(HomePageActivity.this, "UserType: " + userType,
+//                    Toast.LENGTH_SHORT).show();
         }
 
         bottomNav = findViewById(R.id.homepage_bottom_navigation);

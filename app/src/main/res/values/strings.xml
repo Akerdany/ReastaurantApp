@@ -99,6 +99,8 @@
     <string name="FoodPrice_Missing">Please enter food price</string>
     <string name="FoodDesc_Missing">Please type food description</string>
 
+    <string name="User_Doesnt_Exist">User Doesn\'t Exist</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
