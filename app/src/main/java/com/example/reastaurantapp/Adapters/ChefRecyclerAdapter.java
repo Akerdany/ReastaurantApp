@@ -3,6 +3,7 @@ package com.example.reastaurantapp.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,10 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reastaurantapp.Classes.Food;
 import com.example.reastaurantapp.Classes.Order;
+import com.example.reastaurantapp.Classes.Reservation;
 import com.example.reastaurantapp.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,14 +36,13 @@ public class ChefRecyclerAdapter extends FirestoreRecyclerAdapter<Order, ChefRec
     @Override
     protected void onBindViewHolder(@NonNull ChefViewHolder holder, int position, @NonNull Order model) {
 
-        final TextView orderNo = holder.OrderNO;
-
         DocumentReference ref = db.collection("reservation").document(model.getOrderNumber());
 
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                orderNo.setText(documentSnapshot.get("tableName").toString());
+                Reservation tempReservation = documentSnapshot.toObject(Reservation.class);
+                holder.OrderNO.setText(tempReservation.getTablename());
             }
         });
 
@@ -59,8 +63,7 @@ public class ChefRecyclerAdapter extends FirestoreRecyclerAdapter<Order, ChefRec
 
     class ChefViewHolder extends RecyclerView.ViewHolder{
 
-        TextView OrderNO;
-        TextView OrderDesc;
+        EditText OrderNO, OrderDesc;
 
         public ChefViewHolder(@NonNull View itemView) {
             super(itemView);
