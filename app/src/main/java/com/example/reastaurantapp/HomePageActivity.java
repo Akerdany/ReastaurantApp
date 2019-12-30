@@ -294,7 +294,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                     if (tempReservation.getDay().equals(String.valueOf(dayFinal)) &&
                             tempReservation.getHour().equals(String.valueOf(hourFinal)) &&
                             tempReservation.getMonth().equals(String.valueOf(monthFinal)) &&
-                            tempReservation.getYear().equals(String.valueOf(yearFinal)))
+                            tempReservation.getYear().equals(String.valueOf(yearFinal)) &&
+                            tempReservation.getTablename().equals(String.valueOf(tablename)))
                     {
                         reserved = true;
                         Toast.makeText(HomePageActivity.this, "Table is already reserved in this time, Please try another time.", Toast.LENGTH_LONG).show();
