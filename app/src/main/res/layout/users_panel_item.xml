@@ -15,7 +15,8 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        style="@style/textView_style"/>
 
     <ImageView
         android:id="@+id/picture_usersPanel"
@@ -65,6 +66,6 @@
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/picture_usersPanel"
         android:paddingTop="10dp"
-        android:background="@color/blueLight" />
+        style="@style/editText_style" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

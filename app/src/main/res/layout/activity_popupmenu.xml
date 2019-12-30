@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="You Selected Table 4"
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"/>
 
@@ -65,19 +65,18 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="Press Continue To Make A Reservation."
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"/>
 
     <Button
         android:id="@+id/btnfollow"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Continue"
         android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/buttonstyle"
-        android:textColor="@color/blueLight"
+        style="@style/button_style_small"
         android:onClick="chooseDate"/>
 
 </LinearLayout>

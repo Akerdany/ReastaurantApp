@@ -11,6 +11,7 @@
         android:id="@+id/FoodID"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        style="@style/textView_style"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="invisible" />
@@ -22,6 +23,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         tools:text="Burger"
+        style="@style/textView_style"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +32,7 @@
         android:layout_width="70dp"
         android:layout_height="50dp"
         tools:src="@drawable/restaurantmenu_icon"
+        style="@style/textView_style"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -40,6 +43,7 @@
         android:layout_marginTop="5dp"
         android:textSize="14sp"
         tools:text="This is a beef Burger"
+        style="@style/textView_style"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ItemImage" />
 
@@ -53,6 +57,7 @@
         android:textSize="18sp"
         android:textStyle="bold|italic"
         tools:text="150"
+        style="@style/textView_style"
         app:layout_constraintLeft_toRightOf="@id/ItemName"
         app:layout_constraintTop_toTopOf="parent"/>
 

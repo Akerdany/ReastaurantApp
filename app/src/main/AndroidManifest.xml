@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddFood"></activity>
-        <activity android:name=".EditTables"></activity>
+        <activity android:name=".ReservationEditDelete"></activity>
+        <activity android:name=".AddFood" />
+        <activity android:name=".EditTables" />
         <activity android:name=".FoodEditDelete" />
         <activity android:name=".FoodPanel" />
         <activity android:name=".UserEditDelete" />

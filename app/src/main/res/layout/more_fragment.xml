@@ -11,6 +11,7 @@
             android:id="@+id/myAccount_moreFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/button_style"
             android:text="@string/myAccount_moreFragment"/>
     </LinearLayout>
 

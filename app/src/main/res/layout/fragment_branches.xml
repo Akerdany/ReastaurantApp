@@ -30,20 +30,19 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
-            android:background="@drawable/buttonstyle"
+            style="@style/editText_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView" />
         <Button
             android:id="@+id/getdirectrions"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="340dp"
-            android:background="@drawable/buttonstyle"
             android:onClick="getdir"
             android:text="Get Directions"
-            android:textColor="@color/blueLight"
+            style="@style/button_style_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
