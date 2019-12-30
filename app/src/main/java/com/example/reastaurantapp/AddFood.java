@@ -3,6 +3,7 @@ package com.example.reastaurantapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.reastaurantapp.Classes.Food;
@@ -23,14 +23,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 public class AddFood extends AppCompatActivity {
-
-    int uploadProgress = 0;
 
     public Uri ImageURI;
 
@@ -38,7 +35,7 @@ public class AddFood extends AppCompatActivity {
     StorageReference storageRef;
     FirebaseFirestore databaseConnection;
 
-    TextView uploadProgressPercentage;
+    ConstraintLayout main_layout;
     EditText FoodName, FoodPrice, FoodDesc;
     Button pickImageBtn, AddFoodBtn;
     ImageView FoodImage;
@@ -52,7 +49,7 @@ public class AddFood extends AppCompatActivity {
         storageRef = FirebaseStorage.getInstance().getReference("FoodImages");
         databaseConnection = FirebaseFirestore.getInstance();
 
-        uploadProgressPercentage = findViewById(R.id.uploadProgressPercentage);
+        main_layout = findViewById(R.id.main_layout);
 
         FoodName = findViewById(R.id.ItemNameEdt);
         FoodPrice = findViewById(R.id.ItemPriceEdt);
@@ -76,64 +73,63 @@ public class AddFood extends AppCompatActivity {
     public void UploadFoodData(final View view) {
         if (storageUploadTask != null && storageUploadTask.isInProgress()){
             Toast.makeText(this, "Adding Data in progress", Toast.LENGTH_SHORT).show();
-
         }else {
-            final DocumentReference documentReference = databaseConnection.collection("food").document();
-            final String documentID = documentReference.getId();
 
-            final StorageReference imageRef = storageRef.child(documentID);
+            if (FoodName.getText().toString().isEmpty()){
+                FoodName.setError(getText(R.string.FoodName_Missing));
+            }else if (FoodPrice.getText().toString().isEmpty()){
+                FoodPrice.setError(getText(R.string.FoodPrice_Missing));
+            }else if (FoodDesc.getText().toString().isEmpty()){
+                FoodDesc.setError(getText(R.string.FoodDesc_Missing));
+            }else {
+                final DocumentReference documentReference = databaseConnection.collection("food").document();
+                final String documentID = documentReference.getId();
+                final StorageReference imageRef = storageRef.child(documentID);
 
-            storageUploadTask = imageRef.putFile(ImageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Food item = new Food(documentID,
-                                    FoodName.getText().toString(),
-                                    FoodDesc.getText().toString(),
-                                    Integer.parseInt(FoodPrice.getText().toString()),
-                                    uri.toString());
-                            documentReference.set(item).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(AddFood.this, "Food Data Added", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(AddFood.this, "Error in Adding Food Data", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddFood.this, "Error in getting image link", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(AddFood.this, "Error in adding Image", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                    if (uploadProgressBar.getVisibility() == View.INVISIBLE) {
-                        uploadProgressBar.setVisibility(View.VISIBLE);
-                        uploadProgressPercentage.setVisibility(View.VISIBLE);
+                showProgressbar();
+
+                storageUploadTask = imageRef.putFile(ImageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Food item = new Food(documentID,
+                                        FoodName.getText().toString(),
+                                        FoodDesc.getText().toString(),
+                                        Integer.parseInt(FoodPrice.getText().toString()),
+                                        uri.toString());
+                                documentReference.set(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        hideProgressBar();
+                                        Toast.makeText(AddFood.this, "Food Data Added", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        hideProgressBar();
+                                        Toast.makeText(AddFood.this, "Error in Adding Food Data", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                hideProgressBar();
+                                Toast.makeText(AddFood.this, "Error in getting image link", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                    uploadProgress = (int)((taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount()) * 100);
-                    uploadProgressBar.setProgress(uploadProgress);
-                    uploadProgressPercentage.setText(uploadProgress + "%");
-                    if (uploadProgress == 100){
-                        uploadProgressBar.setIndeterminate(false);
-                        uploadProgressBar.setProgress(100);
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        hideProgressBar();
+                        Toast.makeText(AddFood.this, "Error in adding Image", Toast.LENGTH_SHORT).show();
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -145,5 +141,16 @@ public class AddFood extends AppCompatActivity {
             ImageURI = data.getData();
             FoodImage.setImageURI(ImageURI);
         }
+    }
+
+    public void showProgressbar(){
+        main_layout.setAlpha((float) 0.2);
+        uploadProgressBar.setVisibility(View.VISIBLE);
+
+    }
+
+    public void hideProgressBar(){
+        main_layout.setAlpha((float) 1.0);
+        uploadProgressBar.setVisibility(View.INVISIBLE);
     }
 }

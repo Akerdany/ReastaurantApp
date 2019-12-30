@@ -87,6 +87,9 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                         case R.id.nav_admin_icon:
                             selectedFragment = new AdminPanel();
                             break;
+                        case R.id.nav_allReservation_icon:
+                            selectedFragment = new AllReservationsFragment();
+                            break;
 
                         default:
                             selectedFragment = new GR();

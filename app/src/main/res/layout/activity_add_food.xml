@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddFood">
+    tools:context=".AddFood"
+    android:id="@+id/main_layout">
 
     <ImageView
         android:id="@+id/FoodImage"
@@ -71,7 +72,7 @@
         android:id="@+id/ItemDescEdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
         android:ems="10"
@@ -87,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:text="Description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ItemPriceTxt" />
@@ -106,43 +107,56 @@
         app:layout_constraintStart_toEndOf="@+id/FoodImage"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--    <TextView-->
+<!--        android:id="@+id/uploadProgressPercentage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="84dp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.382"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/uploadProgressBar"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ItemDescEdt"-->
+<!--        tools:text="20%" />-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/uploadProgressBar"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="291dp"-->
+<!--        android:layout_height="21dp"-->
+<!--        android:layout_marginStart="60dp"-->
+<!--        android:layout_marginLeft="60dp"-->
+<!--        android:layout_marginTop="84dp"-->
+<!--        android:indeterminate="true"-->
+<!--        android:max="100"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ItemDescEdt" />-->
+
     <Button
         android:id="@+id/AddFoodBtn"
         android:layout_width="216dp"
         android:layout_height="71dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginBottom="28dp"
         android:onClick="UploadFoodData"
         android:text="@string/AddFoodBtn_food_crud"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadProgressBar"
-        app:layout_constraintVertical_bias="0.369" />
-
-    <TextView
-        android:id="@+id/uploadProgressPercentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.382"
-        app:layout_constraintStart_toEndOf="@+id/uploadProgressBar"
         app:layout_constraintTop_toBottomOf="@+id/ItemDescEdt"
-        tools:text="20%" />
+        app:layout_constraintVertical_bias="0.621" />
 
     <ProgressBar
         android:id="@+id/uploadProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="291dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:max="100"
+        android:background="@color/transparent_background"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ItemDescEdt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
