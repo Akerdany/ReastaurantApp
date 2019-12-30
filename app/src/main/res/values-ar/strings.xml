@@ -5,12 +5,12 @@
     <string name="email_hint_signIn">البريد الأكتروني</string>
     <string name="password_hint_signIn">كلمة السر</string>
     <string name="signInBtn_text_signIn">دخول</string>
-    <string name="signUpMsg_text_signIn">Don\'t have an account yet? <u><font color='blue'>Sign Up</font></u></string>
+    <string name="signUpMsg_text_signIn">ليس لديك حساب بعد ؟ <u><font color='blue'>تسجيل الدخول</font></u></string>
 
     <string name="signUpBtn_text_signUp">تسجيل</string>
-    <string name="signInMsg_text_signUp">Already have an account? <u><font color='blue'>Sign In</font></u></string>
-    <string name="firstName_hint_signUp">First Name</string>
-    <string name="lastName_hint_signUp">Last Name</string>
+    <string name="signInMsg_text_signUp">لديك حساب ؟ <u><font color='blue'>دخول</font></u></string>
+    <string name="firstName_hint_signUp">الاسم الاول</string>
+    <string name="lastName_hint_signUp">الاسم الاخير</string>
     <string name="confirmPassword_hint_signUp">تاكيد كلمة السر</string>
     <string name="phoneNumber_hint_signUp">رقم الهاتف</string>
     <string name="gender_signUp">جنس:</string>
@@ -18,35 +18,35 @@
     <string name="femaleGender_signUp">انثي</string>
     <string name="dateOfBirth_signUp">تاريخ الميلاد:</string>
     <string name="status_account_active"><font color='green'>• فعال</font></string>
-    <string name="status_account_deleted"><font color='red'>• Deleted</font></string>
+    <string name="status_account_deleted"><font color='red'>• محذوف</font></string>
 
-    <string name="forgotPassword_account"><font color='blue'>Forgot Password ?</font></string>
-    <string name="failResetPassword_signIn">Failed to send reset password email.</string>
-    <string name="successResetPassword_signIn">Failed to send reset password email.</string>
-    <string name="signInError_main">Email or Password is wrong</string>
-    <string name="emailError_main">Please fill the email</string>
-    <string name="passwordError_main">Please fill the password</string>
-    <string name="verifyEmail_main">You should verify your email first.</string>
-    <string name="emailOrPasswordWrong_main">Email or Password may be wrong.</string>
-    <string name="accountDeleted_main">Your account has been deleted.</string>
+    <string name="forgotPassword_account"><font color='blue'>نسيت كلمة السر ؟</font></string>
+    <string name="failResetPassword_signIn">فشل في بعث رسالة اعادة كلمة السر</string>
+    <string name="successResetPassword_signIn">تم بعث رسالة اعادة كلمة السر</string>
+    <string name="signInError_main">البريد الأكتروني او كلمة السر خطأ</string>
+    <string name="emailError_main">من فضلك ضع البريد الاكتروني</string>
+    <string name="passwordError_main">من فضلك ضع كلمة السر</string>
+    <string name="verifyEmail_main">عليك تاكيد بريدك الاكتروني</string>
+    <string name="emailOrPasswordWrong_main">البريد الأكتروني او كلمة السر خطأ</string>
+    <string name="accountDeleted_main">تم حذف حسابك</string>
 
-    <string name="firstName_errorEmpty_signUp">Please fill your first name</string>
-    <string name="firstName_error_signUp">at least 3 characters</string>
-    <string name="lastName_errorEmpty_signUp">Please fill your last name</string>
-    <string name="lastName_error_signUp">at least 3 characters</string>
-    <string name="gender_errorEmpty_signUp">Please provide your gender</string>
-    <string name="phoneNumber_errorEmpty_signUp">Please fill your phone number</string>
-    <string name="phoneNumber_error_signUp">Please enter a valid phone number</string>
-    <string name="email_errorEmpty_signUp">Please fill your email</string>
-    <string name="email_error_signUp">Please enter a valid email</string>
-    <string name="password_errorEmpty_signUp">Please fill your password</string>
-    <string name="password_error_signUp">at least 8 characters</string>
-    <string name="confirmPassword_errorEmpty_signUp">Please fill your first name</string>
-    <string name="confirmPassword_error_signUp">Password Confirmation does not match</string>
-    <string name="errorMessage_user_edit_delete">An error has occurred.\nPlease try again later,\nand if it happens again. Report \nto the IT team. Thank You!</string>
-    <string name="confirmDeleteMessage_user_edit_delete">Are you sure you want to delete\nthis account ?</string>
-    <string name="confirmReActivateMessage_user_edit_delete">Are you sure you want to Re-Activate\nthis account ?</string>
-    <string name="confirmUpdateMessage_user_edit_delete">Are you sure you want to update\nthis account ?</string>
+    <string name="firstName_errorEmpty_signUp">من فضلك ضع الاسم الاول</string>
+    <string name="firstName_error_signUp">علي الاقل ٣ احرف</string>
+    <string name="lastName_errorEmpty_signUp">من فضلك ضع الاسم الاخير</string>
+    <string name="lastName_error_signUp">علي الاقل ٣ احرف</string>
+    <string name="gender_errorEmpty_signUp">من فضلك ضع الجنس</string>
+    <string name="phoneNumber_errorEmpty_signUp">من فضلك ضع رقم الهاتف</string>
+    <string name="phoneNumber_error_signUp">من فضلك ضع رقم الهاتف صحيح</string>
+    <string name="email_errorEmpty_signUp">من فضلك ضع بريدك الاكتروني</string>
+    <string name="email_error_signUp">من فضلك ضع بريد اكتروني صحيح</string>
+    <string name="password_errorEmpty_signUp">من فضلك ضع كلمة السر</string>
+    <string name="password_error_signUp">علي الاقل ٨ احرف</string>
+    <string name="confirmPassword_errorEmpty_signUp">من فضلك ضع تاكيد كلمة السر</string>
+    <string name="confirmPassword_error_signUp">تاكيد كلمة السر خطأ </string>
+    <string name="errorMessage_user_edit_delete">حدث عطل، يرجي المحاوله في وقت اخر.\nإذر حدث مره اخره، يرجي الابلاغ عن العطل</string>
+    <string name="confirmDeleteMessage_user_edit_delete">هل تريد مسح هذا الحساب ؟</string>
+    <string name="confirmReActivateMessage_user_edit_delete">هل تريد اعادة تشغيل هذا الحساب ؟</string>
+    <string name="confirmUpdateMessage_user_edit_delete">هل تريد تعديل هذا الحساب ؟</string>
     <string name="send_btn">بعث</string>
     <string name="getBack_btn">الرجوع</string>
     <string name="updateAccount_btn">تعديل</string>
@@ -56,34 +56,34 @@
     <string name="home_navigation_icon">الصافحه الرئيسيه</string>
     <string name="food_navigation_icon">الطعام</string>
     <string name="navigation_navigation_icon">ملاحه</string>
-    <string name="Allreservation_navigation_icon">Reservations</string>
+    <string name="Allreservation_navigation_icon">الحجوزات</string>
     <string name="reservation_navigation_icon">حج</string>
     <string name="users_navigation_icon">الحسابات</string>
     <string name="more_navigation_icon">المزيد</string>
     <string name="admin_navigation_icon">Admin قائمة ال</string>
 
-    <string name="error_myAccount">An Error Has Occured\nPlease Try Again Later</string>
+    <string name="error_myAccount">حدث عطل\nيرجي المحاوله في وقت اخر</string>
     <string name="fNameTxt_myAccount">الاسم الاول:</string>
     <string name="lNameTxt_myAccount">الاسم الاخير:</string>
     <string name="phoneNumberTxt_myAccount">رقم الهاتف:</string>
     <string name="emailTxt_myAccount">البريد الأكتروني:</string>
-    <string name="delete_myAccount">Are you sure you want to delete your account ?\nThis action cannot be reverted!</string>
+    <string name="delete_myAccount">هل تريد مسح حسابك ؟ هذه العمليه غير قابله للتغيير</string>
     <string name="myAccount_moreFragment">حسابي</string>
     <string name="signOut_myAccount">خروج</string>
-    <string name="password_myAccount">Change Password</string>
-    <string name="newPassword_myAccount">New Password</string>
-    <string name="confirmNewPassword_myAccount">Confirm New Password</string>
-    <string name="deleteBtn_myAccount">Delete Account</string>
-    <string name="updateFail_myAccount">Update Failed\nPlease Try Again Later</string>
-    <string name="updateSuccess_myAccount">Update Successful!</string>
+    <string name="password_myAccount">تغيير كلمة السر</string>
+    <string name="newPassword_myAccount">كلمة السر الجديده</string>
+    <string name="confirmNewPassword_myAccount">تاكيد كلمة السر</string>
+    <string name="deleteBtn_myAccount">مسح الحساب</string>
+    <string name="updateFail_myAccount">التحديث فشل\nيرجي المحاوله في وقت اخر</string>
+    <string name="updateSuccess_myAccount">تم التحديث بنجاح</string>
 
-    <string name="changePassword_success">Password Changed Successfully</string>
-    <string name="changePassword_fail">Password Did Not Change!</string>
-    <string name="singUp_fail">Failed to Sign Up \n Please try again later.</string>
-    <string name="signUp_done">Your Registration has been completed.\nJust one last step, to verify your email.</string>
+    <string name="changePassword_success">تم تغيير كلمة السر</string>
+    <string name="changePassword_fail">كلمة السر لم تتغير</string>
+    <string name="singUp_fail">فشل في تسجيل الدخول\nيرجي المحاوله في وقت اخر</string>
+    <string name="signUp_done">تمت عملية تسجيل الدخول\nيرجي تاكيد بريدك الاكتروني</string>
     <string name="registration_done_btn">تم</string>
 
-    <string name="Cart">Cart</string>
+    <string name="Cart">عربة التسوق</string>
 
     <string name="addUserBtn_users_crud">تسجيل حساب</string>
     <string name="viewAllBtn_users_crud">اظهار الحسابات</string>
@@ -95,9 +95,9 @@
     <string name="DeleteFoodBtn_food_crud">مسح طعام</string>
     <string name="ViewAllBtn_food_crud">اظهار الطعام</string>
 
-    <string name="FoodName_Missing">Please type the name</string>
-    <string name="FoodPrice_Missing">Please enter food price</string>
-    <string name="FoodDesc_Missing">Please type food description</string>
+    <string name="FoodName_Missing">من فضلك ضع اسم الطعام</string>
+    <string name="FoodPrice_Missing">من فضلك ضع سعر الطعام</string>
+    <string name="FoodDesc_Missing">من فضلك ضع وصف الطعام</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
