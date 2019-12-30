@@ -20,6 +20,9 @@
     <string name="status_account_active"><font color='green'>• Active</font></string>
     <string name="status_account_deleted"><font color='red'>• Deleted</font></string>
 
+    <string name="forgotPassword_account"><font color='blue'>Forgot Password ?</font></string>
+    <string name="failResetPassword_signIn">Failed to send reset password email.</string>
+    <string name="successResetPassword_signIn">Failed to send reset password email.</string>
     <string name="signInError_main">Email or Password is wrong</string>
     <string name="emailError_main">Please fill the email</string>
     <string name="passwordError_main">Please fill the password</string>
@@ -44,6 +47,7 @@
     <string name="confirmDeleteMessage_user_edit_delete">Are you sure you want to delete\nthis account ?</string>
     <string name="confirmReActivateMessage_user_edit_delete">Are you sure you want to Re-Activate\nthis account ?</string>
     <string name="confirmUpdateMessage_user_edit_delete">Are you sure you want to update\nthis account ?</string>
+    <string name="send_btn">Send</string>
     <string name="getBack_btn">Cancel</string>
     <string name="updateAccount_btn">Update</string>
     <string name="deleteAccount_btn">Delete</string>

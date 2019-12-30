@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText email_editText;
     private EditText password_editText;
     private TextView signUp_link;
+    private TextView forgotPassword_link;
+    private EditText forgotPasswordEmail;
+    private Button cancel_forgotPassword;
+    private Button send_forgotPassword;
+    private LinearLayout forgotPasswordFrame;
     private ProgressBar progressbar;
     private ScrollView main_layout;
     private FirebaseAuth firebaseAuth;
@@ -104,12 +111,62 @@ public class MainActivity extends AppCompatActivity {
         main_layout = findViewById(R.id.main_layout);
         progressbar = findViewById(R.id.progressbar);
 
+        forgotPassword_link = findViewById(R.id.forgotPassword_signIn);
+        forgotPasswordFrame = findViewById(R.id.forgotPasswordFrame_signIn);
+        cancel_forgotPassword = findViewById(R.id.cancel_forgotPassword_singIn);
+        send_forgotPassword = findViewById(R.id.send_forgotPassword_signIn);
+        forgotPasswordEmail = findViewById(R.id.forgotPasswordEmail_signIn);
+
         signUp_link.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        forgotPassword_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main_layout.setVisibility(View.INVISIBLE);
+                forgotPasswordFrame.setVisibility(View.VISIBLE);
+
+                cancel_forgotPassword.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        main_layout.setVisibility(View.VISIBLE);
+                        forgotPasswordFrame.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+                send_forgotPassword.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if(forgotPasswordEmail.getText().toString() != null){
+                            FirebaseAuth.getInstance().sendPasswordResetEmail(forgotPasswordEmail.getText().toString())
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "Email sent.");
+                                                Toast.makeText(MainActivity.this, getText(R.string.successResetPassword_signIn),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }else{
+                                                Log.d(TAG, "Email failed to send.");
+                                                Toast.makeText(MainActivity.this, getText(R.string.failResetPassword_signIn),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        }else{
+                            Log.d(TAG, "Email for forgot password is empty.");
+                            Toast.makeText(MainActivity.this, getText(R.string.email_errorEmpty_signUp),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }

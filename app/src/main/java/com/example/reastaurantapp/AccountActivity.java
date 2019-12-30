@@ -44,15 +44,10 @@ public class AccountActivity extends AppCompatActivity {
     private Button cancelDeleteBtn;
     private Button delete_btn;
 
-    private Button changePassword_btn;
-    private Button cancelPasswordBtn;
-    private Button confirmNewPasswordBtn;
-
     private Button backBtn;
     private Button signOut_btn;
 
     private ScrollView main_layout;
-    private LinearLayout changePassword_layout;
     private LinearLayout delete_layout;
     private LinearLayout error_layout;
 
@@ -80,8 +75,6 @@ public class AccountActivity extends AppCompatActivity {
         fNameData = findViewById(R.id.fNameData_myAccount);
         lNameData = findViewById(R.id.lNameData_myAccount);
         phoneNumberData = findViewById(R.id.phoneNumberData_myAccount);
-        newPassword = findViewById(R.id.newPassword_myAccount);
-        confirmNewPassword = findViewById(R.id.confirmNewPassword_myAccount);
 
         emailData = findViewById(R.id.emailData_myAccount);
         genderData = findViewById(R.id.genderData_myAccount);
@@ -92,16 +85,10 @@ public class AccountActivity extends AppCompatActivity {
         cancelDeleteBtn = findViewById(R.id.cancelDeleteBtn_myAccount);
         delete_btn = findViewById(R.id.delete_account);
 
-        changePassword_btn = findViewById(R.id.changePassword_account);
-        cancelPasswordBtn = findViewById(R.id.cancelPasswordBtn_myAccount);
-        confirmNewPasswordBtn = findViewById(R.id.confirmNewPasswordBtn_myAccount);
-
         backBtn = findViewById(R.id.backBtn_myAccount);
         signOut_btn = findViewById(R.id.signOut_account);
 
         main_layout = findViewById(R.id.main_layout_myAccount);
-        changePassword_layout = findViewById(R.id.changePassword_layout_myAccount);
-        delete_layout = findViewById(R.id.delete_layout_myAccount);
         error_layout = findViewById(R.id.error_layout_myAccount);
 
         progressbar = findViewById(R.id.progressbar_myAccount);
@@ -149,45 +136,6 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         delete_layout.setVisibility(View.INVISIBLE);
-                        main_layout.setVisibility(View.VISIBLE);
-                    }
-                });
-            }
-        });
-
-        changePassword_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                main_layout.setVisibility(View.INVISIBLE);
-                changePassword_layout.setVisibility(View.VISIBLE);
-
-                confirmNewPasswordBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (newPassword.getText().toString().equals(confirmNewPassword.getText().toString())) {
-
-                            firebaseAuth.getCurrentUser()
-                                    .updatePassword(newPassword.getText().toString())
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(AccountActivity.this, getText(R.string.changePassword_success), Toast.LENGTH_LONG).show();
-                                            } else {
-                                                Toast.makeText(AccountActivity.this, getText(R.string.changePassword_fail), Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(AccountActivity.this, getText(R.string.confirmPassword_error_signUp), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-                cancelPasswordBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        changePassword_layout.setVisibility(View.INVISIBLE);
                         main_layout.setVisibility(View.VISIBLE);
                     }
                 });
