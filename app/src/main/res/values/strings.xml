@@ -23,11 +23,14 @@
     <string name="signInError_main">Email or Password is wrong</string>
     <string name="emailError_main">Please fill the email</string>
     <string name="passwordError_main">Please fill the password</string>
+    <string name="verifyEmail_main">You should verify your email first.</string>
+    <string name="emailOrPasswordWrong_main">Email or Password may be wrong.</string>
+    <string name="accountDeleted_main">Your account has been deleted.</string>
 
     <string name="firstName_errorEmpty_signUp">Please fill your first name</string>
     <string name="firstName_error_signUp">First Name at least 3 characters</string>
     <string name="lastName_errorEmpty_signUp">Please fill your last name</string>
-    <string name="lastName_error_signUp">aLast Name t least 3 characters</string>
+    <string name="lastName_error_signUp">Last Name at least 3 characters</string>
     <string name="gender_errorEmpty_signUp">Please provide your gender</string>
     <string name="phoneNumber_errorEmpty_signUp">Please fill your phone number</string>
     <string name="phoneNumber_error_signUp">Please enter a valid phone number</string>

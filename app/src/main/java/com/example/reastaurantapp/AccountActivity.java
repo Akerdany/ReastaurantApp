@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,8 @@ public class AccountActivity extends AppCompatActivity {
     private LinearLayout delete_layout;
     private LinearLayout error_layout;
 
+    private ProgressBar progressbar;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
 
@@ -100,6 +103,8 @@ public class AccountActivity extends AppCompatActivity {
         changePassword_layout = findViewById(R.id.changePassword_layout_myAccount);
         delete_layout = findViewById(R.id.delete_layout_myAccount);
         error_layout = findViewById(R.id.error_layout_myAccount);
+
+        progressbar = findViewById(R.id.progressbar_myAccount);
     }
 
     public void initializeListeners() {
@@ -188,6 +193,9 @@ public class AccountActivity extends AppCompatActivity {
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                showProgressbar();
+
                 if (fNameData.getText().length() < 3) {
 
                     if (lNameData.getText().length() < 3) {
@@ -198,13 +206,19 @@ public class AccountActivity extends AppCompatActivity {
                                     lNameData.getText().toString(), phoneNumberData.getText().toString());
 
                         } else {
+                            hideProgressBar();
                             Toast.makeText(AccountActivity.this, getText(R.string.phoneNumber_error_signUp), Toast.LENGTH_LONG).show();
+                            Toast.makeText(AccountActivity.this, "Phone number length: " + phoneNumberData.getText().length(), Toast.LENGTH_LONG).show();
                         }
                     } else {
+                        hideProgressBar();
                         Toast.makeText(AccountActivity.this, getText(R.string.lastName_error_signUp), Toast.LENGTH_LONG).show();
+                        Toast.makeText(AccountActivity.this, "Last Name length: " + fNameData.getText().length(), Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    hideProgressBar();
                     Toast.makeText(AccountActivity.this, getText(R.string.firstName_error_signUp), Toast.LENGTH_LONG).show();
+                    Toast.makeText(AccountActivity.this, "First Name length: " + fNameData.getText().length(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -274,6 +288,7 @@ public class AccountActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        hideProgressBar();
                         Log.w(TAG, "In AccountActivity => Error updating First Name of the document, with exception: ", e);
                         Toast.makeText(AccountActivity.this, getText(R.string.updateFail_myAccount), Toast.LENGTH_LONG).show();
                     }
@@ -294,6 +309,7 @@ public class AccountActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        hideProgressBar();
                         Log.w(TAG, "In AccountActivity => Error updating Last Name of the document, with exception: ", e);
                         Toast.makeText(AccountActivity.this, getText(R.string.updateFail_myAccount), Toast.LENGTH_LONG).show();
                     }
@@ -307,6 +323,7 @@ public class AccountActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        hideProgressBar();
                         Log.d(TAG, "In AccountActivity => DocumentSnapshot Phone Number successfully updated!");
                         Toast.makeText(AccountActivity.this, getText(R.string.updateSuccess_myAccount), Toast.LENGTH_LONG).show();
                     }
@@ -314,9 +331,22 @@ public class AccountActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        hideProgressBar();
                         Log.w(TAG, "In AccountActivity => Error updating Phone Number of the document, with exception: ", e);
                         Toast.makeText(AccountActivity.this, getText(R.string.updateFail_myAccount), Toast.LENGTH_LONG).show();
                     }
                 });
     }
+
+    public void showProgressbar(){
+        main_layout.setAlpha((float) 0.2);
+        progressbar.setVisibility(View.VISIBLE);
+
+    }
+
+    public void hideProgressBar(){
+        main_layout.setAlpha((float) 1.0);
+        progressbar.setVisibility(View.INVISIBLE);
+    }
+
 }

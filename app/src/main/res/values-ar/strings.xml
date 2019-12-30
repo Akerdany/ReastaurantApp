@@ -23,6 +23,9 @@
     <string name="signInError_main">Email or Password is wrong</string>
     <string name="emailError_main">Please fill the email</string>
     <string name="passwordError_main">Please fill the password</string>
+    <string name="verifyEmail_main">You should verify your email first.</string>
+    <string name="emailOrPasswordWrong_main">Email or Password may be wrong.</string>
+    <string name="accountDeleted_main">Your account has been deleted.</string>
 
     <string name="firstName_errorEmpty_signUp">Please fill your first name</string>
     <string name="firstName_error_signUp">at least 3 characters</string>

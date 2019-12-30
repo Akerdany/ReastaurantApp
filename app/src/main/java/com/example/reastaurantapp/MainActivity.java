@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        //TODO: Must check if the account is not deleted !!!
-
         if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             getUserType(firebaseAuth.getCurrentUser().getUid());
         }
@@ -78,20 +76,20 @@ public class MainActivity extends AppCompatActivity {
                             }else{
                                 hideProgressBar();
                                 Log.w(TAG, "User did not verify his email code: " + firebaseAuth.getCurrentUser().isEmailVerified());
-                                Toast.makeText(MainActivity.this, "You should verify your email first",
+                                Toast.makeText(MainActivity.this, getText(R.string.verifyEmail_main),
                                         Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             hideProgressBar();
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Email or Password may be wrong.",
+                            Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
                                     Toast.LENGTH_SHORT).show();
                         }
 
                         if (!task.isSuccessful()) {
                             hideProgressBar();
                             Log.w(TAG, task.getException());
-                            Toast.makeText(MainActivity.this, "Email or Password may be wrong.",
+                            Toast.makeText(MainActivity.this, getText(R.string.emailOrPasswordWrong_main),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -158,16 +156,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    hideProgressBar();
-                    Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
-                    Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
-                    tempUserType = documentSnapshot.getString("userType");
 
-                    Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
-                    intent.putExtra("userType", tempUserType);
+                    if(documentSnapshot.getBoolean("isDeleted")){
+                        Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
+                        Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
+                        tempUserType = documentSnapshot.getString("userType");
+                        hideProgressBar();
 
-                    finish();
-                    startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+                        intent.putExtra("userType", tempUserType);
+
+                        finish();
+                        startActivity(intent);
+                    }else{
+                        hideProgressBar();
+                        Log.d(TAG, "db isDeleted getBoolean() is: " + documentSnapshot.getBoolean("isDeleted"));
+
+                        Toast.makeText(MainActivity.this, getText(R.string.accountDeleted_main),
+                                Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     hideProgressBar();
                     Log.d(TAG, "No such document");
@@ -182,4 +189,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
