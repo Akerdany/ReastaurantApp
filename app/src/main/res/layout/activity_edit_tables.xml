@@ -10,15 +10,13 @@
 
     <Button
         android:id="@+id/edittable"
+        style="@style/button_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/buttonstyle"
-        android:text="Edit"
         android:onClick="getidedit"
-        android:textColor="@color/blueLight"
+        android:text="Edit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/windowtyperetrieved" />
 
@@ -29,23 +27,21 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/buttonstyle"
+        style="@style/editText_style"
         android:ems="10"
         android:hint="Table ID"
         android:inputType="textPersonName"
-        android:textColor="@color/blueLight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/searchtablesbutton"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="79dp"
-        android:background="@drawable/buttonstyle"
-        android:textColor="@color/blueLight"
+        style="@style/button_style_small"
         android:text="SEARCH"
         android:onClick="getidsearch"
         app:layout_constraintStart_toEndOf="@+id/searchtables"
@@ -112,8 +108,7 @@
         android:layout_marginTop="205dp"
         android:hint="Smoking Type"
         android:textSize="15dp"
-        android:background="@drawable/buttonstyle"
-        android:textColor="@color/blueLight"
+        style="@style/editText_style"
         app:layout_constraintStart_toEndOf="@+id/smokingtype"
         app:layout_constraintTop_toBottomOf="@+id/searchtables" />
 
@@ -124,10 +119,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/buttonstyle"
         android:hint="Window Type"
         android:inputType="textEmailAddress"
-        android:textColor="@color/blueLight"
+        style="@style/editText_style"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@+id/windowtype"
         app:layout_constraintTop_toBottomOf="@+id/smokingtyperetrieved" />
