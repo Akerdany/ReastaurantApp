@@ -25,6 +25,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:src="@drawable/account_icon"
+        android:layout_marginTop="13dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,10 +64,11 @@
     <View
         android:id="@+id/breakLine_usersPanel"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="4dp"
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/picture_usersPanel"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        style="@style/textView_style"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
