@@ -8,9 +8,18 @@
     android:id="@+id/main_layout">
 
     <TextView
+        android:id="@+id/reservationID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
         android:id="@+id/reservationTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:textSize="30sp"
@@ -20,7 +29,7 @@
         tools:text="Burger" />
 
     <TextView
-        android:id="@+id/reservationYear"
+        android:id="@+id/reservationYearEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -114,7 +123,7 @@
         android:textSize="18sp"
         android:textStyle="bold|italic"
         style="@style/textView_style"
-        app:layout_constraintStart_toEndOf="@+id/reservationYear"
+        app:layout_constraintStart_toEndOf="@+id/reservationYearEdit"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

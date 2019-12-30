@@ -4,20 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
-    android:paddingTop="56dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
-
-    <!--    TODO:   -->
-    <!--            2. make the styles-->
-    <!--            3. background-->
-    <!--            6. Different logo sizes-->
-    <!--            5. Terms and conditions-->
+    style="@style/mainLayout_style">
 
     <ScrollView
         android:id="@+id/mainLayout_signUp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +20,7 @@
 
         <EditText
             android:id="@+id/firstName_signUp"
-            style="@style/signIn_layout_kerdany_2"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -34,7 +28,7 @@
 
         <EditText
             android:id="@+id/lastName_signUp"
-            style="@style/signIn_layout_kerdany_2"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -42,14 +36,13 @@
 
         <TextView
             android:id="@+id/genderTitle_signUp"
-            style="@style/signIn_layout_kerdany_2"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/gender_signUp"/>
 
         <RadioGroup
             android:id="@+id/gender_signUp"
-            style="@style/signIn_layout_kerdany_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
                 <RadioButton
@@ -66,6 +59,7 @@
 
         <EditText
             android:id="@+id/phoneNumber_signUp"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phoneNumber_hint_signUp"
@@ -73,7 +67,7 @@
 
         <EditText
             android:id="@+id/email_signUp"
-            style="@style/signIn_layout_kerdany_2"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_hint_signIn"
@@ -81,7 +75,7 @@
 
         <EditText
             android:id="@+id/password_signUp"
-            style="@style/signIn_layout_kerdany_2"
+            style="@style/editText_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint_signIn"
@@ -89,7 +83,6 @@
 
         <EditText
             android:id="@+id/confirmPassword_signUp"
-            style="@style/signIn_layout_kerdany_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirmPassword_hint_signUp"
@@ -97,16 +90,15 @@
 
         <Button
             android:id="@+id/btn_signUp"
-            style="@style/signIn_layout_kerdany"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/signUpBtn_text_signUp"
-            android:padding="12dp"
             android:onClick="signUp"/>
 
         <TextView
             android:id="@+id/signInLink_signUp"
-            style="@style/signIn_layout_kerdany"
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/signInMsg_text_signUp"
@@ -118,24 +110,29 @@
 
     <LinearLayout
         android:id="@+id/registrationDone"
+        style="@style/messageLayout_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:background="@color/colorAccent"
         android:layout_centerInParent="true"
-        android:visibility="invisible"
-        android:orientation="vertical">
+        android:visibility="visible"
+        android:orientation="vertical"
+        >
 
         <TextView
+            style="@style/textView_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/signUp_done" />
 
         <Button
             android:id="@+id/registrationDone_btn"
+            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="DoneRegistration"
+            android:layout_marginBottom="10dp"
             android:text="@string/registration_done_btn"/>
     </LinearLayout>
 
