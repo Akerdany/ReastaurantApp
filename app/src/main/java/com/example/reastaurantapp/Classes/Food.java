@@ -37,27 +37,6 @@ public class Food {
         ItemPrice = itemPrice;
     }
 
-    public static void deleteFood(String id){
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(id);
-        StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(id);
-
-        docRef.delete();
-        imageRef.delete();
-
-//        docRef.update("isDeleted", true)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//
-//                    }
-//                });
-    }
-
     public String getItemID() {
         return ItemID;
     }

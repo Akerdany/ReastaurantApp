@@ -196,9 +196,9 @@ public class AccountActivity extends AppCompatActivity {
 
                 showProgressbar();
 
-                if (fNameData.getText().length() < 3) {
+                if (fNameData.getText().length() > 3) {
 
-                    if (lNameData.getText().length() < 3) {
+                    if (lNameData.getText().length() > 3) {
 
                         if (phoneNumberData.getText().length() == 11) {
 

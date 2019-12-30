@@ -1,5 +1,6 @@
 package com.example.reastaurantapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,10 +17,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.reastaurantapp.Classes.Food;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class FoodEditDelete extends AppCompatActivity {
 
@@ -31,12 +35,15 @@ public class FoodEditDelete extends AppCompatActivity {
 
     Context mParent;
 
+    String ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_edit_delete);
 
         mParent = this;
+        ID = getIntent().getStringExtra("FoodID");
 
         FoodName = findViewById(R.id.ItemNameEdt);
         FoodPrice = findViewById(R.id.ItemPriceEdt);
@@ -52,7 +59,7 @@ public class FoodEditDelete extends AppCompatActivity {
     }
 
     public void InitializeViews(){
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(getIntent().getStringExtra("FoodID"));
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(ID);
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -63,12 +70,15 @@ public class FoodEditDelete extends AppCompatActivity {
                 FoodDesc.setText(item.getItemDesc());
                 FoodPrice.setText(String.valueOf(item.getItemPrice()));
 
-                Glide.with(mParent).load(Uri.parse(item.getItemPhoto())).into(FoodImage);
+                Glide.with(FoodEditDelete.this).load(Uri.parse(item.getItemPhoto())).into(FoodImage);
             }
         });
     }
 
     public void UpdateData(View view) {
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(ID);
+
+//        imageRef.
     }
 
     public void PickImage(View view) {
@@ -79,9 +89,32 @@ public class FoodEditDelete extends AppCompatActivity {
     }
 
     public void DeleteFood(View view) {
-        Food.deleteFood(getIntent().getStringExtra("FoodID"));
-        finish();
-        startActivity(new Intent(this, FoodPanel.class));
+        final DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(ID);
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(ID);
+
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(FoodEditDelete.this, "Food Deleted", Toast.LENGTH_SHORT).show();
+                        finish();
+                        startActivity(new Intent(FoodEditDelete.this, FoodPanel.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(FoodEditDelete.this, "Couldn't Delete Food Data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(FoodEditDelete.this, "Couldn't Delete Food Data and image", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

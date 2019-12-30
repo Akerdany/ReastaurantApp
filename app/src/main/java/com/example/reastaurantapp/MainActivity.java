@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
 
-                    if(documentSnapshot.getBoolean("isDeleted")){
+                    if(!documentSnapshot.getBoolean("isDeleted")){
                         Log.d(TAG, "DocumentSnapshot data: " + documentSnapshot.getData());
                         Log.d(TAG, "db firstName getString() is: " + documentSnapshot.getString("userType"));
                         tempUserType = documentSnapshot.getString("userType");
