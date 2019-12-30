@@ -88,6 +88,8 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
                             selectedFragment = new MorePage();
                             break;
 
+                        case R.id.nav_menu_icon:
+                        case R.id.nav_menu_icon_chef:
                         case R.id.nav_menu_icon_client:
                             selectedFragment = new MenuFragment();
                             break;
@@ -98,10 +100,6 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
                         case R.id.nav_allReservation_icon:
                             selectedFragment = new AllReservationsFragment();
-                            break;
-
-                        case R.id.nav_menu_icon:
-                            selectedFragment = new MenuFragment();
                             break;
 
                         default:
