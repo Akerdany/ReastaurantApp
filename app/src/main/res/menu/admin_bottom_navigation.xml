@@ -12,11 +12,6 @@
         android:title="@string/food_navigation_icon"/>
 
     <item
-        android:id="@+id/nav_reservation_icon"
-        android:icon="@drawable/reservation_icon"
-        android:title="@string/reservation_navigation_icon"/>
-
-    <item
         android:id="@+id/nav_more_icon"
         android:icon="@drawable/more_icon"
         android:title="@string/more_navigation_icon"/>
