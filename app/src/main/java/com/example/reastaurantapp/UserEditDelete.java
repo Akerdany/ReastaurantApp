@@ -195,12 +195,14 @@ public class UserEditDelete extends AppCompatActivity {
             delete_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mainLayout.setVisibility(View.INVISIBLE);
                     deleteConfirmationMessage.setVisibility(View.VISIBLE);
 
                     getBackConfirmDeleteBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             deleteConfirmationMessage.setVisibility(View.INVISIBLE);
+                            mainLayout.setVisibility(View.VISIBLE);
                         }
                     });
 
@@ -222,12 +224,14 @@ public class UserEditDelete extends AppCompatActivity {
             reactivate_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mainLayout.setVisibility(View.INVISIBLE);
                     confirmReActivate_user_edit_delete_frame_layout.setVisibility(View.VISIBLE);
 
                     getBackReActivateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             confirmReActivate_user_edit_delete_frame_layout.setVisibility(View.INVISIBLE);
+                            mainLayout.setVisibility(View.VISIBLE);
                         }
                     });
 
@@ -270,12 +274,14 @@ public class UserEditDelete extends AppCompatActivity {
                 update_btn_edit_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mainLayout.setVisibility(View.INVISIBLE);
                         confirmUpdate_user_edit_delete_frame_layout.setVisibility(View.VISIBLE);
 
                         getBackUpdateBtn_user_edit_delete.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 confirmUpdate_user_edit_delete_frame_layout.setVisibility(View.INVISIBLE);
+                                mainLayout.setVisibility(View.VISIBLE);
                             }
                         });
 
@@ -294,7 +300,7 @@ public class UserEditDelete extends AppCompatActivity {
                                         finish();
                                         startActivity(getIntent());
                                         break;
-                                        
+
                                     case "Chef":
                                         tempUserEdit_Delete.changeUserType(tempUserEdit_Delete.getId(), "3");
                                         finish();

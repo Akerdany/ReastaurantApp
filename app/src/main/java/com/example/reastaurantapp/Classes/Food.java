@@ -1,24 +1,61 @@
 package com.example.reastaurantapp.Classes;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class Food {
 
     private String ItemID;
     private String ItemName;
     private String ItemDesc;
+    private String ItemPhoto;
 
     private int ItemPrice;
-    private int ItemPhoto;
 
     public Food(){
 
     }
 
-    public Food(String itemID, String itemName, String itemDesc, int itemPrice, int itemPhoto) {
+    public Food(String itemID, String itemName, String itemDesc, int itemPrice, String itemPhoto) {
         ItemID = itemID;
         ItemName = itemName;
         ItemDesc = itemDesc;
         ItemPrice = itemPrice;
         ItemPhoto = itemPhoto;
+    }
+
+    public Food(String itemID, String itemName, String itemDesc, int itemPrice) {
+        ItemID = itemID;
+        ItemName = itemName;
+        ItemDesc = itemDesc;
+        ItemPrice = itemPrice;
+    }
+
+    public static void deleteFood(String id){
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(id);
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(id);
+
+        docRef.delete();
+        imageRef.delete();
+
+//        docRef.update("isDeleted", true)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
     }
 
     public String getItemID() {
@@ -53,11 +90,11 @@ public class Food {
         ItemPrice = itemPrice;
     }
 
-    public int getItemPhoto() {
+    public String getItemPhoto() {
         return ItemPhoto;
     }
 
-    public void setItemPhoto(int itemPhoto) {
+    public void setItemPhoto(String itemPhoto) {
         ItemPhoto = itemPhoto;
     }
 }
