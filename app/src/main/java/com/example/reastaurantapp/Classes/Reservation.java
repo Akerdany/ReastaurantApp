@@ -2,6 +2,7 @@ package com.example.reastaurantapp.Classes;
 
 public class Reservation
 {
+    private String ID;
     private String Day;
     private String Month;
     private String Year;
@@ -49,5 +50,13 @@ public class Reservation
 
     public void setTablename(String tablename) {
         this.tableName = tablename;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

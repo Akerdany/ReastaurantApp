@@ -306,15 +306,16 @@ public class HomePageActivity extends AppCompatActivity implements DatePickerDia
 
                 if (!reserved){
 
+                    DocumentReference documentReference = databaseConnection.collection("reservation").document();
+
+                    final String documentID = documentReference.getId();
+
+                    tempReservation.setID(documentID);
                     tempReservation.setYear(String.valueOf(yearFinal));
                     tempReservation.setMonth(String.valueOf(monthFinal));
                     tempReservation.setDay(String.valueOf(dayFinal));
                     tempReservation.setHour(String.valueOf(hourFinal));
                     tempReservation.setTablename(tablename);
-
-                    DocumentReference documentReference = databaseConnection.collection("reservation").document();
-
-                    final String documentID = documentReference.getId();
 
                     documentReference.set(tempReservation).addOnCompleteListener(new OnCompleteListener<Void>()
                     {
