@@ -62,6 +62,14 @@
         <item name="android:shadowRadius">5</item>
     </style>
 
+    <style name="buttonDelete_style">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/buttonshapedelete</item>
+        <item name="android:shadowColor">@color/colorGrey</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+
     <style name="buttonGreen_style_small">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:textColor">@color/colorWhite</item>
