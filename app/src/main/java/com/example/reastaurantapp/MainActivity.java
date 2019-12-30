@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()) {
             getUserType(firebaseAuth.getCurrentUser().getUid());
-//            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
-//            intent.putExtra("userType", tempUserType);
-//
-//            finish();
-//            startActivity(intent);
         }
 
         initializeComponents();
