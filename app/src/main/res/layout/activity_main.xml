@@ -21,10 +21,10 @@
             <ImageView
                 android:id="@+id/logo_signIn"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:src="@drawable/restaurant_logo" />
 
             <EditText
                 android:id="@+id/email_signIn"
