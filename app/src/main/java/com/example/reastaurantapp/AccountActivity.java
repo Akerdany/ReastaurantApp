@@ -138,6 +138,10 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         userObj.deleteUser(firebaseAuth.getCurrentUser().getUid());
+                        finish();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     }
                 });
 
