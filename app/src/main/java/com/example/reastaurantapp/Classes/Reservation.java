@@ -8,8 +8,7 @@ public class Reservation
     private String Hour;
     private String tableName;
 
-    public Reservation()
-    {
+    public Reservation() {
     }
 
     public String getDay() {
