@@ -69,6 +69,6 @@
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/picture_usersPanel"
         tools:visibility="visible"
-        style="@style/textView_style"/>
+        android:background="@color/blueLight"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
