@@ -55,7 +55,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="100dp"
         android:text="Table ID:"
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchtables" />
@@ -68,7 +68,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:text="Table Name: "
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableid" />
@@ -81,7 +81,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:text="Smoking Type:"
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tablename" />
@@ -94,7 +94,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:text="Window Type:"
-        android:textColor="@color/blueLight"
+        style="@style/textView_style"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/smokingtype" />

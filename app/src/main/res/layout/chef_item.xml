@@ -13,6 +13,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         tools:text="table 4"
+        style="@style/textView_style"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="24sp"
+        style="@style/textView_style"
         tools:text="burger\nburger"
         app:layout_constraintTop_toBottomOf="@+id/OrderNO"
         app:layout_constraintLeft_toLeftOf="parent"/>
