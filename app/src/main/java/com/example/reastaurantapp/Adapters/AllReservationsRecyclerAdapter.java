@@ -1,10 +1,11 @@
 package com.example.reastaurantapp.Adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reastaurantapp.Classes.Reservation;
 import com.example.reastaurantapp.R;
-import com.example.reastaurantapp.ReservationEditDelete;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AllReservationsRecyclerAdapter extends FirestoreRecyclerAdapter<Reservation, AllReservationsRecyclerAdapter.AllReservationViewHolder> {
 
@@ -38,14 +42,37 @@ public class AllReservationsRecyclerAdapter extends FirestoreRecyclerAdapter<Res
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_reservation_item, parent, false);
         AllReservationViewHolder mHolder = new AllReservationViewHolder(view);
 
-        mHolder.main_layout.setOnClickListener(new View.OnClickListener() {
+        mHolder.deleteReservationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(parent.getContext(), ReservationEditDelete.class);
+                DocumentReference reservationDocRef = FirebaseFirestore.getInstance().collection("reservation").document(mHolder.ReservationID.getText().toString());
+                DocumentReference foodReservationDocRef = FirebaseFirestore.getInstance().collection("reservationfood").document(mHolder.ReservationID.getText().toString());
 
-                intent.putExtra("ReservationID", mHolder.ReservationID.getText().toString());
+//                showProgressbar();
 
-                parent.getContext().startActivity(intent);
+                reservationDocRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        foodReservationDocRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+//                                hideProgressBar();
+                                Toast.makeText(parent.getContext(), "Reservation Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+//                                hideProgressBar();
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+//                        hideProgressBar();
+                        Toast.makeText(parent.getContext(), "Error in Deleting Reservation", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         return mHolder;
@@ -56,6 +83,8 @@ public class AllReservationsRecyclerAdapter extends FirestoreRecyclerAdapter<Res
         ConstraintLayout main_layout;
 
         TextView ReservationID, TableName, ReservationYear, ReservationMonth, ReservationDay, ReservationHour;
+
+        Button deleteReservationBtn;
 
         public AllReservationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +97,8 @@ public class AllReservationsRecyclerAdapter extends FirestoreRecyclerAdapter<Res
             ReservationMonth = itemView.findViewById(R.id.reservationMonth);
             ReservationDay = itemView.findViewById(R.id.reservationDay);
             ReservationHour = itemView.findViewById(R.id.reservationHour);
+
+            deleteReservationBtn = itemView.findViewById(R.id.deleteReservationBtn);
         }
     }
 }

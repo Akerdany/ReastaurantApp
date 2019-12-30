@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -80,8 +81,13 @@ public class ReservationMenu extends AppCompatActivity {
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        finish();
                         Toast.makeText(ReservationMenu.this, "order saved", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(ReservationMenu.this, HomePageActivity.class);
+
+                        startActivity(intent);
+
+                        finish();
                     }
                 });
     }
