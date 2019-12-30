@@ -219,7 +219,7 @@
             android:id="@+id/confirmDeleteBtn_myAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            style="@style/buttonDelete_style_small"
             android:layout_marginTop="10dp"
             android:text="@string/deleteBtn_myAccount"/>
 
@@ -227,7 +227,7 @@
             android:id="@+id/cancelDeleteBtn_myAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            style="@style/button_style"
             android:layout_marginTop="10dp"
             android:text="@string/getBack_btn"/>
     </LinearLayout>
