@@ -38,10 +38,8 @@ public class FoodPanelRecyclerAdapter extends FirestoreRecyclerAdapter<Food, Foo
         holder.ItemName.setText(model.getItemName());
         holder.ItemDesc.setText(model.getItemDesc());
         holder.ItemPrice.setText(String.valueOf(model.getItemPrice()));
-        StorageReference imageRef = storageRef.getReference("FoodImages").child(model.getItemID());
 
         Glide.with(mParent.getContext()).load(Uri.parse(model.getItemPhoto())).into(holder.ItemImage);
-        
     }
 
     @NonNull

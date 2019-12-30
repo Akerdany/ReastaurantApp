@@ -1,5 +1,6 @@
 package com.example.reastaurantapp.Adapters;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.reastaurantapp.Classes.Food;
 import com.example.reastaurantapp.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class MenuRecyclerAdapter extends FirestoreRecyclerAdapter<Food, MenuRecyclerAdapter.MenuHolder> {
+
+    ViewGroup mParent;
 
     public MenuRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Food> options) {
         super(options);
@@ -26,12 +30,15 @@ public class MenuRecyclerAdapter extends FirestoreRecyclerAdapter<Food, MenuRecy
         holder.ItemName.setText(model.getItemName());
         holder.ItemDesc.setText(model.getItemDesc());
         holder.ItemPrice.setText(String.valueOf(model.getItemPrice()));
+
+        Glide.with(mParent.getContext()).load(Uri.parse(model.getItemPhoto())).into(holder.ItemImage);
     }
 
     @NonNull
     @Override
     public MenuHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item, parent, false);
+        mParent = parent;
         final MenuHolder mHolder = new MenuHolder(view);
         mHolder.food_item.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,14 @@
 package com.example.reastaurantapp.Classes;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class Food {
 
     private String ItemID;
@@ -26,6 +35,27 @@ public class Food {
         ItemName = itemName;
         ItemDesc = itemDesc;
         ItemPrice = itemPrice;
+    }
+
+    public static void deleteFood(String id){
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("food").document(id);
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("FoodImages").child(id);
+
+        docRef.delete();
+        imageRef.delete();
+
+//        docRef.update("isDeleted", true)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
     }
 
     public String getItemID() {
